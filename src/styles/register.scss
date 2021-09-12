@@ -1,13 +1,13 @@
 @import './global.scss';
 
-.login-page {
+.register-page {
    display: flex;
    align-items: stretch;
    flex-direction: column;
    height: 100vh;
 
-   .login-page-header {
-       height: 40vh;
+   .register-page-header {
+       height: 30vh;
        align-items: center;
        justify-content: center;
        position: relative;
@@ -25,9 +25,9 @@
         }
    }
 
-   .login-page-main {
+   .register-page-main {
        background: var(--white);
-       height: 60vh;
+       height: 70vh;
        border-top: 5px solid var(--black);
        border-radius: 30px 30px 0 0;
 
@@ -37,7 +37,7 @@
        justify-content: center;
 
        h2 { 
-           margin-bottom: 1em;
+           margin-bottom: .5em;
            font-weight: 700;
            color: var(--black);
        }
@@ -45,43 +45,62 @@
        .form-group {
            display: flex;
            position: relative;
-           margin-bottom: 2em;
+           margin-bottom: 1em;
        }
 
-       .form-group input { 
-          font-family: inherit;
-          display: block;
-          width: 20em;
-          padding: 10px 0;
-          border: none;
-          outline: none;
-          background: none;
-          border-bottom: 2px solid var(--black);
-          transition: 0.4s ease-out;
-        }
-
-        .form-group input:focus {
-          border-bottom-color: var(--red);
-        }
-
-        .form-group label {
+       .form-group label {
            position: absolute;
            font-size: .9rem;        
-           top: 50%;
+           top: 60%;
            left: 2%;
            transform: translateY(-50%);
            transition: .5s ease-out;
-        }
+       }
 
-        .form-group input:focus + label,
-        .form-group input:valid + label {
-          color: var(--red);
-          font-size: .7rem;    
-          top: 5%;
-        }
+       .form-group input { 
+           font-family: inherit;
+           display: block;
+           width: 20em;
+           padding: 10px 0;
+           border: none;
+           outline: none;
+           background: none;
+           border-bottom: 2px solid var(--black);
+           transition: 0.4s ease-out;
+       }
 
+       .form-group input:focus {
+        border-bottom-color: var(--red);
+      }
 
-       .login-btn-container { 
+       .form-group input:focus + label,
+       .form-group input:valid + label {
+         color: var(--red);
+         font-size: .7rem;    
+         top: 5%;
+       }
+
+    
+       .input-select-container {
+           margin-top: 1em;
+       }
+
+       .input-select-container label{
+         top: 20%;
+       }
+
+       .input-select {
+            width: 20em;
+            margin: 1.9em 0;
+            border: none;
+            outline: none;
+            border-bottom: 2px solid var(--black);
+            background-color:  transparent;
+            position: relative;
+            font-family: inherit;
+       }
+
+       .register-btn-container { 
            justify-content: center;
        }
 
@@ -112,11 +131,15 @@
         border: 2px solid var(--black);
        }
 
-       .new-user {
+       .already-a-user {
            font-size: .8rem;
            letter-spacing: .04rem;
            display: flex;
            align-items: center;
+       }
+
+       .link-container {
+            margin-bottom: 1em;
        }
 
        .link {
@@ -124,12 +147,12 @@
            color: var(--darker-gray);
            font-size: .8rem;
            transition: 0.3s ease-out;
+           
        }
 
        .link:hover {
          color: var(--black);
          border-bottom: 1px solid var(--black);
-         transform: scale(3);
        }
 
    }

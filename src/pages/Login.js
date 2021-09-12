@@ -1,3 +1,5 @@
+import { Link } from 'react-router-dom'; //faz a navegação com links
+
 import logoIMG from '../images/Logo.png'
 
 import '../styles/login.scss';
@@ -12,22 +14,24 @@ export function Login() {
                 <h2>Login</h2>
                 <form>
                     <div className="form-group">
-                        <label htmlFor="email">Digite seu email</label>
                         <input 
                             name="email"
                             id="email"
                             type="text" 
                             autoComplete="off"
+                            required
                         />
+                        <label htmlFor="email">Digite seu email</label>
                     </div>
                     <div className="form-group">
-                        <label htmlFor="password">Digite sua senha</label>
                         <input 
                             name="password"
                             id="password"
                             type="password" 
                             autoComplete="off"
+                            required
                         />
+                        <label htmlFor="password">Digite sua senha</label>
                     </div>
                     <div className="form-group login-btn-container">
                         <button type="submit">
@@ -36,8 +40,20 @@ export function Login() {
                     </div>
                 </form>
                 <p className="new-user">Novo funcionário?</p>
-                <div><a href="#">Cadastre-se</a></div>
+                <div><Link className="link" to="/register">Cadastre-se</Link></div>
             </main>
         </div>
     );
 }
+
+
+
+
+// import { useHistory } from 'react-router-dom'; //faz a navegação com botões
+//função para navegação com botões
+
+//     const history = useHistory();
+
+//     function navigateToNewPage() {
+//         history.push('/register')
+//     }
