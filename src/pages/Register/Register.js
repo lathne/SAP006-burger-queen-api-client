@@ -1,9 +1,14 @@
 import { Link } from 'react-router-dom';
-import logoIMG from '../images/Logo.png'
+import logoIMG from '../../images/Logo.png'
 
-import '../styles/register.scss';
+import UseForm from './UseForm.js';
+import validate from './ValidateRegister.js';
+
+import '../../styles/register.scss';
 
 export function Register() {
+    const {handleChange, values, handleSubmit, errors} = UseForm(validate);    
+
     return (
         <div className="register-page">
             <header className="register-page-header">
@@ -11,44 +16,51 @@ export function Register() {
             </header>
             <main className="register-page-main">
                 <h2>Cadastro</h2>
-                <form>
+                <form className="register-form" onSubmit={handleSubmit}>
                 <div className="form-group">
+                    <label htmlFor="name">Nome</label>
                         <input 
                             name="name"
                             id="name"
                             type="text" 
                             autoComplete="off"
-                            required
+                            value ={values.name}
+                            onChange={handleChange}
                         />
-                        <label htmlFor="name">Digite seu nome</label>
+                          {errors.name && <p>{errors.name}</p>}
                     </div>
                     <div className="form-group">
+                        <label htmlFor="email">Email</label>
                         <input 
                             name="email"
                             id="email"
                             type="text" 
                             autoComplete="off"
-                            required
+                            value ={values.email}
+                            onChange={handleChange}
                         />
-                        <label htmlFor="email">Digite seu email</label>
+                          {errors.email && <p>{errors.email}</p>}
                     </div>
-                    <div className="form-group">
+                    <div className="form-group type-password">
+                        <label htmlFor="password">Senha</label>
                         <input 
                             name="password"
                             id="password"
                             type="password" 
                             autoComplete="off"
-                            required
+                            value ={values.password}
+                            onChange={handleChange}
                         />
-                        <label htmlFor="password">Digite sua senha</label>
+                          {errors.password && <p>{errors.password}</p>}
                     </div>
                     <div className="form-group input-select-container">
-                        <select className="input-select" name="role" id="role" required>
+                        <label htmlFor="occupation">Selecione sua função</label>
+                        <select className="input-select" name="occupation" id="occupation" value={values.occupation} onChange={handleChange}>
                             <option value=""></option>
                             <option value="atendente">Atendente</option>
-                            <option value="cozinheiro">Cozinheiro(a)</option>
+                            <option value="cozinheirx">Cozinheiro(a)</option>
                         </select>
-                        <label htmlFor="role">Selecione sua função</label>
+                        {errors.occupation && <p>{errors.occupation}</p>}
                     </div>
                     <div className="form-group register-btn-container">
                         <button type="submit">
