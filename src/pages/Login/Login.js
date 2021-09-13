@@ -1,10 +1,15 @@
 import { Link } from 'react-router-dom'; //faz a navegação com links
 
-import logoIMG from '../images/Logo.png'
+import UseForm from './UseForm.js'
+import validate from './ValidateLogin.js';
 
-import '../styles/login.scss';
+import logoIMG from '../../images/Logo.svg'
+
+import '../../styles/login.scss';
 
 export function Login() {
+    const {handleChange, values, handleSubmit, errors} = UseForm(validate);
+
     return (
         <div className="login-page">
             <header className="login-page-header">
@@ -12,26 +17,30 @@ export function Login() {
             </header>
             <main className="login-page-main">
                 <h2>Login</h2>
-                <form>
-                    <div className="form-group">
+                <form className="login-form" onSubmit={handleSubmit}>
+                    <div className="form-group input">
+                    <label htmlFor="email">Email</label>
                         <input 
                             name="email"
                             id="email"
                             type="text" 
                             autoComplete="off"
-                            required
+                            value ={values.email}
+                            onChange={handleChange}
                         />
-                        <label htmlFor="email">Digite seu email</label>
+                       {errors.email && <p>{errors.email}</p>}
                     </div>
-                    <div className="form-group">
+                    <div className="form-group input">
+                    <label htmlFor="password">Senha</label>
                         <input 
                             name="password"
                             id="password"
                             type="password" 
                             autoComplete="off"
-                            required
+                            value ={values.password}
+                            onChange={handleChange}
                         />
-                        <label htmlFor="password">Digite sua senha</label>
+                        {errors.password && <p>{errors.password}</p>}
                     </div>
                     <div className="form-group login-btn-container">
                         <button type="submit">
