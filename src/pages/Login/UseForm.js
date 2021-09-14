@@ -1,5 +1,5 @@
 import { useState } from "react";
-
+import { loginWithUserPassword } from "../services/dataService.js"
 
 const useForm = validate => {
     const [values, setValues] = useState({
@@ -8,13 +8,20 @@ const useForm = validate => {
     })
 
     const [errors, setErrors] = useState({
+        empty : true,
         email: '', 
         password: '',
     })
 
     const handleSubmit = e => {
         e.preventDefault();
-        setErrors(validate(values))
+        setErrors(validate(values));
+        if (errors.empty) {
+            loginWithUserPassword(values.email, values.password)
+            .then((response) => {
+                console.log(response)
+            })
+        }
     }
 
     const handleChange = e => {
