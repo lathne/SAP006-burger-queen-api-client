@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom'; //faz a navegação com links
+import { Link } from 'react-router-dom'; 
 
 import UseForm from './UseForm.js'
 import validate from './ValidateLogin.js';
@@ -28,7 +28,7 @@ export function Login() {
                             value ={values.email}
                             onChange={handleChange}
                         />
-                       {errors.email && <p>{errors.email}</p>}
+                       <div className="hidden">{errors.email && <p>{errors.email}</p>}</div>
                     </div>
                     <div className="form-group input">
                     <label htmlFor="password">Senha</label>
@@ -40,7 +40,7 @@ export function Login() {
                             value ={values.password}
                             onChange={handleChange}
                         />
-                        {errors.password && <p>{errors.password}</p>}
+                        <div className="hidden">{errors.password && <p>{errors.password}</p>}</div>
                     </div>
                     <div className="form-group login-btn-container">
                         <button type="submit">

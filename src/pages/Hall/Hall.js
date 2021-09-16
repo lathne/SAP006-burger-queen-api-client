@@ -1,8 +1,8 @@
 
-export function Orders() {
+export function Hall() {
     return (
         <div className="orders-page">
-            <h1>Orders</h1>
+            <h1>Hall</h1>
         </div>
     );
 }

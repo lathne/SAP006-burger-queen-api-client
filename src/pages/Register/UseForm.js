@@ -1,24 +1,52 @@
 import { useState } from "react";
-
+import { registerUser } from "../../services/dataService.js"
+import { useHistory } from 'react-router-dom';
 
 const useForm = validate => {
+    const history = useHistory();   
+
     const [values, setValues] = useState({
         name: '',
         email: '',
         password: '',
-        occupation: '',
+        role: '',
     })
 
     const [errors, setErrors] = useState({
+        empty : true,
         name: '',
         email: '', 
         password: '',
-        occupation: '',
+        role: '',
     })
+
+    
+    function navigateToLogin() {
+        history.push('/login');
+    }
 
     const handleSubmit = e => {
         e.preventDefault();
         setErrors(validate(values))
+
+        if (errors.empty) {
+            registerUser(values.name, values.email, values.password, values.role)
+                .then(response => response.json(
+                    console.log(response)
+                ))
+                .then((json) => {
+                    console.log(json)
+
+                    const token = json.token
+                    localStorage.setItem("usersToken", token);
+
+                    if (json.id === undefined) {
+                        console.log('DEU ERROOO')
+                    } else {
+                        navigateToLogin();
+                    }
+                })
+        }
     }
 
     const handleChange = e => {

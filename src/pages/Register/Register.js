@@ -27,19 +27,19 @@ export function Register() {
                             value ={values.name}
                             onChange={handleChange}
                         />
-                          {errors.name && <p>{errors.name}</p>}
+                        <div className="hidden">{errors.name && <p>{errors.name}</p>}</div> 
                     </div>
                     <div className="form-group">
                         <label htmlFor="email">Email</label>
                         <input 
                             name="email"
                             id="email"
-                            type="text" 
+                            type="email" 
                             autoComplete="off"
                             value ={values.email}
                             onChange={handleChange}
                         />
-                          {errors.email && <p>{errors.email}</p>}
+                          <div className="hidden">{errors.email && <p>{errors.email}</p>}</div> 
                     </div>
                     <div className="form-group type-password">
                         <label htmlFor="password">Senha</label>
@@ -51,16 +51,16 @@ export function Register() {
                             value ={values.password}
                             onChange={handleChange}
                         />
-                          {errors.password && <p>{errors.password}</p>}
+                          <div className="hidden">{errors.password && <p>{errors.password}</p>}</div> 
                     </div>
                     <div className="form-group input-select-container">
-                        <label htmlFor="occupation">Selecione sua função</label>
-                        <select className="input-select" name="occupation" id="occupation" value={values.occupation} onChange={handleChange}>
+                        <label htmlFor="role">Selecione sua função</label>
+                        <select className="input-select" name="role" id="role" value={values.role} onChange={handleChange}>
                             <option value=""></option>
                             <option value="atendente">Atendente</option>
                             <option value="cozinheirx">Cozinheiro(a)</option>
                         </select>
-                        {errors.occupation && <p>{errors.occupation}</p>}
+                        <div className="hidden">{errors.role && <p>{errors.role}</p>}</div> 
                     </div>
                     <div className="form-group register-btn-container">
                         <button type="submit">

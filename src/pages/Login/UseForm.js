@@ -1,7 +1,10 @@
 import { useState } from "react";
-import { loginWithUserPassword } from "../services/dataService.js"
+import { loginWithUserPassword } from "../../services/dataService.js"
+import { useHistory } from 'react-router-dom';
 
 const useForm = validate => {
+    const history = useHistory();   
+
     const [values, setValues] = useState({
         email: '',
         password: '',
@@ -13,13 +16,28 @@ const useForm = validate => {
         password: '',
     })
 
+    function navigateToHall() {
+        history.push('/hall');
+    }
+
     const handleSubmit = e => {
         e.preventDefault();
         setErrors(validate(values));
+
         if (errors.empty) {
             loginWithUserPassword(values.email, values.password)
-            .then((response) => {
-                console.log(response)
+                .then(res => res.json())
+                .then((json) => {
+                    const token = json.token
+                    const id = json.id
+                    const role = json.role
+                    localStorage.setItem("usersToken", token);
+
+                    if (token !== null && id !== null &&  role === 'atendente') {
+                        navigateToHall()
+                    } else {
+                        console.log('Não cadastrado!')
+                    }
             })
         }
     }
