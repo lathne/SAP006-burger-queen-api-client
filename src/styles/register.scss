@@ -62,7 +62,6 @@
         .form-group input { 
             font-family: inherit;
             width: 20em;
-            //   padding: 5px 0;
             border: none;
             outline: none;
             background: none;
@@ -83,6 +82,10 @@
             font-size: .7rem;
             color: var(--red);
         }
+
+        // .hidden {
+        //     visibility: hidden;
+        // }
 
         .register-btn-container { 
             justify-content: center;
