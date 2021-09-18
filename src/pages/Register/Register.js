@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom';
+
 import { Button } from '../../components/Button.js'
 import { Header } from '../../components/Header.js';
 
@@ -62,11 +63,13 @@ export function Register() {
                         <div className="hidden">{errors.role && <p>{errors.role}</p>}</div> 
                     </div>
                     <div className="form-group register-btn-container">
+
                         <Button 
                             type="submit"
                             buttonText="Cadastrar"
                             className="button-primary"
                         />
+
                     </div>        
                 </form>
                 <p className="already-a-user">Ja tem uma Conta?</p>
