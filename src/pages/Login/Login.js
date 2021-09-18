@@ -1,9 +1,8 @@
 import { Link } from 'react-router-dom'; 
-
+import { Header } from '../../components/Header.js';
+import { Button } from '../../components/Button.js';
 import UseForm from './UseForm.js'
 import validate from './ValidateLogin.js';
-
-import logoIMG from '../../images/Logo.svg'
 
 import '../../styles/login.scss';
 
@@ -12,9 +11,7 @@ export function Login() {
 
     return (
         <div className="login-page">
-            <header className="login-page-header">
-                <img className="responsive center" src={logoIMG} alt="Logo Burguer Queen" />
-            </header>
+            <Header />
             <main className="login-page-main">
                 <h2>Login</h2>
                 <form className="login-form" onSubmit={handleSubmit}>
@@ -28,7 +25,7 @@ export function Login() {
                             value ={values.email}
                             onChange={handleChange}
                         />
-                       <div className="hidden">{errors.email && <p>{errors.email}</p>}</div>
+                       <div className="error-message">{errors.email && <p>{errors.email}</p>}</div>
                     </div>
                     <div className="form-group input">
                     <label htmlFor="password">Senha</label>
@@ -43,9 +40,11 @@ export function Login() {
                         <div className="hidden">{errors.password && <p>{errors.password}</p>}</div>
                     </div>
                     <div className="form-group login-btn-container">
-                        <button type="submit">
-                            Entrar
-                        </button>
+                       <Button 
+                            type="submit"
+                            buttonText="Entrar"
+                            className="button-primary"
+                        />
                     </div>
                 </form>
                 <p className="new-user">Novo funcionário?</p>
