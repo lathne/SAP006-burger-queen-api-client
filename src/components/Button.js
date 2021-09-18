@@ -1,8 +1,12 @@
-// import { useState } from 'react';
+
+import '../styles/button.scss';
+
 export function Button(props) {
     return (
-        <button type="submit"> 
-            {props.name}
+        <button 
+            type={props.type} 
+            className={props.className}> 
+            {props.buttonText}
         </button>
     )
 }

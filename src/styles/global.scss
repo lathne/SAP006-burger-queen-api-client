@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;500;600;700;800&family=Coiny&display=swap');
+// @import url('https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;500;600;700;800&family=Coiny&display=swap');
 
 /* 
 font-family: 'Baloo 2', cursive;
@@ -12,7 +12,6 @@ font-family: 'Coiny', cursive;
   --gray: #ABABAB;
   --darker-gray: #868686;
   --black: #1D2228;
-  
 }
 
 * {
@@ -23,5 +22,4 @@ font-family: 'Coiny', cursive;
 
   body { 
     font-family: 'Baloo 2', cursive;
-    background: var(--red);
 }

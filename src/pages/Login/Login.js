@@ -25,7 +25,7 @@ export function Login() {
                             value ={values.email}
                             onChange={handleChange}
                         />
-                       <div className="hidden">{errors.email && <p>{errors.email}</p>}</div>
+                       <div className="error-message">{errors.email && <p>{errors.email}</p>}</div>
                     </div>
                     <div className="form-group input">
                     <label htmlFor="password">Senha</label>
@@ -40,7 +40,13 @@ export function Login() {
                         <div className="hidden">{errors.password && <p>{errors.password}</p>}</div>
                     </div>
                     <div className="form-group login-btn-container">
-                        <Button name="Entrar" />
+
+                       <Button 
+                            type="submit"
+                            buttonText="Entrar"
+                            className="button-primary"
+                        />
+
                     </div>
                 </form>
                 <p className="new-user">Novo funcionário?</p>

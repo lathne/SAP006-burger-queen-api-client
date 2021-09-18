@@ -1,13 +1,15 @@
-import logoIMG from '../images/Logo.svg'
 
-export function Header () {
-    return (
-        <header className="login-page-header">
-            <img 
-                className="responsive center" 
-                src={logoIMG} 
-                alt="Logo Burguer Queen" 
-            />
-        </header>
-    )
+import logoIMG from '../images/Logo.svg';
+import '../styles/header.scss'
+
+export function Header() { 
+  return (
+      <header className="header">
+          <img 
+              className="responsive center" 
+              src={logoIMG} 
+              alt="Logo Burguer Queen" 
+          />
+      </header>
+  )
 }
