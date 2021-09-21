@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
-import logoIMG from '../../images/Logo.png'
-
+import { Header } from '../../components/Header.js';
+import { Button } from '../../components/Button.js';
 import UseForm from './UseForm.js';
 import validate from './ValidateRegister.js';
 
@@ -11,9 +11,7 @@ export function Register() {
 
     return (
         <div className="register-page">
-            <header className="register-page-header">
-                <img className="responsive center" src={logoIMG} alt="Logo Burguer Queen" />
-            </header>
+            <Header />
             <main className="register-page-main">
                 <h2>Cadastro</h2>
                 <form className="register-form" onSubmit={handleSubmit}>
@@ -63,9 +61,11 @@ export function Register() {
                         <div className="hidden">{errors.role && <p>{errors.role}</p>}</div> 
                     </div>
                     <div className="form-group register-btn-container">
-                        <button type="submit">
-                            Cadastrar
-                        </button>
+                        <Button 
+                            type="submit"
+                            buttonText="Cadastrar"
+                            className="button-primary"
+                        />
                     </div>        
                 </form>
                 <p className="already-a-user">Ja tem uma Conta?</p>

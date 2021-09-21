@@ -1,0 +1,49 @@
+@import './global.scss';
+
+.nav-bar-hall {
+    height: 40vh;
+    align-items: center;
+    justify-content: space-between;
+    position:static;
+    display: flex;
+
+    .responsive{
+        max-width:90%;
+        max-height:80%;
+    }
+
+    // .center{
+    //     position: absolute;
+    //     top: 50%;
+    //     left: 55%; 
+    //     transform: translate(-50%, -50%);
+    //     }
+    
+
+    .anchors {
+        width: 70%;
+        display: flex;
+        align-items: center;
+        justify-content: space-around;
+        font-family: inherit;
+        font-style: normal;
+        font-weight: normal;
+        font-size: 10px;
+        line-height: 38px;
+        text-align: center;
+        text-decoration: none;
+        color: #FFFFFF;
+    }
+        
+    .btn-exit {
+        height: 50%;
+        display: flex;
+    }
+    .btn-exit-img {
+        display: flex;
+        background-color: var(--red);
+        padding: none;
+        margin: none;
+        // height: 50%;
+    }
+}

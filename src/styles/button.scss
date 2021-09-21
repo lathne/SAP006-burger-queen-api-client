@@ -1,0 +1,29 @@
+
+
+.button-primary {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 600;
+    font-size: 1rem;
+    font-family: inherit;
+
+    width: auto;
+    padding: 0.4em 2em;
+    margin-top: 1em;
+
+    border-radius: 100px;
+
+    border: 2px solid var(--red);
+    color: var(--red);
+    background-color: var(--white);
+    background-image: linear-gradient(to right, transparent 50%, #C64040 50%);
+    background-size: 200%;
+    transition: .5s ease-out;
+}
+
+.button-primary:hover {
+ background-position: 100%;
+ color: var(--black);
+ border: 2px solid var(--black);
+}
