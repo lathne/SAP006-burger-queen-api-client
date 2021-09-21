@@ -30,3 +30,31 @@ export const registerUser = (name, email, password, role) => {
   })
 });
 };
+
+export const editUser = () => {
+  return fetch ("https://lab-api-bq.herokuapp.com/users/{uid}", {
+    method: "PUT",
+    headers: {
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify ({
+    
+    })
+  });
+};
+
+export const logout = () => {
+  
+}
+
+// export const deleteUser = () => {
+//   return fetch ("https://lab-api-bq.herokuapp.com/users/{uid}", {
+//     method: "DELETE",
+//     headers: {
+//       "Content-Type": "application/json"
+//     },
+//     body: JSON.stringify ({
+
+//     })
+//   })
+// }

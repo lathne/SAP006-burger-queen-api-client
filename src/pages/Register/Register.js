@@ -1,8 +1,6 @@
 import { Link } from 'react-router-dom';
-
-import { Button } from '../../components/Button.js'
 import { Header } from '../../components/Header.js';
-
+import { Button } from '../../components/Button.js';
 import UseForm from './UseForm.js';
 import validate from './ValidateRegister.js';
 

@@ -5,6 +5,7 @@ import { isAuthenticated } from './services/auth.js'
 import { Login } from './pages/Login/Login.js'
 import { Register } from './pages/Register/Register.js';
 import { Hall } from './pages/Hall/Hall.js';
+import { MenuMorning } from './pages/Menu/MenuMorning.js'
 
 
 const PrivateRoute = ({component: Component, ...rest}) => {
@@ -27,6 +28,7 @@ function App() {
         <Route path="/login" exact component={Login} />
         <Route path="/register" component={Register} />
         <PrivateRoute path="/hall" component={Hall} />
+        <PrivateRoute path="/menumorning" component={MenuMorning} />
       </Switch>
     </BrowserRouter>
   );
