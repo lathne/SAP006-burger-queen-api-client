@@ -1,8 +1,8 @@
 import { Link } from 'react-router-dom';
 import { NavBar } from '../../components/NavBar';
 import { Button } from '../../components/Button';
-import validateHall from '../Hall/ValidateHall'
-import useForm from '../Hall/UseForm'
+// import validateHall from '../Hall/ValidateHall'
+// import useForm from '../Hall/UseForm'
 import table from '../../images/table.png'
 
 import '../../styles/hall.scss';
