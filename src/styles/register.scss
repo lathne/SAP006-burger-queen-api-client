@@ -1,33 +1,14 @@
 @import './global.scss';
 
 .register-page {
+   background: var(--red); 
    display: flex;
    align-items: stretch;
    flex-direction: column;
-   height: 100vh;
-
-   .register-page-header {
-       height: 25vh;
-       align-items: center;
-       justify-content: center;
-       position: relative;
-
-       .responsive{
-            max-width:90%;
-            max-height:80%;
-        }
-     
-        .center{
-            position: absolute;
-            top: 50%;
-            left: 55%; 
-            transform: translate(-50%, -50%);
-        }
-   }
 
    .register-page-main {
        background: var(--white);
-       height: 75vh;
+       height: 45em;
        border-top: 5px solid var(--black);
        border-radius: 30px 30px 0 0;
 
@@ -37,6 +18,7 @@
        justify-content: center;
 
        h2 { 
+        font-size: 1.8rem;   
            margin-bottom: .3em;
            font-weight: 700;
            color: var(--black);
@@ -56,12 +38,13 @@
 
         .form-group label {
             align-self: center;
-            font-size: .9rem;       
+            font-size: 1.2rem;       
         }
 
         .form-group input { 
             font-family: inherit;
-            width: 20em;
+            width: 25em;
+            padding: 2px 0;
             border: none;
             outline: none;
             background: none;
@@ -69,7 +52,7 @@
         }
 
         .input-select {
-                width: 20em;
+                width: 25em;
                 border: none;
                 outline: none;
                 border-bottom: 2px solid var(--black);
@@ -79,67 +62,35 @@
         }
 
         .form-group p { 
-            font-size: .7rem;
+            font-size: .9rem;
             color: var(--red);
         }
-
-        // .hidden {
-        //     visibility: hidden;
-        // }
 
         .register-btn-container { 
             justify-content: center;
         }
 
-        button {
+        .already-a-user {
+            font-size: .9rem;
+            letter-spacing: .04rem;
             display: flex;
             align-items: center;
-            justify-content: center;
-            font-weight: 600;
-            font-size: 1rem;
-            font-family: inherit;
-            
-            width: auto;
-            padding: 0.4em 2em;
-        
-            border-radius: 100px;
-
-            border: 2px solid var(--red);
-            color: var(--red);
-            background-color: var(--white);
-            background-image: linear-gradient(to right, transparent 50%, #C64040 50%);
-            background-size: 200%;
-            transition: .5s ease-out;
         }
-        
-            button:hover {
-                background-position: 100%;
-                color: var(--black);
-                border: 2px solid var(--black);
-            }
 
-            .already-a-user {
-                font-size: .8rem;
-                letter-spacing: .04rem;
-                display: flex;
-                align-items: center;
-            }
+        .link-container {
+            margin-bottom: 1em;
+        }
 
-            .link-container {
-                    margin-bottom: 1em;
-            }
+        .link {
+            text-decoration: none;
+            color: var(--darker-gray);
+            font-size: .9rem;
+            transition: 0.3s ease-out;
+        }
 
-            .link {
-                text-decoration: none;
-                color: var(--darker-gray);
-                font-size: .8rem;
-                transition: 0.3s ease-out;
-                
-            }
-
-            .link:hover {
-                color: var(--black);
-                border-bottom: 1px solid var(--black);
-            }
+        .link:hover {
+            color: var(--black);
+            border-bottom: 1px solid var(--black);
+        }
    }
 }

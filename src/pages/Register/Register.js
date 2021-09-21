@@ -52,7 +52,7 @@ export function Register() {
                           <div className="hidden">{errors.password && <p>{errors.password}</p>}</div> 
                     </div>
                     <div className="form-group input-select-container">
-                        <label htmlFor="role">Selecione sua função</label>
+                        <label htmlFor="role">Função</label>
                         <select className="input-select" name="role" id="role" value={values.role} onChange={handleChange}>
                             <option value=""></option>
                             <option value="atendente">Atendente</option>
@@ -61,11 +61,13 @@ export function Register() {
                         <div className="hidden">{errors.role && <p>{errors.role}</p>}</div> 
                     </div>
                     <div className="form-group register-btn-container">
+
                         <Button 
                             type="submit"
                             buttonText="Cadastrar"
                             className="button-primary"
                         />
+
                     </div>        
                 </form>
                 <p className="already-a-user">Ja tem uma Conta?</p>

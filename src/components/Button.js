@@ -1,3 +1,4 @@
+
 import '../styles/button.scss';
 
 export function Button(props) {
@@ -8,4 +9,5 @@ export function Button(props) {
             {props.buttonText}
         </button>
     )
-};
+}
+

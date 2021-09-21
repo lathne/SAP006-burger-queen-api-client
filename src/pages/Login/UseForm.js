@@ -25,7 +25,9 @@ const useForm = validate => {
         setErrors(validate(values));
 
         if (errors.empty) {
+
             loginWithUserPassword(values.email, values.password)
+            
                 .then(res => res.json())
                 .then((json) => {
                     const token = json.token
