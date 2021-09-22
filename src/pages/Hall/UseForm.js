@@ -16,20 +16,20 @@
 
 //     const handleSubmit = e => {
 //         e.preventDefault();
+//         
+
 //         setErrors();
 
-//         if(selecionou uma mesa $$ apertou botao menumorning && anotou o nome do cliente){
+//         if(errors.empty){
+    //          if(e.target.className["morni"]!= undefined) {//              
 //             navigateToMenuMorning()
+//          }
+//              else {
+    //      navigateToMenuMain()
+//          }
 //         }
-//         if (selecionou uma mesa && anotou o nome do cliente && apertou botao menumain) {
-//             navigateToMenuMain()
-//         }
-       
-//     }
-
-    // const logout 
-    // essa parte não é da historia de usuario mas é util por enquanto
-
+//         
+    
     // ir para acompanhar pedidos 
     // não é da historia atual
 

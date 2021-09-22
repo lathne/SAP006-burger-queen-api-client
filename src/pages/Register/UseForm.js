@@ -30,7 +30,7 @@ const useForm = validate => {
         setErrors(validate(values))
 
         if (errors.empty) {
-            registerUser(values.name, values.email, values.password, values.role)
+            registerUser(values)
                 .then(response => response.json(
                     console.log(response)
                 ))

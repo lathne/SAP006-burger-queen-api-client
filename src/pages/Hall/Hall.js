@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom';
 import { NavBar } from '../../components/NavBar';
 import { Button } from '../../components/Button';
+
 // import validateHall from '../Hall/ValidateHall'
 // import useForm from '../Hall/UseForm'
 import table from '../../images/table.png'
@@ -17,39 +18,39 @@ export function Hall() {
                 <h2 className="instructions"> Selecione uma mesa e digite o nome do cliente: </h2>
                 <form className="tables-container">
                     <div>
-                        <label for="t1"><img src={table} alt=""/>1</label>
+                        <label htmlFor="t1"><img src={table} alt=""/>1</label>
                         <input type="radio" name="table" id="t1" />
                     </div>
                     <div>
-                        <label for="t2"><img src={table} alt=""/>2</label>
+                        <label htmlFor="t2"><img src={table} alt=""/>2</label>
                         <input type="radio" name="table" id="t2" />
                     </div>
                     <div>
-                        <label for="t3"><img src={table} alt=""/>3</label>
+                        <label htmlFor="t3"><img src={table} alt=""/>3</label>
                         <input type="radio" name="table" id="t3" />
                     </div>
                     <div>
-                        <label for="t4"><img src={table} alt=""/>4</label>
+                        <label htmlFor="t4"><img src={table} alt=""/>4</label>
                         <input type="radio" name="table" id="t4" />
                     </div>
                     <div>
-                        <label for="t5"><img src={table} alt=""/>5</label>
+                        <label htmlFor="t5"><img src={table} alt=""/>5</label>
                         <input type="radio" name="table" id="t5" />
                     </div>
                     <div>
-                        <label for="t6"><img src={table} alt=""/>6</label>
+                        <label htmlFor="t6"><img src={table} alt=""/>6</label>
                         <input type="radio" name="table" id="t6" />
                     </div>
                     <div>
-                        <label for="t7"><img src={table} alt=""/>7</label>
+                        <label htmlFor="t7"><img src={table} alt=""/>7</label>
                         <input type="radio" name="table" id="t7" />
                     </div>
                     <div>
-                        <label for="t8"><img src={table} alt=""/>8</label>
+                        <label htmlFor="t8"><img src={table} alt=""/>8</label>
                         <input type="radio" name="table" id="t8" />
                     </div>
                     <div>
-                        <label for="t9"><img src={table} alt=""/>9</label>
+                        <label htmlFor="t9"><img src={table} alt=""/>9</label>
                         <input type="radio" name="table" id="t9" />
                     </div>
                     <div className="name-client-input">
