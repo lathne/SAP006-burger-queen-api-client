@@ -40,13 +40,12 @@ export function Login() {
                         <div className="hidden">{errors.password && <p>{errors.password}</p>}</div>
                     </div>
                     <div className="form-group login-btn-container">
-
                        <Button 
                             type="submit"
                             buttonText="Entrar"
+                            onClick={handleSubmit}
                             className="button-primary"
                         />
-
                     </div>
                 </form>
                 <p className="new-user">Novo funcionário?</p>

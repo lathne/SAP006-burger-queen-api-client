@@ -6,6 +6,7 @@ import { Login } from './pages/Login/Login.js'
 import { Register } from './pages/Register/Register.js';
 import { Hall } from './pages/Hall/Hall.js';
 import { MenuMorning } from './pages/Menu/MenuMorning.js'
+import { MenuMain } from './pages/Menu/MenuMain.js';
 
 
 const PrivateRoute = ({component: Component, ...rest}) => {
@@ -29,6 +30,7 @@ function App() {
         <Route path="/register" component={Register} />
         <PrivateRoute path="/hall" component={Hall} />
         <PrivateRoute path="/menumorning" component={MenuMorning} />
+        <PrivateRoute path="/menumain" component={MenuMain} />
       </Switch>
     </BrowserRouter>
   );
