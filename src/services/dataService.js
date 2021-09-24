@@ -14,47 +14,32 @@ export const loginWithUserPassword = (email, password) => {
 };
 
 
-export const registerUser = (name, email, password, role) => {
-  console.log(name, email, password, role)
+export const registerUser = (values) => {
+  console.log(values)
   return  fetch("https://lab-api-bq.herokuapp.com/users", {
   method: "POST",
   headers: {
     "Content-Type": "application/json"
   },
   body: JSON.stringify ({
-    "name": name,
-    "email": email,
-    "password": password,
-    "role": role,
+    "name": values.name,
+    "email": values.email,
+    "password": values.password,
+    "role": values.role,
     "restaurant": "Red Queen"
   })
 });
 };
 
-export const editUser = () => {
-  return fetch ("https://lab-api-bq.herokuapp.com/users/{uid}", {
+export const editUser = (name, role, userId) => {
+  return fetch (`https://lab-api-bq.herokuapp.com/users/${userId}`, {
     method: "PUT",
     headers: {
       "Content-Type": "application/json"
     },
     body: JSON.stringify ({
-    
+      "name": name,
+      "role": role,
     })
   });
 };
-
-export const logout = () => {
-  
-}
-
-// export const deleteUser = () => {
-//   return fetch ("https://lab-api-bq.herokuapp.com/users/{uid}", {
-//     method: "DELETE",
-//     headers: {
-//       "Content-Type": "application/json"
-//     },
-//     body: JSON.stringify ({
-
-//     })
-//   })
-// }

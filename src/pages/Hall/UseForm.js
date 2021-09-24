@@ -1,38 +1,56 @@
-// import { useState } from "react";
-// import { unstable_renderSubtreeIntoContainer } from "react-dom";
-// import { useHistory } from 'react-router-dom';
+import { useState } from "react";
+import { useHistory } from 'react-router-dom';
+import ValidateHall from './ValidateHall'
 
 
-// const useForm = () => {
-//     const history = useHistory()
+const useForm = () => {
+    const history = useHistory()
     
-//     function navigateToMenuMain() {
-//         history.push('/menumain')
-//     }
+    function navigateToMenuMain() {
+        history.push('/menumain')
+    }
 
-//     function navigateToMenuMorning() {
-//             history.push('/menumorning') 
-//     }
+    function navigateToMenuMorning() {
+            history.push('/menumorning') 
+    }
 
-//     const handleSubmit = e => {
-//         e.preventDefault();
-//         setErrors();
+    const [errors, setErrors] = useState({
+        empty : true
+    })
 
-//         if(selecionou uma mesa $$ apertou botao menumorning && anotou o nome do cliente){
-//             navigateToMenuMorning()
-//         }
-//         if (selecionou uma mesa && anotou o nome do cliente && apertou botao menumain) {
-//             navigateToMenuMain()
-//         }
-       
-//     }
+    const [values, setValues] = useState({
+        table: '',
+        nameClientInput: '',
+    })
 
-    // const logout 
-    // essa parte não é da historia de usuario mas é util por enquanto
+    const handleSubmit = e => {
+        e.preventDefault();
+        setErrors(ValidateHall(values));
+        console.log(ValidateHall(values))
+        if(errors.empty){
+             if(e.target.className["morning"]!== undefined) {              
+            navigateToMenuMorning()
+         }
+             else {
+            navigateToMenuMain()
+         }
+        }
+    }
 
+    const handleChange = e => {
+        const { name, value } = e.target;
+        setValues({
+            ...values,
+            [name]: value
+        })
+        console.log(name, value)
+    }
+    
+    return {handleChange, values, handleSubmit, errors}
     // ir para acompanhar pedidos 
     // não é da historia atual
 
     // ir para pagina da cozinha
     // não é da historia atual 
-
+}
+export default useForm;
