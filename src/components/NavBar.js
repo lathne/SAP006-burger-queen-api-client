@@ -1,24 +1,31 @@
-import reducedLogo from '../images/ReducedLogo.png'
-import exitIMG from '../images/exit.png'
+import reducedLogo from '../images/reducedLogo.svg'
+import logoutIMG from '../images/exit.svg'
 import '../styles/NavBar.scss'
+import { Link } from 'react-router-dom'
 
 export function NavBar() { 
   return (
       <nav className="nav-bar-hall">
-          <img 
-              className="responsive center" 
-              src={reducedLogo} 
-              alt="Logo Burguer Queen" 
-          />
+          <div className="navbar-logo-container">
+            <img 
+                className="navbar-logo" 
+                src={reducedLogo} 
+                alt="Logo Burguer Queen" 
+            />
+          </div>
           {/* <div className="anchors">
                 <h2 className="anchor-orders">Acompanhar Pedidos</h2>
                 <h2 className="anchor-kitchen">Cozinha</h2>
           </div> */}
-          <button type="button" className="btn-exit-" >
-                <img className="btn-exit-img"
-                src={exitIMG}
-                alt="Botão para logout"/>
-          </button>
+          <div className="navbar-logo-container">
+            <Link to="" className="logout-btn" >
+                  <img 
+                    className="btn-logout-img"
+                    src={logoutIMG}
+                    alt="Botão para logout"
+                  />
+            </Link>
+          </div>
                 
           
       </nav>

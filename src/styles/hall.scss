@@ -5,61 +5,158 @@
    align-items: stretch;
    flex-direction: column;
    height: 100vh;
-
-
    
    .hall-page-main {
-    background: var(--white);
-    border-top: 5px solid var(--black);
-    border-radius: 30px 30px 0 0;
-    align-items: center;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
+        background: var(--white);
+        align-items: center;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
    
-
-    h2 { 
-    margin-bottom: 1em;
-    font-weight: 700;
-    color: var(--black);
+    .employee {
+        margin: 1em 0;
     }
 
-        .tables-container {
-            display: grid;
-            grid-template-columns: 1fr 1fr 1fr;
-            align-content: center;
+    .instructions { 
+        margin: 1em 0;
+        font-weight: 500;
+        color: var(--black);
+        text-align: center;
+    }
+
+    .form { 
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: space-around;
+        flex-direction: column;
+    }
+
+    .tables-container {
+        margin: 3em 0;
+        display: grid;
+        width: 80%;
+        grid-template-columns: 1fr;
+        align-items: center;
+        justify-content: center;
+        gap: 2em;
+
+        .table { 
+            display: flex;
+            align-items: center;
             justify-content: center;
 
-            input[type="radio"] {
-                visibility: hidden;
-                }
+            border-radius: 30px;
+            border: 1px solid var(--black);
+            padding: 1.5em;
+            position: relative;
+        }
 
-            radio {
-                display: inline-block;
-                border: 4px solid #666;
-                width: 60px;
-                justify-content: space-around;
-                // align-items: center;
-                // float: left;
-                }
+        // .table:hover{
+        //     background-color: var(--red)
+        // }
 
-            input[type="radio"]:checked+label {
-                border-color: #ccf;
-                }
-            img {
-                height: 50px;
-                }
-            
-            .name-client-input {
-                align-items: center;
-                justify-content: center;
+        img {
+            max-width: 15em;
+            cursor: pointer;
+
+            $small: 620px;
+            $tablet-width: 768px;
+            $desktop-width: 1024px;
+            @media screen and (min-width:#{$small}) {
+                max-width: 12em;
             }
         }
 
-        Link {
-            position: relative;
-            display: inline-flex;
+        .table-input { 
+            position: absolute;
+            opacity: 0;
+            width: 0;
+            height: 0;
         }
+
+        input[type="radio"]:checked+label {
+            border: 2px solid var(--green);
+            box-shadow: 0 0 3px 3px var(--green);
+        }
+    
+        // .table-input:checked + label>img {
+        //     border: 2px solid var(--green);
+        //     box-shadow: 0 0 3px 3px var(--green);
+        // }
+
+        $small: 620px;
+        $tablet-width: 850px;
+        $desktop-width: 1024px;
+     
+        @media screen and (min-width:#{$small}) {
+            grid-template-columns: 1fr 1fr;
+        }
+
+        @media screen and (min-width:#{$tablet-width}) {
+            grid-template-columns: 1fr 1fr 1fr;
+        }
+    }
+
+    .client-name-container {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+    }
+
+    .client-name-input {
+      font-family: inherit;
+      width: 25em;
+      padding: 2px 0;
+      border: none;
+      outline: none;
+      background: none;
+      border-bottom: 2px solid var(--black);
+    }
+    
+    .menu-buttons-container {
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        margin: 3em 0;
+
+        .menu-buttons {
+            width: 70%;
+            display: flex;
+            align-items: center;
+            justify-content: space-around;
+            flex-direction: column;
+
+            $small: 620px;
+            $tablet-width: 850px;
+            $desktop-width: 1024px;
+         
+            @media screen and (min-width:#{$small}) {
+                flex-direction: row;
+            }
+
+        }
+
+        .link {
+            text-decoration: none;
+            color: var(--black);
+        }
+
+    }
+    
    }
+
 };
 
+
+
+
+// $small: 620px;
+// $tablet-width: 768px;
+// $desktop-width: 1024px;
+// @media screen and (min-width:#{$small}) {
+    
+// }
