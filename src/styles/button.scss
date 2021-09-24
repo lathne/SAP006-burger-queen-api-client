@@ -1,18 +1,22 @@
 
-
-.button-primary {
+button {
     display: flex;
     align-items: center;
     justify-content: center;
     font-weight: 600;
-    font-size: 1rem;
+    font-size: 1.2rem;
     font-family: inherit;
     width: auto;
     padding: 0.4em 2em;
     margin-top: 1em;
-
+    cursor: pointer;
     border-radius: 100px;
+    border: none;
+}
 
+
+.button-primary,
+.button-hall {
     border: 2px solid var(--red);
     color: var(--red);
     background-color: var(--white);
@@ -25,4 +29,9 @@
  background-position: 100%;
  color: var(--black);
  border: 2px solid var(--black);
+}
+
+.button-hall:hover {
+    background-position: 100%;
+    color: var(--white);
 }
