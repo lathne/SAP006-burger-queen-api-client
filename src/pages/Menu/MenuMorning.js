@@ -13,57 +13,74 @@ export function MenuMorning() {
         <>
           <NavBar />
           <main className="menu-morning">
-            <h2>Café da Manhã</h2>
+            <h2 className="h2">Café da Manhã</h2>
+            <div className="columns">
             <section className="items-section">
-                <div className="drinks-container">
+              
+          
+              <div className="drinks-container">
+                
+                <div className="title">
                     <h3>Bebidas</h3>
-                    <div className="drinks">
+                </div>
+                
+                <div className="drinks">
+                    <div className="drink">
                         <img src={blackCoffee} alt="black coffee"/>
-                        <label htmlFor="black-coffee">Café Preto</label>
-                        <input className="items-input" type="radio" name="item" id="black-coffee" />
+                        <label className="label" htmlFor="black-coffee">Café Preto</label>
+                        <input className="input-radio" type="radio" name="drink" id="black-coffee" />
                     </div>
-                    <div className="drinks">
+                    <div className="drink">
                         <img src={latte} alt="latte"/>
-                        <label htmlFor="latte">Café com leite</label>
-                        <input className="items-input" type="radio" name="item" id="latte" />
+                        <label className="label" htmlFor="latte">Café com leite</label>
+                        <input className="input-radio" type="radio" name="drink" id="latte" />
                     </div>
-                    <div className="drinks">
+                    <div className="drink">
                         <img src={orangeJuice} alt="orange juice"/>
-                        <label htmlFor="orange-juice">Suco de Laranja</label>
-                        <input className="items-input" type="radio" name="item" id="orange-juice" />
+                        <label className="label juice" htmlFor="orange-juice">Suco de Laranja</label>
+                        <input className="input-radio" type="radio" name="drink" id="orange-juice" />
                     </div>
-
-                    </div>
-
-                    <div className="sandwiches-container">
-                        <h3>Sanduíches</h3>
-                        <div className="sandwich">
-                            <img src={toast} alt="toast"/>
-                            <label htmlFor="toast">Misto Quente</label>
-                            <input className="items-input" type="radio" name="item" id="toast" />
-                        </div>
+                </div>
+                
+             </div>
                     
-                    </div>
+                    <div className="sandwiches-container">
+                        <div className="title">
+                            <h3>Sanduiches</h3>
+                        </div>
+                        <div className="sandwiches">
+                            <div className="sandwich">
+                                <img src={toast} alt="toast"/>
+                                <label className="label" htmlFor="toast">Misto Quente</label>
+                                <input className="input-radio" type="radio" name="toast" id="toast" />
+                            </div>
+                        </div>
+                    </div>  
+                  
                 </section>
 
                 <aside className="orders-container">
-                    <h3>Pedido</h3>
+                    <div className="title">
+                        <h3>Pedidos</h3>
+                    </div>
                     <div className="orders">
 
                     </div>
+
                     <div className="separator"></div>
+
                     <div className="items-cost-container">
                         <p className="item-price">Total:</p>
                         <p className="item-price">R$ 0,00</p>
                     </div>
+
                     <div className="menu-buttons-container">
                         <Button 
                             type="submit"
                             buttonText="Enviar"
                             className="menu-button confirm-order"
                         />
-                    </div>
-                    <div className="menu-buttons-container">
+                   
                         <Button 
                             type="submit"
                             buttonText="Cancelar"
@@ -71,7 +88,7 @@ export function MenuMorning() {
                         />
                     </div>
                 </aside>
-
+             </div>
           </main>
         </>
     );
