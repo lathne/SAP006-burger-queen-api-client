@@ -5,6 +5,7 @@
    background: var(--red); 
    display: flex;
    align-items: stretch;
+   justify-content: center;
    flex-direction: column;
 
    .login-page-main {
@@ -89,17 +90,4 @@
          transform: scale(3);
        }
    }
-
-    @media screen and (min-width: 560px) {
-
-    }
-
-    @media screen and (min-width: 560px) {
-        
-    }
-
-    @media screen and (min-width: 560px) {
-        
-    }
-
 }
