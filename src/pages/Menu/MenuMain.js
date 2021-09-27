@@ -36,37 +36,59 @@ export function MenuMain() {
                         <label htmlFor="vegan-burger">Suco de Laranja</label>
                         <input className="items-input" type="radio" name="item" id="vegan-burger" />
                     </div>
-
-                    </div>
-
-                    <div className="sidedishes-container">
-                        <h3>Acompanhamentos</h3>
-                        <div className="sidedishes">
-                            <img src={fries} alt="fries"/>
-                            <label htmlFor="fries">Fritas</label>
-                            <input className="items-input" type="radio" name="item" id="fries" />
+                    <div className="extras-container">
+                        <div className="extras">
+                            <label htmlFor="simple">Simples</label>
+                            <input className="items-input" type="radio" name="item" id="simple" />
                         </div>
-                        <div className="sidedishes">
-                            <img src={onion} alt="onion-rings"/>
-                            <label htmlFor="onion-rings">Anéis de cebola</label>
-                            <input className="items-input" type="radio" name="item" id="onion-rings" />
+                        <div className="extras">
+                            <label htmlFor="double">Duplo</label>
+                            <input className="items-input" type="radio" name="item" id="double" />
+                        </div>
+                        <div className="extras">
+                            <label htmlFor="cheese">+ Queijo</label>
+                            <input className="items-input" type="radio" name="item" id="cheese" />
+                        </div>
+                        <div className="extras">
+                            <label htmlFor="egg">+ Ovo</label>
+                            <input className="items-input" type="radio" name="item" id="egg" />
+                        </div>
+                        <div className="extras">
+                            <label htmlFor="none">Nenhum</label>
+                            <input className="items-input" type="radio" name="item" id="none" />
                         </div>
                     </div>
 
-                    <div className="drinks-container">
-                    <h3>Bebidas</h3>
-                    <div className="drinks">
-                        <img src={water} alt="water"/>
-                        <label htmlFor="water">Água</label>
-                        <input className="items-input" type="radio" name="item" id="water" />
+                </div>
+
+                <div className="sidedishes-container">
+                    <h3>Acompanhamentos</h3>
+                    <div className="sidedishes">
+                        <img src={fries} alt="fries"/>
+                        <label htmlFor="fries">Fritas</label>
+                        <input className="items-input" type="radio" name="item" id="fries" />
                     </div>
-                    <div className="drinks">
-                        <img src={soda} alt="soda"/>
-                        <label htmlFor="soda">Refrigerante</label>
-                        <input className="items-input" type="radio" name="item" id="soda" />
+                    <div className="sidedishes">
+                        <img src={onion} alt="onion-rings"/>
+                        <label htmlFor="onion-rings">Anéis de cebola</label>
+                        <input className="items-input" type="radio" name="item" id="onion-rings" />
                     </div>
-                    
-                    </div>
+                </div>
+
+                <div className="drinks-container">
+                <h3>Bebidas</h3>
+                <div className="drinks">
+                    <img src={water} alt="water"/>
+                    <label htmlFor="water">Água</label>
+                    <input className="items-input" type="radio" name="item" id="water" />
+                </div>
+                <div className="drinks">
+                    <img src={soda} alt="soda"/>
+                    <label htmlFor="soda">Refrigerante</label>
+                    <input className="items-input" type="radio" name="item" id="soda" />
+                </div>
+                
+                </div>
                 </section>
 
                 <aside className="orders-container">
