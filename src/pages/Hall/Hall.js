@@ -29,9 +29,10 @@ export function Hall() {
                 <form className="tables-container" onSubmit={handleSubmit}>
                 <div className="error-message">{errors.table && <p>{errors.table}</p>}</div>
                     <div>
-                        <label htmlFor="t1"><img src={table} alt=""/>1</label>
+                        <label htmlFor="t1"><img src={table1} alt=""/>1</label>
                         <input type="radio" name="table" id="t1" value="1" onChange={handleChange} />
                     </div>
+                    
                     <div>
                         <label htmlFor="t2"><img src={table} alt=""/>2</label>
                         <input type="radio" name="table" id="t2" value="2" onChange={handleChange}/>
