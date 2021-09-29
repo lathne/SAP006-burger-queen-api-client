@@ -14,8 +14,10 @@ export function NoteOrder(){
         burger: '',
         extra1: '',
         extra2: '',
-        tab: []
+        
     })
+
+    const [orders, setOrders]=useState([])
 
     const handleChange = e => {
         const { name, value } = e.target;
@@ -28,14 +30,15 @@ export function NoteOrder(){
 
     function filterBurgerMain() {
         console.log(values)
-        let burger1 = allProducts.filter(item => {
+        let burger1 = allProducts.find(item => {
             return item.flavor === values.burger && item.complement === values.extra2 && item.name === values.extra1})
-            
-            setValues({ tab: [...values.tab, burger1] })
+            burger1.quant=1
+            console.log(burger1)
+            setOrders([...orders, burger1])
         return burger1
     }
     
-    return {handleChange, filterBurgerMain, values}
+    return {handleChange, filterBurgerMain, values, orders}
 }
         
 // const breakfast = data.filter((item) => item.type === "breakfast");

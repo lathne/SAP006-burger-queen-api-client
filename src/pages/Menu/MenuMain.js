@@ -10,9 +10,11 @@ import water from '..//../images/water.png';
 import soda from '..//../images/soda.png';
 
 import '../../styles/menu-main.scss';
+import { useState } from 'react';
 
 export function MenuMain() {
-    const {handleChange, filterBurgerMain, values} = NoteOrder()
+    
+    const {handleChange, filterBurgerMain, values, orders} = NoteOrder()
     return (
         <>
           <NavBar />
@@ -116,9 +118,15 @@ export function MenuMain() {
                     <div className="title">
                         <h3>Pedido</h3>
                     </div>
-                    <div className="orders">
-                    <li><p >{values}</p></li>
-                    </div>
+                    <ul className="orders">
+                        {orders.map(order => {
+                            console.log(order)
+                            return (
+                                <li><p >{order.quant}  {order.name}  {order.flavor} {order.complement} </p></li>
+                            )
+                        })}
+                    
+                    </ul>
                     <div className="separator"></div>
                     <div className="items-cost-container">
                         <p className="item-price">Total:</p>
