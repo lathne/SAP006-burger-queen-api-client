@@ -1,6 +1,6 @@
 import { NavBar } from '../../components/NavBar';
 import { Button } from '../../components/Button';
-
+import { NoteOrder } from './UseFormMenuMain';
 import burger from '..//../images/burger.png';
 import chicken from '..//../images/chicken-burger.png';
 import vegan from '..//../images/vegan-burger.png';
@@ -10,9 +10,11 @@ import water from '..//../images/water.png';
 import soda from '..//../images/soda.png';
 
 import '../../styles/menu-main.scss';
-
+import { useState } from 'react';
 
 export function MenuMain() {
+    
+    const {handleChange, filterBurgerMain, values, orders} = NoteOrder()
     return (
         <>
           <NavBar />
@@ -28,17 +30,17 @@ export function MenuMain() {
                         <div className="burger">
                             <img src={burger} alt="burger"/>
                             <label className="label" htmlFor="burger">Carne</label>
-                            <input className="input-radio items" type="radio" name="burger" id="burger" />
+                            <input className="input-radio items" type="radio" name="burger" value="carne" id="burger" onChange={handleChange}/>
                         </div>
                         <div className="burger">
                             <img src={chicken} alt="chicken burger"/>
                             <label className="label" htmlFor="chicken-burger">Frango</label>
-                            <input className="input-radio items" type="radio" name="burger" id="chicken-burger" />
+                            <input className="input-radio items" type="radio" name="burger"  value="frango" id="chicken-burger" onChange={handleChange}/>
                         </div>
                         <div className="burger">
                             <img src={vegan} alt="vegan-burger"/>
                             <label className="label" htmlFor="vegan-burger">Vegetariano</label>
-                            <input className="input-radio items" type="radio" name="burger" id="vegan-burger" />
+                            <input className="input-radio items" type="radio" name="burger" value="vegetariano" id="vegan-burger" onChange={handleChange}/>
                         </div>
                     </div>
                     <div className="extras-container">
@@ -48,27 +50,27 @@ export function MenuMain() {
                         <div className="extras">
                             <div className="extra">
                                 <label className="label extra-items" htmlFor="simple">Simples</label>
-                                <input className="input-radio" type="radio" name="extra1" id="simple" />
+                                <input className="input-radio" type="radio" name="extra1" value="Hambúrguer simples" id="simple" onChange={handleChange}/>
                             </div>
                             <div className="extra">
                                 <label className="label extra-items" htmlFor="double">Duplo</label>
-                                <input className="input-radio" type="radio" name="extra1" id="double" />
+                                <input className="input-radio" type="radio" name="extra1" value="Hambúrguer duplo" id="double" onChange={handleChange}/>
                             </div>
                             <div className="extra">
-                                <label className="label extra-items" htmlFor="cheese">+ Queijo</label>
-                                <input className="input-radio" type="radio" name="extra2" id="cheese" />
+                                <label className="label extra-items" htmlFor="cheese">Queijo</label>
+                                <input className="input-radio" type="radio" name="extra2" value="queijo" id="cheese" onChange={handleChange}/>
                             </div>
                             <div className="extra">
-                                <label className="label extra-items" htmlFor="egg">+ Ovo</label>
-                                <input className="input-radio" type="radio" name="extra3" id="egg" />
+                                <label className="label extra-items" htmlFor="egg">Ovo</label>
+                                <input className="input-radio" type="radio" name="extra2" value="ovo" id="egg" onChange={handleChange}/>
                             </div>
-                            {/* <div className="extra">
+                            <div className="extra">
                                 <label className="label" htmlFor="none">Nenhum</label>
-                                <input className="input-radio extra-items" type="radio" name="extra4" id="none" />
-                            </div> */}
+                                <input className="input-radio extra-items" type="radio" name="extra2" value="" id="none" onChange={handleChange}/>
+                            </div>
                         </div>
                     </div>
-
+                        {/* mostra aqui o burger montado e pega o id */}
                 </div>
 
                 <div className="sidedishes-container">
@@ -79,14 +81,15 @@ export function MenuMain() {
                         <div className="sidedishe">
                             <img src={fries} alt="fries"/>
                             <label className="label" htmlFor="fries">Fritas</label>
-                            <input className="input-radio items" type="radio" name="side" id="fries" />
+                            <input className="input-radio items" type="radio" name="side" value="Batata frita" id="fries" onChange={handleChange}/>
                         </div>
                         <div className="sidedishe">
                             <img src={onion} alt="onion-rings"/>
                             <label className="label" htmlFor="onion-rings">Anéis de cebola</label>
-                            <input className="input-radio items" type="radio" name="side" id="onion-rings" />
+                            <input className="input-radio items" type="radio" name="side" value="Anéis de cebola"id="onion-rings" onChange={handleChange}/>
                         </div>
                     </div>
+                    {/* só pegar o id do item escolhido */}
                 </div>
 
                 <div className="drinks-container">
@@ -97,24 +100,33 @@ export function MenuMain() {
                         <div className="drink">
                             <img src={water} alt="water"/>
                             <label className="label" htmlFor="water">Água</label>
-                            <input className="input-radio items" type="radio" name="drink" id="water" />
+                            <input className="input-radio items" type="radio" name="drink" value="Água 500mL" id="water" />
                         </div>
                         <div className="drink">
                             <img src={soda} alt="soda"/>
                             <label className="label" htmlFor="soda">Refrigerante</label>
-                            <input className="input-radio items" type="radio" name="drink" id="soda" />
+                            <input className="input-radio items" type="radio" name="drink" value="Refrigerante 500mL" id="soda" />
                         </div>
                     </div>
+                    {/* só pegar o id do item escolhido */}
                 </div>
+                <button type="button" onClick={filterBurgerMain}>Fechar Pedido</button>
+                
             </section>
 
                 <aside className="orders-container">
                     <div className="title">
                         <h3>Pedido</h3>
                     </div>
-                    <div className="orders">
-
-                    </div>
+                    <ul className="orders">
+                        {orders.map(order => {
+                            console.log(order)
+                            return (
+                                <li><p >{order.quant}  {order.name}  {order.flavor} {order.complement} </p></li>
+                            )
+                        })}
+                    
+                    </ul>
                     <div className="separator"></div>
                     <div className="items-cost-container">
                         <p className="item-price">Total:</p>
@@ -122,7 +134,8 @@ export function MenuMain() {
                     </div>
                     <div className="menu-buttons-container">
                         <Button 
-                            type="submit"
+                            type="button"
+                            onClick={handleChange}
                             buttonText="Enviar"
                             className="menu-button confirm-order"
                         />

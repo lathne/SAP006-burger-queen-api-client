@@ -43,3 +43,14 @@ export const editUser = (name, role, userId) => {
     })
   });
 };
+
+export const getAllProducts = () => {
+  return fetch (`https://lab-api-bq.herokuapp.com/products`, {
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization:`${localStorage.getItem("usersToken")}`
+    }
+  })
+}
+

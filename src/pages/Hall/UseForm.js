@@ -21,19 +21,22 @@ const useForm = () => {
     const [values, setValues] = useState({
         table: '',
         nameClientInput: '',
+        name: '',
     })
 
     const handleSubmit = e => {
         e.preventDefault();
-        setErrors(ValidateHall(values));
-        console.log(ValidateHall(values))
-        if(errors.empty){
-             if(e.target.className["morning"]!== undefined) {              
+        const validation = ValidateHall(values);
+        if(validation.empty){
+            console.log(e.target.className)
+             if(e.target.className === "button-hall morning") {              
             navigateToMenuMorning()
-         }
+            }
              else {
             navigateToMenuMain()
-         }
+            }
+        }else {
+            setErrors(validation)
         }
     }
 

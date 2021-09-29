@@ -1,7 +1,5 @@
 import { BrowserRouter, Route, Switch, Redirect } from 'react-router-dom';
 import { isAuthenticated } from './services/auth.js'
-
-
 import { Login } from './pages/Login/Login.js'
 import { Register } from './pages/Register/Register.js';
 import { Hall } from './pages/Hall/Hall.js';
