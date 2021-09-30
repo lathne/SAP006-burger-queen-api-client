@@ -1,6 +1,10 @@
+import { useLocation } from 'react-router-dom';
+import { useState } from 'react';
 import { NavBar } from '../../components/NavBar';
 import { Button } from '../../components/Button';
 import { NoteOrder } from './UseFormMenuMain';
+// import useForm from '../Hall/UseForm';
+
 import burger from '..//../images/burger.png';
 import chicken from '..//../images/chicken-burger.png';
 import vegan from '..//../images/vegan-burger.png';
@@ -10,11 +14,12 @@ import water from '..//../images/water.png';
 import soda from '..//../images/soda.png';
 
 import '../../styles/menu-main.scss';
-import { useState } from 'react';
 
 export function MenuMain() {
-    
-    const {handleChange, filterBurgerMain, values, orders} = NoteOrder()
+    const location = useLocation()
+    console.log(location)
+    const {handleChange, orders, filterByItemName, sideOrders} = NoteOrder()
+    // const {values} = useForm()
     return (
         <>
           <NavBar />
@@ -81,12 +86,12 @@ export function MenuMain() {
                         <div className="sidedishe">
                             <img src={fries} alt="fries"/>
                             <label className="label" htmlFor="fries">Fritas</label>
-                            <input className="input-radio items" type="radio" name="side" value="Batata frita" id="fries" onChange={handleChange}/>
+                            <input className="input-radio items" type="radio" name="side" value="Batata frita" id="fries" onChange={filterByItemName}/>
                         </div>
                         <div className="sidedishe">
                             <img src={onion} alt="onion-rings"/>
                             <label className="label" htmlFor="onion-rings">Anéis de cebola</label>
-                            <input className="input-radio items" type="radio" name="side" value="Anéis de cebola"id="onion-rings" onChange={handleChange}/>
+                            <input className="input-radio items" type="radio" name="side"  value="Anéis de cebola" id="onion-rings" onChange={filterByItemName}/>
                         </div>
                     </div>
                     {/* só pegar o id do item escolhido */}
@@ -100,17 +105,18 @@ export function MenuMain() {
                         <div className="drink">
                             <img src={water} alt="water"/>
                             <label className="label" htmlFor="water">Água</label>
-                            <input className="input-radio items" type="radio" name="drink" value="Água 500mL" id="water" />
+                            <input className="input-radio items" type="radio" name="drink" value="Água 500mL" id="water" onChange={filterByItemName} />
                         </div>
                         <div className="drink">
                             <img src={soda} alt="soda"/>
                             <label className="label" htmlFor="soda">Refrigerante</label>
-                            <input className="input-radio items" type="radio" name="drink" value="Refrigerante 500mL" id="soda" />
+                            <input className="input-radio items" type="radio" name="drink" value="Refrigerante 500mL" id="soda" onChange={filterByItemName} />
                         </div>
                     </div>
                     {/* só pegar o id do item escolhido */}
                 </div>
-                <button type="button" onClick={filterBurgerMain}>Fechar Pedido</button>
+                
+                
                 
             </section>
 
@@ -119,18 +125,30 @@ export function MenuMain() {
                         <h3>Pedido</h3>
                     </div>
                     <ul className="orders">
+                        <li>Cliente: {location.state.nameClientInput} Mesa: {location.state.table}</li>
+                        
                         {orders.map(order => {
                             console.log(order)
                             return (
-                                <li><p >{order.quant}  {order.name}  {order.flavor} {order.complement} </p></li>
+                                <li><p >{order.quant} {order.name} {order.flavor} {order.complement} {order.price}</p></li>
                             )
                         })}
-                    
+
+                        {sideOrders.map(sideOrder => {
+                            return (
+                                <li><p >{sideOrder.quant} {sideOrder.name} {sideOrder.price}</p></li>
+                            )
+                        })}
+
                     </ul>
                     <div className="separator"></div>
                     <div className="items-cost-container">
                         <p className="item-price">Total:</p>
-                        <p className="item-price">R$ 0,00</p>
+                        <p className="item-price">R$ {orders.reduce((a,b) => {
+                            return a + b.price
+                        },0) + sideOrders.reduce((a,b) => {
+                            return a + b.price
+                        },0)}</p>
                     </div>
                     <div className="menu-buttons-container">
                         <Button 
