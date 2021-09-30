@@ -9,6 +9,7 @@ export function Input(props) {
             autoComplete={props.autoComplete}
             value ={props.value}
             onChange={props.onChange}
+            className={props.className}
         />
     )
 }

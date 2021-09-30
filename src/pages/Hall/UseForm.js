@@ -7,11 +7,11 @@ const useForm = () => {
     const history = useHistory()
     
     function navigateToMenuMain() {
-        history.push('/menumain')
+        history.push('/menumain', values)
     }
 
     function navigateToMenuMorning() {
-            history.push('/menumorning') 
+            history.push('/menumorning',values) 
     }
 
     const [errors, setErrors] = useState({
