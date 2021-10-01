@@ -69,7 +69,7 @@ export function MenuMain() {
                             </div>
                             <div className="extra">
                                 <label className="label" htmlFor="none">Nenhum</label>
-                                <input className="input-radio extra-items" type="radio" name="extra2" value="" id="none" onChange={handleChange}/>
+                                <input className="input-radio extra-items" type="radio" name="extra2" value="nenhum" id="none" onChange={handleChange}/>
                             </div>
                         </div>
                     </div>
