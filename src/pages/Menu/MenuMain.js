@@ -3,7 +3,6 @@ import { useState } from 'react';
 import { NavBar } from '../../components/NavBar';
 import { Button } from '../../components/Button';
 import { NoteOrder } from './UseFormMenuMain';
-// import useForm from '../Hall/UseForm';
 
 import burger from '..//../images/burger.png';
 import chicken from '..//../images/chicken-burger.png';
@@ -17,9 +16,8 @@ import '../../styles/menu-main.scss';
 
 export function MenuMain() {
     const location = useLocation()
-    console.log(location)
     const {handleChange, orders, filterByItemName, sideOrders} = NoteOrder()
-    // const {values} = useForm()
+
     return (
         <>
           <NavBar />

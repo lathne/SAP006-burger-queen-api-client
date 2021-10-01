@@ -31,7 +31,7 @@ export function NoteOrder(){
         })
         console.log(name, value)
     }
-
+    console.log(allProducts)
     function filterBurgerMain() {
         console.log('passei no burgermain')
         const burger1 = allProducts.find(item => {
@@ -54,7 +54,9 @@ export function NoteOrder(){
     function filterByItemName(e) {
         let side = allProducts.find(item => {
             return item.name === e.target.value})
+            side.quant = 1
             setSideOrders([...sideOrders, side])
+            console.log(side)
         return side
     }
     
