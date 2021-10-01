@@ -1,10 +1,11 @@
+import { useLocation } from 'react-router-dom';
 import { NavBar } from '../../components/NavBar';
 import { Button } from '../../components/Button';
 import { Label } from '../../components/Label'
 import { Input } from '../../components/Input';
 import { getAllProducts } from "../../services/dataService";
-import { useState } from "react";
-import { NoteOrder } from './UseFormMenuMain';
+import { useState, useEffect } from "react";
+// import { NoteOrder } from './UseFormMenuMain';
 
 import blackCoffee from '..//..//images/black-coffee.png';
 import latte from '..//..//images/latte.png';
@@ -13,13 +14,39 @@ import toast from '..//..//images/toast.png';
 
 import '../../styles/menu-morning.scss';
 
-export function MenuMorning() {
-    const {filterMenu} = NoteOrder()
-    const [breakfast, setBreakfast] = useState([]);
+let allProducts = []
+        getAllProducts().then( (result) => {
+        result.json().then( (data)=> {
+            allProducts = data
+            console.log(allProducts)
+        })
+    })
 
-    const breakfastItems = getAllProducts.filter((item) => item.type === "breakfast");
-    console.log(breakfast)
-    setBreakfast(breakfastItems);
+export function MenuMorning() {
+    const location = useLocation()
+    console.log(location)
+
+    const [sideOrders, setSideOrders] = useState([])
+    console.log(sideOrders)
+
+    
+
+    // useEffect(() => {
+    //     
+    // })
+
+    function filterByItemName(e) {
+        let side = allProducts.find(item => {
+            console.log(e.target.value)
+            console.log("o valor do item clicado é" + e.target.value)
+            return item.name === e.target.value
+        }) 
+            setSideOrders([...sideOrders, side])
+            console.log(side)
+        return [side]
+    }
+
+
     return (
         <>
           <NavBar />
@@ -42,12 +69,12 @@ export function MenuMorning() {
                             labelText="Café Preto"
                         />  
                         <Input
-                            //quando esse item for acionado, deve pegar o objeto completo, encontrar o nome e preço e imprimir na comanda
                             name="drink"
                             id="black-coffee"
                             type="radio"
-                            value =""
+                            value ="Café americano"
                             className="input-radio"
+                            onChange={filterByItemName}
                         />
                     </div>
                 
@@ -63,7 +90,8 @@ export function MenuMorning() {
                             type="radio" 
                             name="drink" 
                             id="latte" 
-                            value =""
+                            value ="Café com leite"
+                            onChange={filterByItemName}
                         />
                     </div>
 
@@ -79,7 +107,8 @@ export function MenuMorning() {
                             type="radio" 
                             name="drink" 
                             id="orange-juice" 
-                            value =""
+                            value ="Suco de fruta natural"
+                            onChange={filterByItemName}
                         />
                     </div>
                 </div>
@@ -104,7 +133,8 @@ export function MenuMorning() {
                                     type="radio" 
                                     name="toast" 
                                     id="toast" 
-                                    value =""
+                                    value ="Misto quente"
+                                    onChange={filterByItemName}
                                 />
                             </div>
                         </div>
@@ -116,14 +146,21 @@ export function MenuMorning() {
                     <div className="title">
                         <h3>Pedidos</h3>
                     </div>
-                    <div className="orders">
-
-                    </div>
+                    <ul className="orders">
+                        <li>Cliente: {location.state.nameClientInput} Mesa: {location.state.table}</li>
+                        {sideOrders.map(sideOrders => {
+                            return (
+                                <li><p > {sideOrders.quant} {sideOrders.name} {sideOrders.price}</p></li>
+                            )
+                        })}
+                    </ul>
                     <div className="separator"></div>
 
                     <div className="items-cost-container">
                         <p className="item-price">Total:</p>
-                        <p className="item-price">R$ 0,00</p>
+                        <p className="item-price">R$ {sideOrders.reduce((a,b) => {
+                            return a + b.price
+                        },0)}</p>
                     </div>
 
                     <div className="menu-buttons-container">

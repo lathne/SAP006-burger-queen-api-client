@@ -3,7 +3,6 @@ import { useState } from 'react';
 import { NavBar } from '../../components/NavBar';
 import { Button } from '../../components/Button';
 import { NoteOrder } from './UseFormMenuMain';
-// import useForm from '../Hall/UseForm';
 
 import burger from '..//../images/burger.png';
 import chicken from '..//../images/chicken-burger.png';
@@ -17,9 +16,8 @@ import '../../styles/menu-main.scss';
 
 export function MenuMain() {
     const location = useLocation()
-    console.log(location)
     const {handleChange, orders, filterByItemName, sideOrders} = NoteOrder()
-    // const {values} = useForm()
+
     return (
         <>
           <NavBar />
@@ -71,7 +69,7 @@ export function MenuMain() {
                             </div>
                             <div className="extra">
                                 <label className="label" htmlFor="none">Nenhum</label>
-                                <input className="input-radio extra-items" type="radio" name="extra2" value="" id="none" onChange={handleChange}/>
+                                <input className="input-radio extra-items" type="radio" name="extra2" value="nenhum" id="none" onChange={handleChange}/>
                             </div>
                         </div>
                     </div>
