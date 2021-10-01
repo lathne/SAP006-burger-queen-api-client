@@ -3,16 +3,7 @@ import { Button } from '../../components/Button';
 import '../../styles/hall.scss';
 import useForm from '../Hall/UseForm'
 
-import table1 from '../../images/table1.png';
-import table2 from '../../images/table2.png';
-import table3 from '../../images/table3.png';
-import table4 from '../../images/table4.png';
-import table5 from '../../images/table5.png';
-import table6 from '../../images/table6.png';
-import table7 from '../../images/table7.png';
-import table8 from '../../images/table8.png';
-import table9 from '../../images/table9.png';
-
+import table from '../../images/table.png';
 
 export function Hall() {
     const {handleChange, values, handleSubmit, errors} = useForm()
@@ -28,40 +19,39 @@ export function Hall() {
                     <div className="error-message">{errors.table && <p>{errors.table}</p>}</div>
                         <div className="tables-container">
                             <div className="table">
-                                <label htmlFor="t1">
-                                <img className="table-label" src={table1} alt=""/></label>
                                 <input className="table-input" type="radio" name="table" id="t1" onChange={handleChange}/>
+                                <label htmlFor="t1"><img className="table-label" src={table} alt=""/></label>
                             </div>
                             <div className="table">
-                                <label htmlFor="t2"><img className="table-label" src={table2} alt=""/></label>
+                                <label htmlFor="t2"><img className="table-label" src={table} alt=""/></label>
                                 <input className="table-input" type="radio" name="table" id="t2" onChange={handleChange}/>
                             </div>
                             <div className="table">
-                                <label htmlFor="t3"><img className="table-label" src={table3} alt=""/></label>
+                                <label htmlFor="t3"><img className="table-label" src={table} alt=""/></label>
                                 <input className="table-input" type="radio" name="table" id="t3" onChange={handleChange}/>
                             </div>
                             <div className="table">
-                                <label htmlFor="t4"><img className="table-label" src={table4} alt=""/></label>
+                                <label htmlFor="t4"><img className="table-label" src={table} alt=""/></label>
                                 <input className="table-input" type="radio" name="table" id="t4" onChange={handleChange}/>
                             </div>
                             <div className="table">
-                                <label htmlFor="t5"><img className="table-label" src={table5} alt=""/></label>
+                                <label htmlFor="t5"><img className="table-label" src={table} alt=""/></label>
                                 <input className="table-input" type="radio" name="table" id="t5" onChange={handleChange}/>
                             </div>
                             <div className="table">
-                                <label htmlFor="t6"><img className="table-label" src={table6} alt=""/></label>
+                                <label htmlFor="t6"><img className="table-label" src={table} alt=""/></label>
                                 <input className="table-input" type="radio" name="table" id="t6" onChange={handleChange}/>
                             </div>
                             <div className="table">
-                                <label htmlFor="t7"><img className="table-label" src={table7} alt=""/></label>
+                                <label htmlFor="t7"><img className="table-label" src={table} alt=""/></label>
                                 <input className="table-input" type="radio" name="table" id="t7" onChange={handleChange}/>
                             </div>
                             <div className="table">
-                                <label htmlFor="t8"><img className="table-label" src={table8} alt=""/></label>
+                                <label htmlFor="t8"><img className="table-label" src={table} alt=""/></label>
                                 <input className="table-input" type="radio" name="table" id="t8" onChange={handleChange}/>
                             </div>
                             <div className="table">
-                                <label htmlFor="t9"><img className="table-label"  src={table9} alt=""/></label>
+                                <label htmlFor="t9"><img className="table-label"  src={table} alt=""/></label>
                                 <input className="table-input" type="radio" name="table" id="t9" onChange={handleChange}/>
                             </div>
                     </div>

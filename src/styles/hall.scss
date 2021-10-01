@@ -79,11 +79,34 @@
             border: 2px solid var(--green);
             box-shadow: 0 0 3px 3px var(--green);
         }
+
+        counter-reset: tableCount;
+        
+        label{
+            display: flex;
+            justify-content: center;
+
+            position: relative;
+            counter-increment: tableCount;
+            &::before {
+                content: counter(tableCount);
+                position: absolute;
+                top: 0;
+                font-weight: bold;
+                font-size: 1.2rem;
+                color: var(--green);
+            }
+            
+        }
+
+
+        
     
         // .table-input:checked + label>img {
         //     border: 2px solid var(--green);
         //     box-shadow: 0 0 3px 3px var(--green);
         // }
+
 
         $small: 620px;
         $tablet-width: 850px;

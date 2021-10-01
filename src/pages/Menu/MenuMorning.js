@@ -4,7 +4,7 @@ import { Button } from '../../components/Button';
 import { Label } from '../../components/Label'
 import { Input } from '../../components/Input';
 import { getAllProducts } from "../../services/dataService";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 // import { NoteOrder } from './UseFormMenuMain';
 
 import blackCoffee from '..//..//images/black-coffee.png';
@@ -63,11 +63,7 @@ export function MenuMorning() {
                 
                     <div className="drink">
                         <img src={blackCoffee} alt="black coffee"/>
-                        <Label
-                            className="label" 
-                            htmlFor="black-coffee"
-                            labelText="Café Preto"
-                        />  
+                       
                         <Input
                             name="drink"
                             id="black-coffee"
@@ -76,6 +72,12 @@ export function MenuMorning() {
                             className="input-radio"
                             onChange={filterByItemName}
                         />
+
+                        <Label
+                            className="label" 
+                            htmlFor="black-coffee"
+                            labelText="Café Preto"
+                        />  
                     </div>
                 
                     <div className="drink">

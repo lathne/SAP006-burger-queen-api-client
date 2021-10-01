@@ -2,6 +2,8 @@ import reducedLogo from '../images/reducedLogo.svg'
 import logoutIMG from '../images/exit.svg'
 import '../styles/NavBar.scss'
 import { Link } from 'react-router-dom'
+import goBack from '../images//go-back.svg'
+
 
 export function NavBar() { 
   return (
@@ -9,7 +11,7 @@ export function NavBar() {
           <div className="navbar-logo-container">
             <img 
                 className="navbar-logo" 
-                src={reducedLogo} 
+                src={goBack} 
                 alt="Logo Burguer Queen" 
             />
           </div>

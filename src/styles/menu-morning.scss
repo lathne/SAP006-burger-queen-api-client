@@ -129,6 +129,11 @@
         visibility: hidden;
     }
 
+    input[type="radio"]:checked+label {
+        border: 2px solid var(--green);
+        box-shadow: 0 0 3px 3px var(--green);
+    }
+
 
     .orders {
         min-height: 15em;
