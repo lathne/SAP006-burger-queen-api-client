@@ -1,8 +1,8 @@
 import { useLocation } from 'react-router-dom';
-import { useState } from 'react';
 import { NavBar } from '../../components/NavBar';
 import { Button } from '../../components/Button';
 import { NoteOrder } from './UseFormMenuMain';
+import { createOrder } from '../../services/dataService'
 
 import burger from '..//../images/burger.png';
 import chicken from '..//../images/chicken-burger.png';
@@ -168,3 +168,11 @@ export function MenuMain() {
         </>
     );
 }
+
+let allOrders = []
+    createOrder().then( (result) => {
+        result.json().then( (data)=> {
+            allOrders = data
+            console.log(allOrders)
+        })
+    })
