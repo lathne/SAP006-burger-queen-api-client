@@ -3,9 +3,9 @@ import { NavBar } from '../../components/NavBar';
 import { Button } from '../../components/Button';
 import { Label } from '../../components/Label'
 import { Input } from '../../components/Input';
-import { getAllProducts } from "../../services/dataService";
-import { useState, useEffect } from "react";
-// import { NoteOrder } from './UseFormMenuMain';
+import { getAllProducts, createOrder } from "../../services/dataService";
+import { useState } from "react";
+
 
 import blackCoffee from '..//..//images/black-coffee.png';
 import latte from '..//..//images/latte.png';
@@ -29,23 +29,29 @@ export function MenuMorning() {
     const [sideOrders, setSideOrders] = useState([])
     console.log(sideOrders)
 
-    
-
-    // useEffect(() => {
-    //     
-    // })
-
     function filterByItemName(e) {
         let side = allProducts.find(item => {
             console.log(e.target.value)
             console.log("o valor do item clicado é" + e.target.value)
             return item.name === e.target.value
         }) 
-            setSideOrders([...sideOrders, side])
-            console.log(side)
+        setSideOrders([...sideOrders, side])
+        console.log(side)
         return [side]
     }
 
+    function sendToTheKitchen () {
+      const orderProducts = sideOrders.map((product) => {
+            return {id:product.id,
+                    qtd: product.quant}
+      } )  
+      const  orderToSendToTheKitchen = {
+            "client": location.state.nameClientInput,
+            "table": location.state.table,
+            "products": orderProducts
+        }
+        createOrder(orderToSendToTheKitchen)
+    }
 
     return (
         <>
@@ -53,65 +59,65 @@ export function MenuMorning() {
           <main className="menu-morning">
             <h2 className="h2">Café da Manhã</h2>
             <div className="columns">
-            <section className="items-section">
+                <section className="items-section">
           
-                <div className="drinks-container">
+                    <div className="drinks-container">
                 
-                    <div className="title">
-                        <h3>Bebidas</h3>
-                    </div>
+                        <div className="title">
+                            <h3>Bebidas</h3>
+                        </div>
                 
-                    <div className="drink">
-                        <img src={blackCoffee} alt="black coffee"/>
-                        <Label
-                            className="label" 
-                            htmlFor="black-coffee"
-                            labelText="Café Preto"
-                        />  
-                        <Input
-                            name="drink"
-                            id="black-coffee"
-                            type="radio"
-                            value ="Café americano"
-                            className="input-radio"
-                            onChange={filterByItemName}
-                        />
-                    </div>
+                        <div className="drink">
+                            <img src={blackCoffee} alt="black coffee"/>
+                            <Label
+                                className="label" 
+                                htmlFor="black-coffee"
+                                labelText="Café Preto"
+                            />  
+                            <Input
+                                name="drink"
+                                id="black-coffee"
+                                type="radio"
+                                value ="Café americano"
+                                className="input-radio"
+                                onChange={filterByItemName}
+                            />
+                        </div>
                 
-                    <div className="drink">
-                        <img src={latte} alt="latte"/>
-                        <Label 
-                            className="label" 
-                            htmlFor="latte" 
-                            labelText="Café com leite"
-                        />
-                        <Input 
-                            className="input-radio" 
-                            type="radio" 
-                            name="drink" 
-                            id="latte" 
-                            value ="Café com leite"
-                            onChange={filterByItemName}
-                        />
-                    </div>
+                        <div className="drink">
+                            <img src={latte} alt="latte"/>
+                            <Label 
+                                className="label" 
+                                htmlFor="latte" 
+                                labelText="Café com leite"
+                            />
+                            <Input 
+                                className="input-radio" 
+                                type="radio" 
+                                name="drink" 
+                                id="latte" 
+                                value ="Café com leite"
+                                onChange={filterByItemName}
+                            />
+                        </div>
 
-                    <div className="drink">
-                        <img src={orangeJuice} alt="orange juice"/>
-                        <Label 
-                            className="label juice" 
-                            htmlFor="orange-juice"
-                            labelText="Suco de Laranja"
-                        />
-                        <Input 
-                            className="input-radio" 
-                            type="radio" 
-                            name="drink" 
-                            id="orange-juice" 
-                            value ="Suco de fruta natural"
-                            onChange={filterByItemName}
-                        />
+                        <div className="drink">
+                            <img src={orangeJuice} alt="orange juice"/>
+                            <Label 
+                                className="label juice" 
+                                htmlFor="orange-juice"
+                                labelText="Suco de Laranja"
+                            />
+                            <Input 
+                                className="input-radio" 
+                                type="radio" 
+                                name="drink" 
+                                id="orange-juice" 
+                                value ="Suco de fruta natural"
+                                onChange={filterByItemName}
+                            />
+                        </div>
                     </div>
-                </div>
                 
                     <div className="sandwiches-container">
 
@@ -183,25 +189,5 @@ export function MenuMorning() {
     );
     
 }
-
-
-
-/*       <div className="drink">
-            <img src={blackCoffee} alt="black coffee"/>
-            <label className="label" htmlFor="black-coffee">Café Preto</label>
-            <input className="input-radio" type="radio" name="drink" id="black-coffee" />
-            </div>
-            <div className="drink">
-            <img src={latte} alt="latte"/>
-            <label className="label" htmlFor="latte">Café com leite</label>
-            <input className="input-radio" type="radio" name="drink" id="latte" />
-            </div>
-            <div className="drink">
-            <img src={orangeJuice} alt="orange juice"/>
-            <label className="label juice" htmlFor="orange-juice">Suco de Laranja</label>
-            <input className="input-radio" type="radio" name="drink" id="orange-juice" />
-        </div>
-            
-*/
                     
                     
