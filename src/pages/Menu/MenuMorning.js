@@ -5,6 +5,8 @@ import { Label } from '../../components/Label'
 import { Input } from '../../components/Input';
 import { getAllProducts, createOrder } from "../../services/dataService";
 import { useState } from "react";
+import { useHistory } from 'react-router';
+
 
 
 import blackCoffee from '..//..//images/black-coffee.png';
@@ -31,14 +33,16 @@ export function MenuMorning() {
 
     function filterByItemName(e) {
         let side = allProducts.find(item => {
-            console.log(e.target.value)
-            console.log("o valor do item clicado é" + e.target.value)
+         
             return item.name === e.target.value
         }) 
+        side.quant = 1
         setSideOrders([...sideOrders, side])
         console.log(side)
         return [side]
     }
+
+    const history = useHistory()
 
     function sendToTheKitchen () {
       const orderProducts = sideOrders.map((product) => {
@@ -50,7 +54,24 @@ export function MenuMorning() {
             "table": location.state.table,
             "products": orderProducts
         }
-        createOrder(orderToSendToTheKitchen)
+        if (orderToSendToTheKitchen.products.id !== undefined &&
+            orderToSendToTheKitchen.products.quant !== undefined){
+        createOrder(orderToSendToTheKitchen).then((result) => {
+            if (result.ok){
+                alert("pedido criado com sucesso")
+                history.push("/hall")
+            }else {
+                alert("o cozinheiro tá de folga")
+            }
+        }).catch((result) => {
+            alert(result)
+        })}else{
+            alert("estão faltando dados para o pedido")
+        }
+    }
+
+    function cancelOrder () {
+        setSideOrders([])
     }
 
     return (
@@ -173,14 +194,16 @@ export function MenuMorning() {
 
                     <div className="menu-buttons-container">
                         <Button 
-                            type="submit"
+                            type="button"
                             buttonText="Enviar"
+                            onClick={sendToTheKitchen}
                             className="menu-button confirm-order"
                         />
                    
                         <Button 
-                            type="submit"
+                            type="button"
                             buttonText="Cancelar"
+                            onClick={cancelOrder}
                             className="menu-button cancel-order"
                         />
                     </div>

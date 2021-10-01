@@ -61,11 +61,9 @@ export const createOrder = async (values) => {
       "Content-Type": "application/json",
       Authorization:`${localStorage.getItem("usersToken")}`
     },
-    body: JSON.stringify({
-      "client": values.nameClientInput,
-      "table": values.table,
-      "products": values.products,
-    })
+    body: JSON.stringify(
+     values
+    )
   })
 }
    
