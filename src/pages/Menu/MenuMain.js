@@ -32,18 +32,18 @@ export function MenuMain() {
                     <div className="burgers">
                         <div className="burger">
                             <img src={burger} alt="burger"/>
-                            <label className="label" htmlFor="burger">Carne</label>
                             <input className="input-radio items" type="radio" name="burger" value="carne" id="burger" onChange={handleChange}/>
+                            <label className="label" htmlFor="burger">Carne</label>
                         </div>
                         <div className="burger">
                             <img src={chicken} alt="chicken burger"/>
-                            <label className="label" htmlFor="chicken-burger">Frango</label>
                             <input className="input-radio items" type="radio" name="burger"  value="frango" id="chicken-burger" onChange={handleChange}/>
+                            <label className="label" htmlFor="chicken-burger">Frango</label>
                         </div>
                         <div className="burger">
                             <img src={vegan} alt="vegan-burger"/>
-                            <label className="label" htmlFor="vegan-burger">Vegetariano</label>
                             <input className="input-radio items" type="radio" name="burger" value="vegetariano" id="vegan-burger" onChange={handleChange}/>
+                            <label className="label" htmlFor="vegan-burger">Vegetariano</label>
                         </div>
                     </div>
                     <div className="extras-container">
@@ -52,24 +52,24 @@ export function MenuMain() {
                         </div>
                         <div className="extras">
                             <div className="extra">
-                                <label className="label extra-items" htmlFor="simple">Simples</label>
                                 <input className="input-radio" type="radio" name="extra1" value="Hambúrguer simples" id="simple" onChange={handleChange}/>
+                                <label className="label extra-items" htmlFor="simple">Simples</label>
                             </div>
                             <div className="extra">
-                                <label className="label extra-items" htmlFor="double">Duplo</label>
                                 <input className="input-radio" type="radio" name="extra1" value="Hambúrguer duplo" id="double" onChange={handleChange}/>
+                                <label className="label extra-items" htmlFor="double">Duplo</label>
                             </div>
                             <div className="extra">
-                                <label className="label extra-items" htmlFor="cheese">Queijo</label>
                                 <input className="input-radio" type="radio" name="extra2" value="queijo" id="cheese" onChange={handleChange}/>
+                                <label className="label extra-items" htmlFor="cheese">Queijo</label>
                             </div>
                             <div className="extra">
-                                <label className="label extra-items" htmlFor="egg">Ovo</label>
                                 <input className="input-radio" type="radio" name="extra2" value="ovo" id="egg" onChange={handleChange}/>
+                                <label className="label extra-items" htmlFor="egg">Ovo</label>
                             </div>
                             <div className="extra">
-                                <label className="label" htmlFor="none">Nenhum</label>
                                 <input className="input-radio extra-items" type="radio" name="extra2" value="nenhum" id="none" onChange={handleChange}/>
+                                <label className="label" htmlFor="none">Nenhum</label>
                             </div>
                         </div>
                     </div>
@@ -83,13 +83,13 @@ export function MenuMain() {
                     <div className="sidedishes">
                         <div className="sidedishe">
                             <img src={fries} alt="fries"/>
-                            <label className="label" htmlFor="fries">Fritas</label>
                             <input className="input-radio items" type="radio" name="side" value="Batata frita" id="fries" onChange={filterByItemName}/>
+                            <label className="label" htmlFor="fries">Fritas</label>
                         </div>
                         <div className="sidedishe">
                             <img src={onion} alt="onion-rings"/>
-                            <label className="label" htmlFor="onion-rings">Anéis de cebola</label>
                             <input className="input-radio items" type="radio" name="side"  value="Anéis de cebola" id="onion-rings" onChange={filterByItemName}/>
+                            <label className="label" htmlFor="onion-rings">Anéis de cebola</label>
                         </div>
                     </div>
                     {/* só pegar o id do item escolhido */}
@@ -102,13 +102,13 @@ export function MenuMain() {
                     <div className="drinks">
                         <div className="drink">
                             <img src={water} alt="water"/>
-                            <label className="label" htmlFor="water">Água</label>
                             <input className="input-radio items" type="radio" name="drink" value="Água 500mL" id="water" onChange={filterByItemName} />
+                            <label className="label" htmlFor="water">Água</label>
                         </div>
                         <div className="drink">
                             <img src={soda} alt="soda"/>
-                            <label className="label" htmlFor="soda">Refrigerante</label>
                             <input className="input-radio items" type="radio" name="drink" value="Refrigerante 500mL" id="soda" onChange={filterByItemName} />
+                            <label className="label" htmlFor="soda">Refrigerante</label>
                         </div>
                     </div>
                     {/* só pegar o id do item escolhido */}
@@ -122,9 +122,12 @@ export function MenuMain() {
                     <div className="title">
                         <h3>Pedido</h3>
                     </div>
+                    <div className="client-content">
+                        <p>Cliente: {location.state.nameClientInput}</p>
+                        <p>Mesa: {location.state.table}</p>
+                    </div>
                     <ul className="orders">
-                        <li>Cliente: {location.state.nameClientInput} Mesa: {location.state.table}</li>
-                        
+                    
                         {orders.map(order => {
                             console.log(order)
                             return (

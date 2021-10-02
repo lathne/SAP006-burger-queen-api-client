@@ -11,7 +11,7 @@ export function NavBar() {
           <div className="navbar-logo-container">
             <img 
                 className="navbar-logo" 
-                src={goBack} 
+                src={reducedLogo} 
                 alt="Logo Burguer Queen" 
             />
           </div>

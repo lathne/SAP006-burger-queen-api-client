@@ -90,7 +90,6 @@ export function MenuMorning() {
                 
                     <div className="drink">
                         <img src={blackCoffee} alt="black coffee"/>
-                       
                         <Input
                             name="drink"
                             id="black-coffee"
@@ -99,7 +98,6 @@ export function MenuMorning() {
                             className="input-radio"
                             onChange={filterByItemName}
                         />
-
                         <Label
                             className="label" 
                             htmlFor="black-coffee"
@@ -109,11 +107,6 @@ export function MenuMorning() {
                 
                         <div className="drink">
                             <img src={latte} alt="latte"/>
-                            <Label 
-                                className="label" 
-                                htmlFor="latte" 
-                                labelText="Café com leite"
-                            />
                             <Input 
                                 className="input-radio" 
                                 type="radio" 
@@ -122,15 +115,15 @@ export function MenuMorning() {
                                 value ="Café com leite"
                                 onChange={filterByItemName}
                             />
+                             <Label 
+                                className="label" 
+                                htmlFor="latte" 
+                                labelText="Café com leite"
+                            />
                         </div>
 
                         <div className="drink">
                             <img src={orangeJuice} alt="orange juice"/>
-                            <Label 
-                                className="label juice" 
-                                htmlFor="orange-juice"
-                                labelText="Suco de Laranja"
-                            />
                             <Input 
                                 className="input-radio" 
                                 type="radio" 
@@ -138,6 +131,11 @@ export function MenuMorning() {
                                 id="orange-juice" 
                                 value ="Suco de fruta natural"
                                 onChange={filterByItemName}
+                            />
+                             <Label 
+                                className="label juice" 
+                                htmlFor="orange-juice"
+                                labelText="Suco de Laranja"
                             />
                         </div>
                     </div>
@@ -151,12 +149,6 @@ export function MenuMorning() {
                         <div className="sandwiches">
                             <div className="sandwich">
                                 <img src={toast} alt="toast"/>
-
-                                <Label 
-                                    className="label" 
-                                    htmlFor="toast"
-                                    labelText="Misto Quente"
-                                />
                                 <Input 
                                     className="input-radio" 
                                     type="radio" 
@@ -164,6 +156,11 @@ export function MenuMorning() {
                                     id="toast" 
                                     value ="Misto quente"
                                     onChange={filterByItemName}
+                                />
+                                <Label 
+                                    className="label" 
+                                    htmlFor="toast"
+                                    labelText="Misto Quente"
                                 />
                             </div>
                         </div>
@@ -175,8 +172,12 @@ export function MenuMorning() {
                     <div className="title">
                         <h3>Pedidos</h3>
                     </div>
+                    <div className="client-content">
+                    <p>Cliente: {location.state.nameClientInput}</p>
+                    <p>Mesa: {location.state.table}</p>
+                    </div>
                     <ul className="orders">
-                        <li>Cliente: {location.state.nameClientInput} Mesa: {location.state.table}</li>
+                       
                         {sideOrders.map(sideOrders => {
                             return (
                                 <li><p > {sideOrders.quant} {sideOrders.name} {sideOrders.price}</p></li>
