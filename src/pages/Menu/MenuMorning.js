@@ -7,8 +7,6 @@ import { getAllProducts, createOrder } from "../../services/dataService";
 import { useState } from "react";
 import { useHistory } from 'react-router';
 
-
-
 import blackCoffee from '..//..//images/black-coffee.png';
 import latte from '..//..//images/latte.png';
 import orangeJuice from '..//..//images/orange-juice.png';
@@ -20,25 +18,20 @@ let allProducts = []
         getAllProducts().then( (result) => {
         result.json().then( (data)=> {
             allProducts = data
-            console.log(allProducts)
         })
     })
 
 export function MenuMorning() {
     const location = useLocation()
-    console.log(location)
 
     const [sideOrders, setSideOrders] = useState([])
-    console.log(sideOrders)
 
     function filterByItemName(e) {
         let side = allProducts.find(item => {
-         
             return item.name === e.target.value
         }) 
         side.quant = 1
         setSideOrders([...sideOrders, side])
-        console.log(side)
         return [side]
     }
 
@@ -47,15 +40,14 @@ export function MenuMorning() {
     function sendToTheKitchen () {
       const orderProducts = sideOrders.map((product) => {
             return {id:product.id,
-                    qtd: product.quant}
+                    qtd:product.quant}
       } )  
       const  orderToSendToTheKitchen = {
             "client": location.state.nameClientInput,
             "table": location.state.table,
             "products": orderProducts
         }
-        if (orderToSendToTheKitchen.products.id !== undefined &&
-            orderToSendToTheKitchen.products.quant !== undefined){
+        if (orderToSendToTheKitchen.products.length > 0){
         createOrder(orderToSendToTheKitchen).then((result) => {
             if (result.ok){
                 alert("pedido criado com sucesso")

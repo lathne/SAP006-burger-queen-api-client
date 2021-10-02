@@ -1,6 +1,7 @@
-// import react from "react";
-import { getAllProducts } from "../../services/dataService";
+import { getAllProducts, createOrder } from "../../services/dataService";
 import { useState, useEffect } from "react"
+import { useLocation } from "react-router-dom"
+import { useHistory } from 'react-router';
 
 let allProducts = []
 getAllProducts().then( (result) => {
@@ -29,16 +30,13 @@ export function NoteOrder(){
             [name]: value
 
         })
-        console.log(name, value)
     }
     console.log(allProducts)
     function filterBurgerMain() {
-        console.log('passei no burgermain')
         const burger1 = allProducts.find(item => {
             return item.flavor === values.burger && (item.complement === values.extra2 ||  (values.extra2 === "nenhum" && item.complement === null)) && item.name === values.extra1})
             if(burger1 !== undefined){
             burger1.quant = 1
-            console.log(burger1)
             setValues({
                 burger: '',
                 extra1: '',
@@ -56,13 +54,50 @@ export function NoteOrder(){
             return item.name === e.target.value})
             side.quant = 1
             setSideOrders([...sideOrders, side])
-            console.log(side)
+            
         return side
     }
     
-    return {handleChange, filterBurgerMain, values, orders, filterByItemName, sideOrders }
+    const location = useLocation()
+    const history = useHistory()
+
+    function sendToTheKitchen () {
+        const orderBurgerProducts = orders.map((product) => {
+            return {id:product.id,
+                    qtd:product.quant}
+        })
+        const orderProducts = sideOrders.map((product) => {
+              return {id:product.id,
+                      qtd:product.quant}
+        } )  
+
+        const allProductsMain = [orderBurgerProducts, orderProducts].flat()
+
+        const  orderToSendToTheKitchen = {
+              "client": location.state.nameClientInput,
+              "table": location.state.table,
+              "products": allProductsMain
+          }
+          if (orderToSendToTheKitchen.products.length > 0){
+          createOrder(orderToSendToTheKitchen).then((result) => {
+              if (result.ok){
+                  alert("pedido criado com sucesso")
+                  history.push("/hall")
+              }else {
+                  alert("o cozinheiro tá de folga")
+              }
+          }).catch((result) => {
+              alert(result)
+          })}else{
+              alert("estão faltando dados para o pedido")
+          }
+      }
+  
+      function cancelOrder () {
+          setSideOrders([])
+      }
+      
+    return {handleChange, filterBurgerMain, values, orders, filterByItemName, 
+        sideOrders, cancelOrder, sendToTheKitchen  }
 }
         
-// const breakfast = data.filter((item) => item.type === "breakfast");
-// const breakfastItems = breakfast.map((item)=> item.name + item.price);
-//
