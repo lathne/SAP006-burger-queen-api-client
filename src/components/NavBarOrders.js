@@ -3,7 +3,7 @@ import logoutIMG from '../images/exit.svg'
 import '../styles/NavBar.scss'
 import { Link } from 'react-router-dom'
 
-export function NavBar() { 
+export function NavBarOrders() { 
   return (
       <nav className="nav-bar-hall">
           <div className="navbar-logo-container">
@@ -17,8 +17,8 @@ export function NavBar() {
               <Link to="/orders" className="">
                 <h2 className="anchor-orders">Acompanhar Pedidos</h2>
               </Link>
-              <Link to="/kitchen" className="">
-                <h2 className="anchor-kitchen">Cozinha</h2>
+              <Link to="/hall" className="">
+                <h2 className="anchor-kitchen">Hall</h2>
               </Link>
           </div>
           <div className="navbar-logo-container">

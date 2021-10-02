@@ -2,7 +2,6 @@ import { useLocation } from 'react-router-dom';
 import { NavBar } from '../../components/NavBar';
 import { Button } from '../../components/Button';
 import { NoteOrder } from './UseFormMenuMain';
-import { createOrder } from '../../services/dataService'
 
 import burger from '..//../images/burger.png';
 import chicken from '..//../images/chicken-burger.png';
@@ -16,7 +15,7 @@ import '../../styles/menu-main.scss';
 
 export function MenuMain() {
     const location = useLocation()
-    const {handleChange, orders, filterByItemName, sideOrders} = NoteOrder()
+    const {handleChange, orders, filterByItemName, sideOrders, cancelOrder, sendToTheKitchen} = NoteOrder()
 
     return (
         <>
@@ -111,7 +110,6 @@ export function MenuMain() {
                             <input className="input-radio items" type="radio" name="drink" value="Refrigerante 500mL" id="soda" onChange={filterByItemName} />
                         </div>
                     </div>
-                    {/* só pegar o id do item escolhido */}
                 </div>
                 
                 
@@ -151,13 +149,14 @@ export function MenuMain() {
                     <div className="menu-buttons-container">
                         <Button 
                             type="button"
-                            onClick={handleChange}
+                            onClick={sendToTheKitchen}
                             buttonText="Enviar"
                             className="menu-button confirm-order"
                         />
                  
                         <Button 
-                            type="submit"
+                            type="button"
+                            onClick={cancelOrder}
                             buttonText="Cancelar"
                             className="menu-button cancel-order"
                         />
@@ -168,11 +167,3 @@ export function MenuMain() {
         </>
     );
 }
-
-let allOrders = []
-    createOrder().then( (result) => {
-        result.json().then( (data)=> {
-            allOrders = data
-            console.log(allOrders)
-        })
-    })
