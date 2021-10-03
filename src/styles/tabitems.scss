@@ -1,0 +1,48 @@
+.tab-list {
+    
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    list-style-type: none;
+    margin-top: 1em;
+ 
+
+    .tab-items-buttons-container {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        width: 5em;
+
+        p.item-quantity {
+            font-size: 1.2em;
+            align-self: flex-end;
+            font-weight: bold;
+        }
+    }
+
+    .tab-items-button {
+        padding: 0;
+        width: 30px;
+        height: 30px;
+    }
+
+    .btn-quantity {
+        background-color: var(--green);
+        color: var(--white);
+        font-size: 1.2em;
+        font-weight: 900;
+    }
+
+    .tab-items-container {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        width: 15em;
+        height: 100%;
+        p.tab-text {
+            align-self: flex-end;
+            text-align: left;
+        }
+    }
+}

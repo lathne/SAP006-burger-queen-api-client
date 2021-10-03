@@ -19,7 +19,7 @@
 
         $tablet-width: 768px;
         $desktop-width: 1200px;
-        @media screen and (min-width:#{$tablet-width}) {
+        @media screen and (min-width:#{$desktop-width}) {
             width: 95%;
             flex-direction: row;
         }
@@ -59,15 +59,14 @@
     .sandwiches {
         width: 100%;
         display: flex;
-        flex-direction: column;
         align-items: center;
-        justify-content: center;
+        justify-content: space-around;
+        padding-bottom: 1em;
 
         $tablet-width: 768px;
         $desktop-width: 1200px;
         @media screen and (min-width:#{$desktop-width}) {
-            flex-direction: row;
-            padding: 3em 0;
+           
         }
     }
 
@@ -75,7 +74,7 @@
         $tablet-width: 768px;
         $desktop-width: 1200px;
         @media screen and (min-width:#{$desktop-width}) {
-            justify-content: space-around;
+        
         }
     }
 
@@ -89,9 +88,13 @@
         
         border-radius: 30px;
         border: 1px solid var(--black);
-        width: 226px;
-        height: 175px;
+        width: 10em;
+        height: 8em;
         margin: 0.5em 0 1em 0;
+
+        img {
+            width: 70px;
+        }
 
         $tablet-width: 768px;
         $desktop-width: 1200px;
@@ -108,20 +111,20 @@
         cursor: pointer;
         background-color: var(--white);
         font-weight: 600;
-        font-size: 1rem;
+        font-size: .8rem;
         font-family: inherit;
-        min-width: 212px;
+        min-width: 155px;
         padding: 0.4em 2em;
         margin-top: 1em;
         cursor: pointer;
         border-radius: 100px;
         border: 1px solid var(--black);
-        margin-bottom: -52px;
+        margin-bottom: -60px;
         z-index: 2;
     }
 
     .label.juice {
-        margin-bottom: -30px;
+        margin-bottom: -20px;
     }
 
     .input-radio {
@@ -129,23 +132,37 @@
         visibility: hidden;
     }
 
+    input[type="radio"]:checked+label {
+        border: 3px solid var(--green);
+        box-shadow: 0 0 2px 2px rgba(0, 0, 0, 0.2);
+    }
+
+    .client-content {
+        display: flex;
+        align-items: center;
+        justify-content: space-around;
+        width: 50%;
+        margin-top: 1em;
+
+        font-size: 1rem;
+        font-weight: 700;
+    }
+
 
     .orders {
-        min-height: 15em;
+        min-height: 20em;
+        width: 95%;
 
-        $tablet-width: 768px;
-        $desktop-width: 1200px;
-        @media screen and (min-width:#{$tablet-width}) {
-            min-height: 43.5em;
-        }
+        $desktop-width: 1200px;     
         @media screen and (min-width:#{$desktop-width}) {
-            min-height: 30.5em;
+            min-height: 10em;
         }
     }
 
     .separator {
         width: 80%;
         border-top: 1px solid var(--black);
+        margin-top: 1em;
     }
 
     .items-cost-container {

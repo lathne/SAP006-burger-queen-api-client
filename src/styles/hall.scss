@@ -45,16 +45,7 @@
             display: flex;
             align-items: center;
             justify-content: center;
-
-            border-radius: 30px;
-            border: 1px solid var(--black);
-            padding: 1.5em;
-            position: relative;
         }
-
-        // .table:hover{
-        //     background-color: var(--red)
-        // }
 
         img {
             max-width: 15em;
@@ -76,14 +67,33 @@
         }
 
         input[type="radio"]:checked+label {
-            border: 2px solid var(--green);
-            box-shadow: 0 0 3px 3px var(--green);
+            border: 3px solid var(--green);
+            box-shadow: 0 0 2px 2px rgba(0, 0, 0, 0.2);
         }
-    
-        // .table-input:checked + label>img {
-        //     border: 2px solid var(--green);
-        //     box-shadow: 0 0 3px 3px var(--green);
-        // }
+
+        counter-reset: tableCount;
+        
+        label{
+            display: flex;
+            justify-content: center;
+
+            border-radius: 30px;
+            border: 1px solid var(--black);
+            padding: 1.6em;
+
+            position: relative;
+            counter-increment: tableCount;
+            &::before {
+                content: counter(tableCount);
+                position: absolute;
+                top: 0;
+                font-weight: bold;
+                font-size: 1.5rem;
+                color: var(--green);
+             
+            }
+            
+        }
 
         $small: 620px;
         $tablet-width: 850px;
@@ -98,6 +108,14 @@
         }
     }
 
+    .error-message-div {
+        margin: .5em 0;
+    }
+
+    .error-message {
+        color: red;
+    }
+
     .client-name-container {
         display: flex;
         align-items: center;
@@ -107,6 +125,7 @@
 
     .client-name-input {
       font-family: inherit;
+      font-size: 1rem;
       width: 25em;
       padding: 2px 0;
       border: none;
@@ -115,7 +134,7 @@
       border-bottom: 2px solid var(--black);
     }
     
-    .menu-buttons-container {
+    .hall-buttons-container {
         width: 100%;
         display: flex;
         align-items: center;
@@ -123,7 +142,7 @@
         flex-direction: column;
         margin: 3em 0;
 
-        .menu-buttons {
+        .hall-buttons {
             width: 70%;
             display: flex;
             align-items: center;
@@ -152,11 +171,3 @@
 };
 
 
-
-
-// $small: 620px;
-// $tablet-width: 768px;
-// $desktop-width: 1024px;
-// @media screen and (min-width:#{$small}) {
-    
-// }

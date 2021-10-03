@@ -3,16 +3,7 @@ import { Button } from '../../components/Button';
 import '../../styles/hall.scss';
 import useForm from '../Hall/UseForm'
 
-import table1 from '../../images/table1.png';
-import table2 from '../../images/table2.png';
-import table3 from '../../images/table3.png';
-import table4 from '../../images/table4.png';
-import table5 from '../../images/table5.png';
-import table6 from '../../images/table6.png';
-import table7 from '../../images/table7.png';
-import table8 from '../../images/table8.png';
-import table9 from '../../images/table9.png';
-
+import table from '../../images/table.png';
 
 export function Hall() {
     const {handleChange, values, handleSubmit, errors} = useForm()
@@ -25,47 +16,46 @@ export function Hall() {
                 <h2 className="instructions"> Selecione uma mesa e digite o nome do cliente: </h2>
                 
                 <form className="form" onSubmit={handleSubmit}>
-                    <div className="error-message">{errors.table && <p>{errors.table}</p>}</div>
                         <div className="tables-container">
                             <div className="table">
-                                <label htmlFor="t1">
-                                <img className="table-label" src={table1} alt=""/></label>
-                                <input className="table-input" type="radio" name="table" id="t1" value="1" onChange={handleChange}/>
+                                <input className="table-input" type="radio" name="table"  id="t1" value="1" onChange={handleChange}/>
+                                <label htmlFor="t1"><img className="table-label" src={table} alt=""/></label>
                             </div>
                             <div className="table">
-                                <label htmlFor="t2"><img className="table-label" src={table2} alt=""/></label>
                                 <input className="table-input" type="radio" name="table" id="t2" value="2" onChange={handleChange}/>
+                                <label htmlFor="t2"><img className="table-label" src={table} alt=""/></label>
                             </div>
                             <div className="table">
-                                <label htmlFor="t3"><img className="table-label" src={table3} alt=""/></label>
                                 <input className="table-input" type="radio" name="table" id="t3" value="3" onChange={handleChange}/>
+                                <label htmlFor="t3"><img className="table-label" src={table} alt=""/></label>
                             </div>
                             <div className="table">
-                                <label htmlFor="t4"><img className="table-label" src={table4} alt=""/></label>
                                 <input className="table-input" type="radio" name="table" id="t4" value="4" onChange={handleChange}/>
+                                <label htmlFor="t4"><img className="table-label" src={table} alt=""/></label>
                             </div>
                             <div className="table">
-                                <label htmlFor="t5"><img className="table-label" src={table5} alt=""/></label>
                                 <input className="table-input" type="radio" name="table" id="t5" value="5" onChange={handleChange}/>
+                                <label htmlFor="t5"><img className="table-label" src={table} alt=""/></label>
                             </div>
                             <div className="table">
-                                <label htmlFor="t6"><img className="table-label" src={table6} alt=""/></label>
                                 <input className="table-input" type="radio" name="table" id="t6" value="6" onChange={handleChange}/>
+                                <label htmlFor="t6"><img className="table-label" src={table} alt=""/></label>
                             </div>
                             <div className="table">
-                                <label htmlFor="t7"><img className="table-label" src={table7} alt=""/></label>
                                 <input className="table-input" type="radio" name="table" id="t7" value="7" onChange={handleChange}/>
+                                <label htmlFor="t7"><img className="table-label" src={table} alt=""/></label>
                             </div>
                             <div className="table">
-                                <label htmlFor="t8"><img className="table-label" src={table8} alt=""/></label>
                                 <input className="table-input" type="radio" name="table" id="t8" value="8" onChange={handleChange}/>
+                                <label htmlFor="t8"><img className="table-label" src={table} alt=""/></label>
                             </div>
                             <div className="table">
-                                <label htmlFor="t9"><img className="table-label"  src={table9} alt=""/></label>
                                 <input className="table-input" type="radio" name="table" id="t9" value="9" onChange={handleChange}/>
+                                <label htmlFor="t9"><img className="table-label"  src={table} alt=""/></label>
                             </div>
                     </div>
-
+                    <div className="error-message-div">{errors.table && <p className="error-message">{errors.table}</p>}</div>
+                    
                     <div className="client-name-container">
                         <label className="client-name-label">
                             <h2>Nome do Cliente</h2>
@@ -78,12 +68,13 @@ export function Hall() {
                             value={values.nameClientInput}
                             onChange={handleChange}
                         />
-                        <div className="error-message">{errors.nameClientInput && <p>{errors.nameClientInput}</p>}</div>
                     </div>
-                    <div className="menu-buttons-container">
+                    <div className="error-message-div">{errors.nameClientInput && <p className="error-message">{errors.nameClientInput}</p>}</div>
+                    
+                    <div className="hall-buttons-container">
                     <h2 className="instructions">Selecione o menu desejado:</h2>
                    
-                    <div className="menu-buttons">
+                    <div className="hall-buttons">
                         
                         <Button 
                             type="button"

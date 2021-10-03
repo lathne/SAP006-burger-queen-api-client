@@ -1,11 +1,14 @@
+import { useState } from "react";
+import { useHistory } from 'react-router';
 import { useLocation } from 'react-router-dom';
+
 import { NavBar } from '../../components/NavBar';
 import { Button } from '../../components/Button';
 import { Label } from '../../components/Label'
 import { Input } from '../../components/Input';
+import {TabItems} from '../../components/TabItems';
+
 import { getAllProducts, createOrder } from "../../services/dataService";
-import { useState } from "react";
-import { useHistory } from 'react-router';
 
 import blackCoffee from '..//..//images/black-coffee.png';
 import latte from '..//..//images/latte.png';
@@ -18,38 +21,48 @@ let allProducts = []
         getAllProducts().then( (result) => {
         result.json().then( (data)=> {
             allProducts = data
+            console.log(allProducts)
         })
     })
 
 export function MenuMorning() {
     const location = useLocation()
-
-    const [sideOrders, setSideOrders] = useState([])
-
-    function filterByItemName(e) {
-        let side = allProducts.find(item => {
-            return item.name === e.target.value
-        }) 
-        side.quant = 1
-        setSideOrders([...sideOrders, side])
-        return [side]
-    }
-
+    console.log(location)
     const history = useHistory()
 
+    const [breakfastOrders, setBreakfastOrders] = useState([])
+    console.log(breakfastOrders)
+
+    
+    const [isModalVisible, setIsModalVisible] = useState(false);
+
+    function filterByItemName(e) {
+        let breakfast = allProducts.find(item => {
+         
+            return item.name === e.target.value
+        }) 
+        breakfast.qtd = 1
+        setBreakfastOrders([...breakfastOrders, breakfast])
+        console.log(breakfast)
+        return [breakfast]
+    }
+
     function sendToTheKitchen () {
-      const orderProducts = sideOrders.map((product) => {
+      const orderProducts = breakfastOrders.map((product) => {
             return {id:product.id,
-                    qtd:product.quant}
-      } )  
+                    qtd: product.qtd}
+      })  
       const  orderToSendToTheKitchen = {
             "client": location.state.nameClientInput,
             "table": location.state.table,
             "products": orderProducts
         }
-        if (orderToSendToTheKitchen.products.length > 0){
+        if (orderToSendToTheKitchen.products.id !== undefined &&
+            orderToSendToTheKitchen.products.qtd !== undefined){
         createOrder(orderToSendToTheKitchen).then((result) => {
             if (result.ok){
+                //setIsModalVisible(true)
+               
                 alert("pedido criado com sucesso")
                 history.push("/hall")
             }else {
@@ -63,8 +76,28 @@ export function MenuMorning() {
     }
 
     function cancelOrder () {
-        setSideOrders([])
+        setBreakfastOrders([])
     }
+
+    function addItem(item) {
+        item.qtd += 1;
+        setBreakfastOrders([...breakfastOrders]);
+    }
+
+    function removeItem(item) {
+        if (item.qtd === 1) {
+          breakfastOrders.splice(breakfastOrders.indexOf(item), 1);
+          setBreakfastOrders([...breakfastOrders]);
+        } else {
+          item.qtd -= 1;
+          setBreakfastOrders([...breakfastOrders]);
+        }
+    }
+
+    function deleteItem(item) {
+        breakfastOrders.splice(breakfastOrders.indexOf(item), 1);
+        setBreakfastOrders([...breakfastOrders]);
+      }
 
     return (
         <>
@@ -75,52 +108,47 @@ export function MenuMorning() {
                 <section className="items-section">
           
                     <div className="drinks-container">
-                
                         <div className="title">
                             <h3>Bebidas</h3>
                         </div>
-                
-                        <div className="drink">
-                            <img src={blackCoffee} alt="black coffee"/>
-                            <Label
-                                className="label" 
-                                htmlFor="black-coffee"
-                                labelText="Café Preto"
-                            />  
-                            <Input
-                                name="drink"
-                                id="black-coffee"
-                                type="radio"
-                                value ="Café americano"
-                                className="input-radio"
-                                onChange={filterByItemName}
-                            />
-                        </div>
-                
-                        <div className="drink">
-                            <img src={latte} alt="latte"/>
-                            <Label 
-                                className="label" 
-                                htmlFor="latte" 
-                                labelText="Café com leite"
-                            />
-                            <Input 
-                                className="input-radio" 
-                                type="radio" 
-                                name="drink" 
-                                id="latte" 
-                                value ="Café com leite"
-                                onChange={filterByItemName}
-                            />
-                        </div>
 
+                        <div className="drinks">
+                            <div className="drink">
+                                <img src={blackCoffee} alt="black coffee"/>
+                                <Input
+                                    name="drink"
+                                    id="black-coffee"
+                                    type="radio"
+                                    value ="Café americano"
+                                    className="input-radio"
+                                    onChange={filterByItemName}
+                                />
+                                <Label
+                                    className="label" 
+                                    htmlFor="black-coffee"
+                                    labelText="Café Preto"
+                                />  
+                            </div>
+                       
+                            <div className="drink">
+                                <img src={latte} alt="latte"/>
+                                <Input 
+                                    className="input-radio" 
+                                    type="radio" 
+                                    name="drink" 
+                                    id="latte" 
+                                    value ="Café com leite"
+                                    onChange={filterByItemName}
+                                />
+                                <Label 
+                                    className="label" 
+                                    htmlFor="latte" 
+                                    labelText="Café com leite"
+                                />
+                            </div>
+                   
                         <div className="drink">
                             <img src={orangeJuice} alt="orange juice"/>
-                            <Label 
-                                className="label juice" 
-                                htmlFor="orange-juice"
-                                labelText="Suco de Laranja"
-                            />
                             <Input 
                                 className="input-radio" 
                                 type="radio" 
@@ -129,8 +157,14 @@ export function MenuMorning() {
                                 value ="Suco de fruta natural"
                                 onChange={filterByItemName}
                             />
+                             <Label 
+                                className="label juice" 
+                                htmlFor="orange-juice"
+                                labelText="Suco de Laranja"
+                            />
                         </div>
                     </div>
+                </div>
                 
                     <div className="sandwiches-container">
 
@@ -141,12 +175,6 @@ export function MenuMorning() {
                         <div className="sandwiches">
                             <div className="sandwich">
                                 <img src={toast} alt="toast"/>
-
-                                <Label 
-                                    className="label" 
-                                    htmlFor="toast"
-                                    labelText="Misto Quente"
-                                />
                                 <Input 
                                     className="input-radio" 
                                     type="radio" 
@@ -154,6 +182,11 @@ export function MenuMorning() {
                                     id="toast" 
                                     value ="Misto quente"
                                     onChange={filterByItemName}
+                                />
+                                <Label 
+                                    className="label" 
+                                    htmlFor="toast"
+                                    labelText="Misto Quente"
                                 />
                             </div>
                         </div>
@@ -165,11 +198,28 @@ export function MenuMorning() {
                     <div className="title">
                         <h3>Pedidos</h3>
                     </div>
+                    <div className="client-content">
+                        <p>Cliente: {location.state.nameClientInput}</p>
+                        <p>Mesa: {location.state.table}</p>
+                    </div>
+                    <div className="separator"></div>
                     <ul className="orders">
-                        <li>Cliente: {location.state.nameClientInput} Mesa: {location.state.table}</li>
-                        {sideOrders.map(sideOrders => {
+                       
+                        {breakfastOrders.map(item => {
                             return (
-                                <li><p > {sideOrders.quant} {sideOrders.name} {sideOrders.price}</p></li>
+                            <>
+                                <TabItems
+                                    itemKey={item.itemKey}
+                                    itemQtd={item.qtd}
+                                    itemName={item.name}
+                                    itemPrice={item.price}
+
+                                    removeItem={() => removeItem(item)}
+                                    addItem={() => addItem(item)}
+                                    deleteItem={() => deleteItem(item)}
+                                // <li><p > {item.qtd} {item.name} {item.price}</p></li>
+                                />
+                            </>
                             )
                         })}
                     </ul>
@@ -177,7 +227,7 @@ export function MenuMorning() {
 
                     <div className="items-cost-container">
                         <p className="item-price">Total:</p>
-                        <p className="item-price">R$ {sideOrders.reduce((a,b) => {
+                        <p className="item-price">R$ {breakfastOrders.reduce((a,b) => {
                             return a + b.price
                         },0)}</p>
                     </div>
