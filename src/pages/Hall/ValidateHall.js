@@ -11,10 +11,10 @@ export default function ValidateInfo(values) {
     }
 
     if(!values.nameClientInput) {
-        errors.nameClientInput = "Qual o nome do cliente?"
+        errors.nameClientInput = "Digite o nome do cliente"
         errors.empty = false
-    } else if (values.nameClientInput.length < 2) {
-        errors.nameClientInput = "Insira no mínimo 2 caracteres"
+    } else if (values.nameClientInput.length < 3) {
+        errors.nameClientInput = "Insira no mínimo 3 caracteres"
         errors.empty = false
     }
 

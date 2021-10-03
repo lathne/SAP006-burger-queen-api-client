@@ -16,7 +16,6 @@ export function Hall() {
                 <h2 className="instructions"> Selecione uma mesa e digite o nome do cliente: </h2>
                 
                 <form className="form" onSubmit={handleSubmit}>
-                    <div className="error-message">{errors.table && <p>{errors.table}</p>}</div>
                         <div className="tables-container">
                             <div className="table">
                                 <input className="table-input" type="radio" name="table"  id="t1" value="1" onChange={handleChange}/>
@@ -55,7 +54,8 @@ export function Hall() {
                                 <label htmlFor="t9"><img className="table-label"  src={table} alt=""/></label>
                             </div>
                     </div>
-
+                    <div className="error-message-div">{errors.table && <p className="error-message">{errors.table}</p>}</div>
+                    
                     <div className="client-name-container">
                         <label className="client-name-label">
                             <h2>Nome do Cliente</h2>
@@ -68,12 +68,13 @@ export function Hall() {
                             value={values.nameClientInput}
                             onChange={handleChange}
                         />
-                        <div className="error-message">{errors.nameClientInput && <p>{errors.nameClientInput}</p>}</div>
                     </div>
-                    <div className="menu-buttons-container">
+                    <div className="error-message-div">{errors.nameClientInput && <p className="error-message">{errors.nameClientInput}</p>}</div>
+                    
+                    <div className="hall-buttons-container">
                     <h2 className="instructions">Selecione o menu desejado:</h2>
                    
-                    <div className="menu-buttons">
+                    <div className="hall-buttons">
                         
                         <Button 
                             type="button"

@@ -22,6 +22,7 @@ export function NoteOrder(){
     })
 
     const [orders, setOrders]=useState([])
+    const [sideOrders, setSideOrders] = useState([])
 
     const handleChange = e => {
         const { name, value } = e.target;
@@ -36,7 +37,7 @@ export function NoteOrder(){
         const burger1 = allProducts.find(item => {
             return item.flavor === values.burger && (item.complement === values.extra2 ||  (values.extra2 === "nenhum" && item.complement === null)) && item.name === values.extra1})
             if(burger1 !== undefined){
-            burger1.quant = 1
+            burger1.qtd = 1
             setValues({
                 burger: '',
                 extra1: '',
@@ -47,12 +48,12 @@ export function NoteOrder(){
         return burger1
     }
 
-    const [sideOrders, setSideOrders] = useState([])
+    
 
     function filterByItemName(e) {
         let side = allProducts.find(item => {
             return item.name === e.target.value})
-            side.quant = 1
+            side.qtd = 1
             setSideOrders([...sideOrders, side])
             
         return side
@@ -64,11 +65,11 @@ export function NoteOrder(){
     function sendToTheKitchen () {
         const orderBurgerProducts = orders.map((product) => {
             return {id:product.id,
-                    qtd:product.quant}
+                    qtd:product.qtd}
         })
         const orderProducts = sideOrders.map((product) => {
               return {id:product.id,
-                      qtd:product.quant}
+                      qtd:product.qtd}
         } )  
 
         const allProductsMain = [orderBurgerProducts, orderProducts].flat()
@@ -96,8 +97,50 @@ export function NoteOrder(){
       function cancelOrder () {
           setSideOrders([])
       }
+
+      function addBurger(item) {
+        item.qtd += 1;
+        setOrders([...orders]);
+      }
+
+      function addSideItem(item) {
+        item.qtd += 1;
+        setSideOrders([...sideOrders]);
+      }
+
+      function removeBurger(item) {
+        if (item.qtd === 1) {
+          orders.splice(orders.indexOf(item), 1);
+          setOrders([...orders]);
+        } else {
+          item.qtd -= 1;
+          setOrders([...orders]);
+        }
+      }
+
+      function removeSideItem(item) {
+        if (item.qtd === 1) {
+          sideOrders.splice(sideOrders.indexOf(item), 1);
+          setSideOrders([...sideOrders]);
+        } else {
+          item.qtd -= 1;
+          setSideOrders([...sideOrders]);
+        }
+      }
+
+      function deleteBurger(item) {
+          orders.splice(orders.indexOf(item), 1);
+          setOrders([...orders]);
+      }
+
+      function deleteSideItem(item) {
+        sideOrders.splice(sideOrders.indexOf(item), 1);
+        setSideOrders([...sideOrders]);
+      }
+
+
       
     return {handleChange, filterBurgerMain, values, orders, filterByItemName, 
-        sideOrders, cancelOrder, sendToTheKitchen  }
+        sideOrders, cancelOrder, sendToTheKitchen, addBurger, addSideItem, removeBurger, removeSideItem, deleteBurger, deleteSideItem}
 }
         

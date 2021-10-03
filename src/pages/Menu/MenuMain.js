@@ -1,7 +1,11 @@
 import { useLocation } from 'react-router-dom';
+
 import { NavBar } from '../../components/NavBar';
 import { Button } from '../../components/Button';
+import {TabItems} from '../../components/TabItems';
+
 import { NoteOrder } from './UseFormMenuMain';
+import { createOrder } from '../../services/dataService';
 
 import burger from '..//../images/burger.png';
 import chicken from '..//../images/chicken-burger.png';
@@ -15,7 +19,7 @@ import '../../styles/menu-main.scss';
 
 export function MenuMain() {
     const location = useLocation()
-    const {handleChange, orders, filterByItemName, sideOrders, cancelOrder, sendToTheKitchen} = NoteOrder()
+    const {handleChange, orders, filterByItemName, sideOrders, cancelOrder, sendToTheKitchen, addBurger, addSideItem, removeBurger, removeSideItem, deleteBurger, deleteSideItem} = NoteOrder()
 
     return (
         <>
@@ -45,34 +49,45 @@ export function MenuMain() {
                             <label className="label" htmlFor="vegan-burger">Vegetariano</label>
                         </div>
                     </div>
+
                     <div className="extras-container">
                         <div className="title">
-                            <h3>Extras</h3>
+                            <h3>Opções</h3>
                         </div>
                         <div className="extras">
-                            <div className="extra">
-                                <input className="input-radio" type="radio" name="extra1" value="Hambúrguer simples" id="simple" onChange={handleChange}/>
-                                <label className="label extra-items" htmlFor="simple">Simples</label>
+
+                            <div className="options">
+                                <div className="extra">
+                                    <input className="input-radio" type="radio" name="extra1" value="Hambúrguer simples" id="simple" onChange={handleChange}/>
+                                    <label className="label extra-items" htmlFor="simple">Simples</label>
+                                </div>
+                                <div className="extra">
+                                    <input className="input-radio" type="radio" name="extra1" value="Hambúrguer duplo" id="double" onChange={handleChange}/>
+                                    <label className="label extra-items" htmlFor="double">Duplo</label>
+                                </div>
                             </div>
-                            <div className="extra">
-                                <input className="input-radio" type="radio" name="extra1" value="Hambúrguer duplo" id="double" onChange={handleChange}/>
-                                <label className="label extra-items" htmlFor="double">Duplo</label>
+
+                            <div className="title">
+                                <h3>Extras</h3>
                             </div>
-                            <div className="extra">
-                                <input className="input-radio" type="radio" name="extra2" value="queijo" id="cheese" onChange={handleChange}/>
-                                <label className="label extra-items" htmlFor="cheese">Queijo</label>
+
+                            <div className="extra-options">
+                                <div className="extra">
+                                    <input className="input-radio" type="radio" name="extra2" value="queijo" id="cheese" onChange={handleChange}/>
+                                    <label className="label extra-items" htmlFor="cheese">Queijo</label>
+                                </div>
+                                <div className="extra">
+                                    <input className="input-radio" type="radio" name="extra2" value="ovo" id="egg" onChange={handleChange}/>
+                                    <label className="label extra-items" htmlFor="egg">Ovo</label>
+                                </div>
+                                <div className="extra">
+                                    <input className="input-radio" type="radio" name="extra2" value="nenhum" id="none" onChange={handleChange}/>
+                                    <label className="label extra-items" htmlFor="none">Nenhum</label>
+                                </div>
                             </div>
-                            <div className="extra">
-                                <input className="input-radio" type="radio" name="extra2" value="ovo" id="egg" onChange={handleChange}/>
-                                <label className="label extra-items" htmlFor="egg">Ovo</label>
-                            </div>
-                            <div className="extra">
-                                <input className="input-radio extra-items" type="radio" name="extra2" value="nenhum" id="none" onChange={handleChange}/>
-                                <label className="label" htmlFor="none">Nenhum</label>
-                            </div>
+
                         </div>
                     </div>
-                        {/* mostra aqui o burger montado e pega o id */}
                 </div>
 
                 <div className="sidedishes-container">
@@ -91,7 +106,6 @@ export function MenuMain() {
                             <label className="label" htmlFor="onion-rings">Anéis de cebola</label>
                         </div>
                     </div>
-                    {/* só pegar o id do item escolhido */}
                 </div>
 
                 <div className="drinks-container">
@@ -112,7 +126,7 @@ export function MenuMain() {
                     </div>
                 </div>
                 
-                
+                 
                 
             </section>
 
@@ -124,18 +138,45 @@ export function MenuMain() {
                         <p>Cliente: {location.state.nameClientInput}</p>
                         <p>Mesa: {location.state.table}</p>
                     </div>
+                    <div className="separator"></div>
                     <ul className="orders">
                     
                         {orders.map(order => {
                             console.log(order)
                             return (
-                                <li><p >{order.quant} {order.name} {order.flavor} {order.complement} {order.price}</p></li>
+                                <>
+                                <TabItems
+                                    itemKey={order.burgersKey}
+                                    itemQtd={order.qtd}
+                                    itemName={order.name}
+                                    itemFlavor={order.flavor}
+                                    itemComplement={order.complement}
+                                    itemPrice={order.price}
+
+                                    removeItem={() => removeBurger(order)}
+                                    addItem={() => addBurger(order)}
+                                    deleteItem={() => deleteBurger(order)}
+                                    //<li><p >{order.qtd} {order.name} {order.flavor} {order.complement} {order.price}</p></li>
+                                />
+                            </>
                             )
                         })}
 
                         {sideOrders.map(sideOrder => {
                             return (
-                                <li><p >{sideOrder.quant} {sideOrder.name} {sideOrder.price}</p></li>
+                                <>
+                                    <TabItems
+                                        itemKey={sideOrder.sideKey}
+                                        itemQtd={sideOrder.qtd}
+                                        itemName={sideOrder.name}
+                                        itemPrice={sideOrder.price}
+
+                                        removeItem={() => removeSideItem(sideOrder)}
+                                        addItem={() => addSideItem(sideOrder)}
+                                        deleteItem={() => deleteSideItem(sideOrder)}
+                                        //<li><p >{sideOrder.qtd} {sideOrder.name} {sideOrder.price}</p></li>
+                                    />
+                                </>
                             )
                         })}
 
@@ -152,14 +193,13 @@ export function MenuMain() {
                     <div className="menu-buttons-container">
                         <Button 
                             type="button"
-                            onClick={sendToTheKitchen}
+                            onClick={handleChange}
                             buttonText="Enviar"
                             className="menu-button confirm-order"
                         />
                  
                         <Button 
-                            type="button"
-                            onClick={cancelOrder}
+                            type="submit"
                             buttonText="Cancelar"
                             className="menu-button cancel-order"
                         />
@@ -170,3 +210,11 @@ export function MenuMain() {
         </>
     );
 }
+
+let allOrders = []
+    createOrder().then( (result) => {
+        result.json().then( (data)=> {
+            allOrders = data
+            console.log(allOrders)
+        })
+    })

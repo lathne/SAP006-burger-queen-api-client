@@ -67,3 +67,20 @@ export const createOrder = async (values) => {
   })
 }
   
+export const getAllOrders = (setAllOrders) => (
+  fetch(`https://lab-api-bq.herokuapp.com/orders`, {
+    method: 'GET',
+    headers: {
+      'Content-Type': 'application/json',
+      Authorization: `${localStorage.getItem("usersToken")}`,
+    },
+  })
+    .then((response) => response.json())
+    .then((data) => {
+     //ordenar 
+    })
+);
+
+// export const updateOrderStatus = (index, id, status, allOrders, setAllOrders) => (
+  
+// );
