@@ -52,8 +52,7 @@ export function NoteOrder(){
 
     function filterByItemName(e) {
         let side = allProducts.find(item => {
-            console.log(e.target, item.name)
-            console.log(item.name === e.target.value)
+            
               return item.name === e.target.value
           }) 
           

@@ -84,6 +84,8 @@ return fetch (`https://lab-api-bq.herokuapp.com/orders/${orderId}`, {
     "Content-Type": "application/json",
     Authorization: `${localStorage.getItem("usersToken")}`,
   },
-  body: status
+  body: JSON.stringify(
+    {status: status}
+   )
 })}
   
