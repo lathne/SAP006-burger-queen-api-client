@@ -187,19 +187,20 @@ export function MenuMain() {
                         <p className="item-price">R$ {orders.reduce((a,b) => {
                             return a + b.price
                         },0) + sideOrders.reduce((a,b) => {
-                            return a + b.price
+                            return a + b.price * b.qtd
                         },0)}</p>
                     </div>
                     <div className="menu-buttons-container">
                         <Button 
                             type="button"
-                            onClick={handleChange}
+                            onClick={sendToTheKitchen}
                             buttonText="Enviar"
                             className="menu-button confirm-order"
                         />
                  
                         <Button 
                             type="submit"
+                            onClick={cancelOrder}
                             buttonText="Cancelar"
                             className="menu-button cancel-order"
                         />
