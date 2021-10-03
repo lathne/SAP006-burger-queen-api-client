@@ -52,11 +52,27 @@ export function NoteOrder(){
 
     function filterByItemName(e) {
         let side = allProducts.find(item => {
-            return item.name === e.target.value})
-            side.qtd = 1
-            setSideOrders([...sideOrders, side])
-            
-        return side
+            console.log(e.target, item.name)
+            console.log(item.name === e.target.value)
+              return item.name === e.target.value
+          }) 
+          
+          e.target.checked=false
+
+          let sideExist = sideOrders.find(item => {
+              console.log(e.target, item.name)
+              console.log(item.name === e.target.value)
+                return item.name === e.target.value
+            }) 
+          if(sideExist !== undefined){
+              side.qtd += 1
+              setSideOrders([...sideOrders]);
+          }else{
+          side.qtd = 1
+          setSideOrders([...sideOrders, side])
+          }
+          console.log(side)
+          return [side]
     }
     
     const location = useLocation()
@@ -109,20 +125,14 @@ export function NoteOrder(){
       }
 
       function removeBurger(item) {
-        if (item.qtd === 1) {
-          orders.splice(orders.indexOf(item), 1);
-          setOrders([...orders]);
-        } else {
+        if (item.qtd > 1) {
           item.qtd -= 1;
           setOrders([...orders]);
         }
       }
 
       function removeSideItem(item) {
-        if (item.qtd === 1) {
-          sideOrders.splice(sideOrders.indexOf(item), 1);
-          setSideOrders([...sideOrders]);
-        } else {
+        if (item.qtd > 1) {
           item.qtd -= 1;
           setSideOrders([...sideOrders]);
         }

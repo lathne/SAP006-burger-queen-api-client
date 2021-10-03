@@ -42,7 +42,9 @@ export function MenuMorning() {
           console.log(item.name === e.target.value)
             return item.name === e.target.value
         }) 
+
         e.target.checked=false
+
         let breakfastExist = breakfastOrders.find(item => {
             console.log(e.target, item.name)
             console.log(item.name === e.target.value)
@@ -96,10 +98,7 @@ export function MenuMorning() {
     }
 
     function removeItem(item) {
-        if (item.qtd === 1) {
-          breakfastOrders.splice(breakfastOrders.indexOf(item), 1);
-          setBreakfastOrders([...breakfastOrders]);
-        } else {
+        if (item.qtd > 1) {
           item.qtd -= 1;
           setBreakfastOrders([...breakfastOrders]);
         }
