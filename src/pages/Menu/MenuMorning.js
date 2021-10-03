@@ -38,11 +38,25 @@ export function MenuMorning() {
 
     function filterByItemName(e) {
         let breakfast = allProducts.find(item => {
-         
+          console.log(e.target, item.name)
+          console.log(item.name === e.target.value)
             return item.name === e.target.value
         }) 
+
+        e.target.checked=false
+
+        let breakfastExist = breakfastOrders.find(item => {
+            console.log(e.target, item.name)
+            console.log(item.name === e.target.value)
+              return item.name === e.target.value
+          }) 
+        if(breakfastExist !== undefined){
+            breakfastExist.qtd += 1
+            setBreakfastOrders([...breakfastOrders]);
+        }else{
         breakfast.qtd = 1
         setBreakfastOrders([...breakfastOrders, breakfast])
+        }
         console.log(breakfast)
         return [breakfast]
     }
@@ -57,8 +71,7 @@ export function MenuMorning() {
             "table": location.state.table,
             "products": orderProducts
         }
-        if (orderToSendToTheKitchen.products.id !== undefined &&
-            orderToSendToTheKitchen.products.qtd !== undefined){
+        if (orderToSendToTheKitchen.products.length > 0){
         createOrder(orderToSendToTheKitchen).then((result) => {
             if (result.ok){
                 //setIsModalVisible(true)
@@ -85,10 +98,7 @@ export function MenuMorning() {
     }
 
     function removeItem(item) {
-        if (item.qtd === 1) {
-          breakfastOrders.splice(breakfastOrders.indexOf(item), 1);
-          setBreakfastOrders([...breakfastOrders]);
-        } else {
+        if (item.qtd > 1) {
           item.qtd -= 1;
           setBreakfastOrders([...breakfastOrders]);
         }
@@ -113,15 +123,16 @@ export function MenuMorning() {
                         </div>
 
                         <div className="drinks">
-                            <div className="drink">
+                            <div className="drink" >
                                 <img src={blackCoffee} alt="black coffee"/>
                                 <Input
                                     name="drink"
                                     id="black-coffee"
                                     type="radio"
+                                    onChange={filterByItemName}
                                     value ="Café americano"
                                     className="input-radio"
-                                    onChange={filterByItemName}
+                                    
                                 />
                                 <Label
                                     className="label" 
@@ -228,7 +239,7 @@ export function MenuMorning() {
                     <div className="items-cost-container">
                         <p className="item-price">Total:</p>
                         <p className="item-price">R$ {breakfastOrders.reduce((a,b) => {
-                            return a + b.price
+                            return a + b.price * b.qtd
                         },0)}</p>
                     </div>
 

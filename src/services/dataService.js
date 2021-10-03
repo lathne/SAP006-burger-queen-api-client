@@ -67,20 +67,25 @@ export const createOrder = async (values) => {
   })
 }
   
-export const getAllOrders = (setAllOrders) => (
-  fetch(`https://lab-api-bq.herokuapp.com/orders`, {
-    method: 'GET',
+export const listAllOrders = () => {
+  return fetch(`https://lab-api-bq.herokuapp.com/orders`, {
+    method: "GET",
     headers: {
-      'Content-Type': 'application/json',
+      "Content-Type": "application/json",
       Authorization: `${localStorage.getItem("usersToken")}`,
     },
   })
-    .then((response) => response.json())
-    .then((data) => {
-     //ordenar 
-    })
-);
+}
 
-// export const updateOrderStatus = (index, id, status, allOrders, setAllOrders) => (
+export const upDateOrderStatus = (orderId, status) => {
+return fetch (`https://lab-api-bq.herokuapp.com/orders/${orderId}`, {
+  method: "PUT",
+  headers: {
+    "Content-Type": "application/json",
+    Authorization: `${localStorage.getItem("usersToken")}`,
+  },
+  body: JSON.stringify(
+    {status: status}
+   )
+})}
   
-// );
