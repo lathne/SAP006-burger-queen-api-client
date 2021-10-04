@@ -1,7 +1,7 @@
 import { getAllProducts, createOrder } from "../../services/dataService";
 import { useState, useEffect } from "react"
 import { useLocation } from "react-router-dom"
-import { useHistory } from 'react-router';
+import { useHistory } from "react-router";
 
 let allProducts = []
 getAllProducts().then( (result) => {
@@ -48,108 +48,105 @@ export function NoteOrder(){
         return burger1
     }
 
-    
-
     function filterByItemName(e) {
         let side = allProducts.find(item => {
             
-              return item.name === e.target.value
-          }) 
+            return item.name === e.target.value
+        }) 
           
-          e.target.checked=false
+        e.target.checked=false
 
-          let sideExist = sideOrders.find(item => {
-              console.log(e.target, item.name)
-              console.log(item.name === e.target.value)
-                return item.name === e.target.value
-            }) 
-          if(sideExist !== undefined){
-              side.qtd += 1
-              setSideOrders([...sideOrders]);
-          }else{
-          side.qtd = 1
-          setSideOrders([...sideOrders, side])
-          }
-          console.log(side)
-          return [side]
+        let sideExist = sideOrders.find(item => {
+            return item.name === e.target.value
+        }) 
+
+        if(sideExist !== undefined){
+            side.qtd += 1
+            setSideOrders([...sideOrders]);
+        }else{
+            side.qtd = 1
+            setSideOrders([...sideOrders, side])
+        }
+            return [side]
     }
     
     const location = useLocation()
+
     const history = useHistory()
+
+    const [modal, setModal] = useState({ text:"", show : false });
 
     function sendToTheKitchen () {
         const orderBurgerProducts = orders.map((product) => {
-            return {id:product.id,
-                    qtd:product.qtd}
+            return {id:product.id, qtd:product.qtd}
         })
         const orderProducts = sideOrders.map((product) => {
-              return {id:product.id,
-                      qtd:product.qtd}
-        } )  
+            return {id:product.id,qtd:product.qtd}
+        })  
 
         const allProductsMain = [orderBurgerProducts, orderProducts].flat()
 
         const  orderToSendToTheKitchen = {
-              "client": location.state.nameClientInput,
-              "table": location.state.table,
-              "products": allProductsMain
-          }
-          if (orderToSendToTheKitchen.products.length > 0){
-          createOrder(orderToSendToTheKitchen).then((result) => {
-              if (result.ok){
-                  alert("pedido criado com sucesso")
-                  history.push("/hall")
-              }else {
-                  alert("o cozinheiro tá de folga")
-              }
-          }).catch((result) => {
-              alert(result)
-          })}else{
-              alert("estão faltando dados para o pedido")
-          }
-      }
-  
-      function cancelOrder () {
-          setSideOrders([])
-      }
+            "client": location.state.nameClientInput,
+            "table": location.state.table,
+            "products": allProductsMain
+        }
 
-      function addBurger(item) {
+        if (orderToSendToTheKitchen.products.length > 0){
+            createOrder(orderToSendToTheKitchen).then((result) => {
+                if (result.ok){
+                    setModal({show : true, text:"Pedido enviado com sucesso."})
+                }else {
+                    setModal({show : true, text:"O cozinheiro está de folga."})
+                }
+            }).catch((result) => {
+                setModal({show : true, result})
+            })
+        }else{
+            setModal({show : true, text:"Estão faltando dados do pedido."})
+        }
+    }
+  
+    function cancelOrder () {
+        setSideOrders([])
+    }
+
+    function addBurger(item) {
         item.qtd += 1;
         setOrders([...orders]);
-      }
+    }
 
-      function addSideItem(item) {
+    function addSideItem(item) {
         item.qtd += 1;
         setSideOrders([...sideOrders]);
-      }
+    }
 
-      function removeBurger(item) {
+    function removeBurger(item) {
         if (item.qtd > 1) {
-          item.qtd -= 1;
-          setOrders([...orders]);
+            item.qtd -= 1;
+            setOrders([...orders]);
         }
-      }
+    }
 
-      function removeSideItem(item) {
+    function removeSideItem(item) {
         if (item.qtd > 1) {
-          item.qtd -= 1;
-          setSideOrders([...sideOrders]);
+            item.qtd -= 1;
+            setSideOrders([...sideOrders]);
         }
-      }
+    }
 
-      function deleteBurger(item) {
-          orders.splice(orders.indexOf(item), 1);
-          setOrders([...orders]);
-      }
+    function deleteBurger(item) {
+        orders.splice(orders.indexOf(item), 1);
+        setOrders([...orders]);
+    }
 
-      function deleteSideItem(item) {
+    function deleteSideItem(item) {
         sideOrders.splice(sideOrders.indexOf(item), 1);
         setSideOrders([...sideOrders]);
-      }
+    }
 
-
-      
+  
     return {handleChange, filterBurgerMain, values, orders, filterByItemName, 
-        sideOrders, cancelOrder, sendToTheKitchen, addBurger, addSideItem, removeBurger, removeSideItem, deleteBurger, deleteSideItem}
+        sideOrders, cancelOrder, sendToTheKitchen, addBurger, addSideItem, removeBurger, removeSideItem, deleteBurger, deleteSideItem, modal, setModal, history}
 }
         
