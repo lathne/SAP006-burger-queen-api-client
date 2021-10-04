@@ -4,6 +4,8 @@ import { NavBar } from '../../components/NavBar'
 import { CardOrder } from "../../components/CardOrder";
 import { listAllOrders } from "../../services/dataService";
 
+import '../../styles/orders.scss';
+
 export function OrdersPage () {
     const [allOrders, setAllOrders] = useState([]);
     const [pendentOrders, setPendentOrders] = useState([]);
@@ -35,7 +37,6 @@ export function OrdersPage () {
             <NavBar />
             <main className="orders-page-main">
                 <h2 className="h2">Pedidos</h2>
-                <section className="orders-page-section">
                     <div className="pendent-orders">
                         {pendentOrders.map((xuxu) => {
                         return <CardOrder order={xuxu} setAllOrders={setAllOrders} allOrders={allOrders}/>;
@@ -51,7 +52,6 @@ export function OrdersPage () {
                         return <CardOrder order={xuxu} setAllOrders={setAllOrders} allOrders={allOrders}/>;
                     })}
                     </div>
-                </section>
             </main>
         </>
     )

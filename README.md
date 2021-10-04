@@ -1,549 +1,157 @@
-# Burger Queen (API Client)
+# Red Queen Burger And Coffee
+
+![Red Queen Burger And Coffee](https://i.ibb.co/q0gQLk2/red-queen.png)
 
 ## Índice
 
-- [1. Prefácio](#1-prefácio)
-- [2. Resumo do projeto](#2-resumo-do-projeto)
-- [3. Objetivos de aprendizagem](#3-objetivos-de-aprendizagem)
-- [4. Considerações gerais](#4-considerações-gerais)
-- [5. Critérios de aceitação mínimos do projeto](#5-critérios-de-aceitação-mínimos-do-projeto)
-- [6. Pistas, tips e leituras complementares](#6-pistas-tips-e-leituras-complementares)
+- [1. Resumo do projeto](#1-resumo-do-projeto)
+- [2. Planejamento](#2-planejamento)
+- [3. Interface e UX](#3-interface-e-ux)
+- [4. Estrutura e funcionalidades](#4-estrututa-e-funcionalidades)
+- [5. Desenvolvedoras](#5-desenvolvedoras)
 
 ---
 
-## 1. Prefácio
+## 1. Resumo do projeto
 
-Um pequeno restaurante de hambúrgueres, que está crescendo, necessita uma
-interface em que se possa realizar pedidos utilizando um _tablet_, e enviá-los
-para a cozinha para que sejam preparados de forma ordenada e eficiente.
+Esse projeto foi realizado durante o bootcamp da Laboratoria e o objetivo principal é o desenvolvilemto de uma _Single Page Application_ usando o _React_. Além de consumo de API, manipulação dados, utilização de métodos HTTP e promisses.
 
-Este projeto tem duas áreas: interface (cliente) e API (servidor). Nosso
-cliente nos pediu para desenvolver uma interface que se integre com a API
-que outra equipe de desenvolvedoras está trabalhando simultaneamente.
+---
 
-[React](https://reactjs.org/)
-é um dos _frameworks_ e _bibliotecas_ de JavaScript mais usados
-na área de desenvolvimento ao redor do mundo e existe uma razão para isso.
-No contexto do navegador, [_manter a interface sincronizada com o estado é
-difícil_](https://medium.com/dailyjs/the-deepest-reason-why-modern-javascript-frameworks-exist-933b86ebc445).
-Ao eleger um _framework_ ou _biblioteca_ para nossa interface, nos apoiamos em
-uma série de convenções e implementações _testadas_ e _documentadas_ para
-resolver um problema comum a toda interface web. Isto nos permite concentrar
-melhor (dedicar mais tempo) nas características _específicas_ de nossa
-aplicação.
+Um pequeno restaurante está crescendo e necessita uma interface em que se possa realizar pedidos utilizando um _tablet_, e enviá-los para a cozinha para que sejam preparados de forma ordenada e eficiente.
 
-Quando escolhemos uma destas tecnologias não só importamos um pedaço de código
-para reusar (o qual já é um grande valor por si só), mas também adotamos uma
-**arquitetura**, uma série de **princípios de design**, um paradigma, algumas
-**abstrações**, um **vocabulário**, uma **comunidade**, etc...
+A interface deve mostrar os dois menus (café da manhã e restante do dia), cada um com todos os seus produtos. O usuário deve poder escolher que produtos adicionar e a interface deve mostrar o resumo do pedido com o custo total em tempo real.
 
-Como desenvolvedora Front-End, estes kits de desenvolvimento podem resultar em
-uma grande ajuda para implementar rapidamente características dos projetos em que
-você for trabalhar.
+Além disso a cliente nos deu um link da documentação que específica o comportamento esperado da API que iremos expor por HTTP. Lá podemos encontrar todos os detalhes dos _endpoints_, como por exemplo que parâmetros esperam, o que devem responder, etc.
 
-## 2. Resumo do projeto
+## 2. Planejamento
 
-Desta vez temos um projeto 100% por demanda. Você sempre pode (e deve) fazer
-sugestões de melhora e mudança, mas muitas vezes trabalhará em um projeto em que
-primeiro deve se assegurar de cumprir os requisitos.
+O projeto foi realizado em dupla. Foram utilizadas histórias de usuário para alinhar a equipe de desenvolvimento. Dessa forma a previsão de entrega é refletida na meta da sprint e durante o planejamento nossa dupla dividia o conjunto de itens da lista de pendências da sprint em subtarefas. Trabalhamos integralmente uma história de usuário antes de passar para a próxima e conseguimos cumprir todas as histórias possíveis dentro do tempo especificado.
 
-![burger-queen](https://user-images.githubusercontent.com/110297/42118136-996b4a52-7bc6-11e8-8a03-ada078754715.jpg)
+A ferramenta utilizada foi o Github Projects, que possibilita conectar as issues aos pull requests, o que proporciona melhor organização do projeto.
 
-Estas são as informações que temos do cliente:
+## 3. Interface e UX
 
-> Somos **Burger Queen**, um fast food 24hrs.
->
-> A nossa proposta de serviço 24 horas foi muito bem recebida e, para continuar a
-> crescer, precisamos de um sistema que nos ajude a receber pedidos de nossos
-> clientes.
->
-> Nós temos 2 menus. Um muito simples para o café da manhã:
->
-> | Ítem                           | Preço R$ |
-> | ------------------------------ | -------- |
-> | Café americano                 | 5        |
-> | Café com leite                 | 7        |
-> | Sanduíche de presunto e queijo | 10       |
-> | Suco de fruta natural          | 7        |
->
-> E outro menu para o resto do dia:
->
-> | Ítem                     | Preço  |
-> | ------------------------ | ------ |
-> | **Hambúrgueres**         | **R$** |
-> | Hambúrguer simples       | 10     |
-> | Hambúrguer duplo         | 15     |
-> | **Acompanhamentos**      | **R$** |
-> | Batata frita             | 5      |
-> | Anéis de cebola          | 5      |
-> | **Bebidas**              | **R$** |
-> | Água 500ml               | 5      |
-> | Água 750ml               | 7      |
-> | Bebida gaseificada 500ml | 7      |
-> | Bebida gaseificada 750ml | 10     |
->
-> **Importante:** Os clientes podem escolher entre hambúrgueres de carne bovina,
-> frango ou vegetariano. Além disso, por um adicional de R\$ 1,00 , eles podem
-> adicionar queijo **ou** ovo.
->
-> Nossos clientes são bastante indecisos, por isso é muito comum que eles mudem o
-> seu pedido várias vezes antes de finalizar.
+Para o design  e protótipo foi utilizada a ferramenta Figma. O intuito do design foi utilizar uma interface limpa e minimalista.
 
-A interface deve mostrar os dois menus (café da manhã e restante do dia), cada
-um com todos os seus _produtos_. O usuário deve poder escolher que _produtos_
-adicionar e a interface deve mostrar o _resumo do pedido_ com o custo total.
+![Red Queen Burger And Coffee](https://i.ibb.co/Lxv2S9B/Component-1.png)
 
-![out](https://user-images.githubusercontent.com/110297/45984241-b8b51c00-c025-11e8-8fa4-a390016bee9d.gif)
+### Definição do produto 
 
-Além disso a cliente nos deu um [link da documentação](https://lab-api-bq.herokuapp.com/api-docs/)
-que especifica o comportamento esperado da API que iremos expor por HTTP.
-Lá podemos encontrar todos os detalhes dos _endpoints_, como por exemplo
-que parâmetros esperam, o que devem responder, etc.
+O _Product Owner_ nos apresentou este _backlog_ que é o resultado do seu trabalho com o cliente até hoje.
 
-O objetivo principal é aprender a construir uma _interface web_ usando o
-_framework_ escolhido (React). Esse framework front-end ataca
-o seguinte problema: **como manter a interface e estado sincronizados**.
-Portanto, esta experiência espera familiarizá-la com o conceito de _estado da
-tela_, e como cada mudança no estado vai refletir na interface (por exemplo,
-toda vez que adicionamos um _produto_ para um _pedido_, a interface deve
-atualizar a lista de pedidos e o total).
+#### [Historia de usuario 1] Garçom/Garçonete deve poder entrar no sistema. :heavy_check_mark:
 
-## 3. Objetivos de aprendizagem
+#### [História de usuário 2] Garçom/Garçonete deve ser capaz de anotar o pedido do cliente. :heavy_check_mark:
 
-Reflita e depois enumere os objetivos que quer alcançar e aplique no seu projeto. Pense nisso para decidir sua estratégia de trabalho.
+#### [História de usuário 3] Chefe de cozinha deve ver os pedidos. :heavy_check_mark:
+
+#### [Historia de usuário 4] Garçom/Garçonete deve ver os pedidos prontos para servir. :heavy_check_mark:
+
+## 4. Conteúdos implementados
+
+A lógica do projeto foi totalmente implementada em JavaScript (ES6 +), HTML
+e CSS e empacotada de forma automatizada. Os objetivos de aprendizagem foram:
+
+### React
+
+- **jsx**
+
+- **components**
+
+- **events**
+
+- **lists-and-keys**
+
+- **conditional-rendering**
+
+- **lifting-up-state**
+
+- **hooks**
+
+- **css-modules**
+
+- **routing**
 
 ### HTML
 
-- [ ] **Uso de HTML semântico**
-
-    <details><summary>Links</summary><p>
-
-  - [HTML semántico](https://curriculum.laboratoria.la/pt/topics/html/02-html5/02-semantic-html)
-  - [Semantics in HTML - MDN](https://developer.mozilla.org/en-US/docs/Glossary/Semantics#Semantics_in_HTML)
-  </p></details>
+- **Uso de HTML semântico**
 
 ### CSS
 
-- [ ] **Uso de seletores de CSS**
+- **Utilização do Sass**
 
-    <details><summary>Links</summary><p>
+- **Uso de seletores de CSS**
 
-  - [Intro a CSS](https://curriculum.laboratoria.la/pt/topics/css/01-css/01-intro-css)
-  - [CSS Selectors - MDN](https://developer.mozilla.org/es/docs/Web/CSS/CSS_Selectors)
-  </p></details>
+- **Empregar o modelo de caixa (box model): borda, margem, preenchimento**
 
-- [ ] **Empregar o modelo de caixa (box model): borda, margem, preenchimento**
+- **Uso de flexbox en CSS**
 
-    <details><summary>Links</summary><p>
+- **Uso de CSS Grid Layout**
 
-  - [Modelo de Caixa e Display](https://curriculum.laboratoria.la/pt/topics/css/01-css/02-boxmodel-and-display)
-  - [The box model - MDN](https://developer.mozilla.org/en-US/docs/Learn/CSS/Building_blocks/The_box_model)
-  - [Introduction to the CSS box model - MDN](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Box_Model/Introduction_to_the_CSS_box_model)
-  - [CSS display - MDN](https://developer.mozilla.org/pt-BR/docs/Web/CSS/display)
-  - [display - CSS Tricks](https://css-tricks.com/almanac/properties/d/display/)
-  </p></details>
-
-- [ ] **Uso de flexbox en CSS**
-
-    <details><summary>Links</summary><p>
-
-  - [A Complete Guide to Flexbox - CSS Tricks](https://css-tricks.com/snippets/css/a-guide-to-flexbox/)
-  - [Flexbox Froggy](https://flexboxfroggy.com/#pt-br)
-  - [Flexbox - MDN](https://developer.mozilla.org/en-US/docs/Learn/CSS/CSS_layout/Flexbox)
-  </p></details>
-
-- [ ] **Uso de CSS Grid Layout**
-
-    <details><summary>Links</summary><p>
-
-  - [A Complete Guide to Grid - CSS Tricks](https://css-tricks.com/snippets/css/complete-guide-grid/)
-  - [Grids - MDN](https://developer.mozilla.org/en-US/docs/Learn/CSS/CSS_layout/Grids)
-  </p></details>
-
-- [ ] **Uso de media queries**
-
-    <details><summary>Links</summary><p>
-
-  - [CSS media queries - MDN](https://developer.mozilla.org/es/docs/CSS/Media_queries)
-  </p></details>
+- **Uso de media queries**
 
 ### JavaScript
 
-- [ ] **Testes unitários**
+- **Uso ES modules**
 
-    <details><summary>Links</summary><p>
+- **Uso de linter (ESLINT)**
 
-  - [Introdução ao Jest - Documentação oficial](https://jestjs.io/docs/pt-BR/getting-started)
-  </p></details>
-
-- [ ] **Testes assíncronos**
-
-    <details><summary>Links</summary><p>
-
-  - [Testando Código Assíncrono - Documentação oficial](https://jestjs.io/docs/pt-BR/asynchronous)
-  </p></details>
-
-- [ ] **Mocking**
-
-    <details><summary>Links</summary><p>
-
-  - [Simulações Manuais - Documentação oficial](https://jestjs.io/docs/pt-BR/manual-mocks)
-  </p></details>
-
-- [ ] **Uso ES modules**
-
-    <details><summary>Links</summary><p>
-
-  - [import - MDN](https://developer.mozilla.org/pt-BR/docs/Web/JavaScript/Reference/Statements/import)
-  - [export - MDN](https://developer.mozilla.org/pt-BR/docs/Web/JavaScript/Reference/Statements/export)
-  </p></details>
-
-- [ ] **Uso de linter (ESLINT)**
-
-- [ ] **Uso de identificadores descritivos (Nomenclatura | Semântica)**
+- **Uso de identificadores descritivos (Nomenclatura | Semântica)**
 
 ### Git e GitHub
 
-- [ ] **Git: Instalação e configuração**
+- **Git: Instalação e configuração**
 
-- [ ] **Git: Controle de versão com git (init, clone, add, commit, status, push, pull, remote)**
+- **Git: Controle de versão com git (init, clone, add, commit, status, push, pull, remote)**
 
-- [ ] **Git: Integração de mudanças entre ramos (branch, checkout, fetch, merge, reset, rebase, tag)**
+- **Git: Integração de mudanças entre ramos (branch, checkout, fetch, merge, reset, rebase, tag)**
 
-- [ ] **GitHub: Criação de contas e repositórios, configuração de chave SSH**
+- **GitHub: Criação de contas e repositórios, configuração de chave SSH**
 
-- [ ] **GitHub: Implantação com GitHub Pages**
+- **GitHub: Implantação com GitHub Pages**
 
-    <details><summary>Links</summary><p>
+- **GitHub: Colaboração pelo Github (branches | forks | pull requests | code review | tags)**
 
-  - [Site oficial do GitHub Pages](https://pages.github.com/)
-  </p></details>
-
-- [ ] **GitHub: Colaboração pelo Github (branches | forks | pull requests | code review | tags)**
-
-- [ ] **GitHub: Organização pelo Github (projects | issues | labels | milestones | releases)**
+- **GitHub: Organização pelo Github (projects | issues | labels | milestones | releases)**
 
 ### HTTP
 
-- [ ] **Solicitações o requisições (request) e respostas (response).**
+- **Solicitações o requisições (request) e respostas (response).**
 
-    <details><summary>Links</summary><p>
+- **Cabeçalhos (headers)**
 
-  - [Uma visão geral do HTTP - MDN](https://developer.mozilla.org/pt-BR/docs/Web/HTTP/Overview)
-  - [Mensagens HTTP - MDN](https://developer.mozilla.org/pt-BR/docs/Web/HTTP/Messages)
-  </p></details>
+- **Corpo (body)**
 
-- [ ] **Cabeçalhos (headers)**
+- **Verbos HTTP**
 
-    <details><summary>Links</summary><p>
+- **Codigos de status de HTTP**
 
-  - [Cabeçalhos HTTP - MDN](https://developer.mozilla.org/pt-BR/docs/Web/HTTP/Headers)
-  </p></details>
+- **Encodings e JSON**
 
-- [ ] **Corpo (body)**
-
-    <details><summary>Links</summary><p>
-
-  - [Mensagens HTTP / Corpo - MDN](https://developer.mozilla.org/pt-BR/docs/Web/HTTP/Messages#corpo)
-  </p></details>
-
-- [ ] **Verbos HTTP**
-
-    <details><summary>Links</summary><p>
-
-  - [Métodos de requisição HTTP - MDN](https://developer.mozilla.org/pt-BR/docs/Web/HTTP/Methods)
-  </p></details>
-
-- [ ] **Codigos de status de HTTP**
-
-    <details><summary>Links</summary><p>
-
-  - [Códigos de status de respostas HTTP - MDN](https://developer.mozilla.org/pt-BR/docs/Web/HTTP/Status)
-  - [The Complete Guide to Status Codes for Meaningful ReST APIs - dev.to](https://dev.to/khaosdoctor/the-complete-guide-to-status-codes-for-meaningful-rest-apis-1-5c5)
-  </p></details>
-
-- [ ] **Encodings e JSON**
-
-    <details><summary>Links</summary><p>
-
-  - [Introdução ao JSON - Documentação oficial](https://www.json.org/json-pt.html)
-  </p></details>
-
-- [ ] **CORS (Cross-Origin Resource Sharing)**
-
-    <details><summary>Links</summary><p>
-
-  - [Cross-Origin Resource Sharing (CORS) - MDN](https://developer.mozilla.org/pt-BR/docs/Web/HTTP/CORS)
-  </p></details>
-
-### react
-
-- [ ] **jsx**
-
-- [ ] **components**
-
-- [ ] **events**
-
-- [ ] **lists-and-keys**
-
-- [ ] **conditional-rendering**
-
-- [ ] **lifting-up-state**
-
-- [ ] **hooks**
-
-- [ ] **css-modules**
-
-- [ ] **routing**
+- **CORS (Cross-Origin Resource Sharing)**
 
 ### UX (User eXperience)
 
-- [ ] **Desenhar a aplicação pensando e entendendo o usuário**
+- **Desenhar a aplicação pensando e entendendo o usuário**
 
-- [ ] **Criar protótipos para obter feedback e iterar**
+- **Criar protótipos para obter feedback e iterar**
 
-- [ ] **Aplicar os princípios de desenho visual (contraste, alinhamento, hierarquia)**
+- **Aplicar os princípios de desenho visual (contraste, alinhamento, hierarquia)**
 
-- [ ] **Planejar e executar testes de usabilidade**
+- **Planejar e executar testes de usabilidade**
 
-## 4. Considerações gerais
+## Deploy
 
-Este projeto deve ser feito em pares. Lembre-se que deverá consumir a
-API [Burger Queen API](https://lab-api-bq.herokuapp.com/api-docs/).
-
-Trabalhe integralmente uma história de usuário antes de passar para a próxima.
-Cumpra todas as histórias possíveis dentro do tempo especificado.
-
-A lógica do projeto deve ser totalmente implementada em JavaScript (ES6 +), HTML
-e CSS e empacotada de forma automatizada.
-
-Neste projeto você deve usar [React](https://reactjs.org/).
-
-O aplicativo deve ser um _Single Page App_. Os pedidos serão enviados por meio
-de um _tablet_, mas **não queremos um aplicativo nativo**, mas sim um aplicativo
-Web que seja **mobile-first**.
-
-Precisamos pensar bem sobre o UX para aqueles que vão receber os pedidos, o
-tamanho e a aparência dos botões, a visibilidade do estado atual do pedido, etc.
-
-A aplicação deve seguir 80% ou mais das pontuações de Performance, Progressive
-Web App, Accessibility e Best Practices do Lighthouse.
-
-O aplicativo deve fazer uso de `npm-scripts` e ter scripts `start`, `test`,
-`build` e `deploy`, que são responsáveis por inicializar, rodar os testes,
-empacotar e fazer deploy do aplicativo, respectivamente.
-
-Os testes unitários devem cobrir um mínimo de 90% de _statements_, _functions_,
-_lines_ e _branches_.
-
-Por outro lado, vocês devem definir a estrutura das pastas e arquivos que considerem
-necessários. Você pode estruturá-los de acordo com as convenções do _framework_ escolhido.
-Portanto, os _testes_ e os _setups_ necessários para executá-los
-serão feitos por você.
-
-## 5. Critérios de aceitação mínimos do projeto
-
-### Definição do produto
-
-O [_Product Owner_](https://www.youtube.com/watch?v=7lhnYbmovb4) nos apresentou
-este _backlog_ que é o resultado do seu trabalho com o cliente até hoje.
+- **Heroku**
 
 ---
+## 5. Desenvolvedoras
 
-#### [Historia de usuario 1] Garçom/Garçonete deve poder entrar no sistema, caso o admin já lhe tenha dado as credenciais
+:large_blue_diamond: Aline 
 
-Eu, como garçom/garçonete quero entrar no sistema de pedidos.
+<a href="https://www.linkedin.com/in/aline-andrade-/" target="_blank"><img src="https://img.shields.io/badge/LinkedIn-blue?style=flat&logo=linkedin&labelColor=blue" alt="Linkedin" />
 
-##### Critérios de aceitação
+:large_blue_diamond: Laura
 
-O que deve acontecer para satisfazer as necessidades do usuário?
-
-- Acessar uma tela de login.
-- Inserir email e senha.
-- Receber mensagens de erros compreensíveis, conforme o erro e as informações inseridas.
-- Entrar no sistema de pedidos caso as credenciais forem corretas.
-
-##### Definição de pronto
-
-O acordado abaixo deve acontecer para dizer que a história está terminada:
-
-- Você deve ter recebido _code review_ de pelo menos uma parceira.
-- Fez _testes_ unitários e, além disso, testou seu produto manualmente.
-- Você fez _testes_ de usabilidade e incorporou o _feedback_ do usuário.
-- Você deu deploy de seu aplicativo e marcou sua versão (tag git).
-
----
-
-#### [História de usuário 2] Garçom/Garçonete deve ser capaz de anotar o pedido do cliente
-
-Eu como garçom/garçonete quero poder anotar o pedido de um cliente para não
-depender da minha memória, saber quanto cobrar e poder enviar os pedidos para a
-cozinha para serem preparados em ordem.
-
-##### Critérios de aceitação
-
-O que deve acontecer para satisfazer as necessidades do usuário?
-
-- Anotar o nome do cliente.
-- Adicionar produtos aos pedidos.
-- Excluir produtos.
-- Ver resumo e o total da compra.
-- Enviar o pedido para a cozinha (guardar em algum banco de dados).
-- Funcionar bem em um _tablet_.
-
-##### Definição de pronto
-
-O acordado abaixo deve acontecer para dizer que a história está terminada:
-
-- Você deve ter recebido _code review_ de pelo menos uma parceira.
-- Fez _testes_ unitários e, além disso, testou seu produto manualmente.
-- Você fez _testes_ de usabilidade e incorporou o _feedback_ do usuário.
-- Você deu deploy de seu aplicativo e marcou sua versão (tag git).
-
----
-
-#### [História de usuário 3] Chefe de cozinha deve ver os pedidos
-
-Eu como chefe de cozinha quero ver os pedidos dos clientes em ordem, poder
-marcar que estão prontos e poder notificar os garçons/garçonetes que o pedido
-está pronto para ser entregue ao cliente.
-
-##### Critérios de aceitação
-
-- Ver os pedidos ordenados à medida em que são feitos.
-- Marcar os pedidos que foram preparados e estão prontos para serem servidos.
-- Ver o tempo que levou para preparar o pedido desde que chegou, até ser marcado
-  como concluído.
-
-##### Definição de pronto
-
-- Você deve ter recebido _code review_ de pelo menos uma parceira.
-- Fez _testes_ unitários e, além disso, testou seu produto manualmente.
-- Você fez _testes_ de usabilidade e incorporou o _feedback_ do usuário.
-- Você deu deploy de seu aplicativo e marcou sua versão (tag git).
-
----
-
-#### [Historia de usuário 4] Garçom/Garçonete deve ver os pedidos prontos para servir
-
-Eu como garçom/garçonete quero ver os pedidos que estão prontos para entregá-los
-rapidamente aos clientes.
-
-##### Critérios de aceitação
-
-- Ver a lista de pedidos prontos para servir.
-- Marcar os pedidos que foram entregues.
-
-##### Definição de pronto
-
-- Você deve ter recebido _code review_ de pelo menos uma parceira.
-- Fez _testes_ unitários e, além disso, testou seu produto manualmente.
-- Você fez _testes_ de usabilidade e incorporou o _feedback_ do usuário.
-- Você deu deploy de seu aplicativo e marcou sua versão (tag git).
-- Os dados devem ser mantidos intactos, mesmo depois que um pedido for
-  finalizado. Tudo isso para poder ter estatísticas no futuro.
-
----
-
-## 6. Pistas, tips e leituras complementares
-
-### Frameworks / bibliotecas
-
-- [React](https://reactjs.org/)
-- [Configuração inicial (vídeo)](https://youtu.be/38iZjr-jH5E)
-
-### Ferramentas
-
-- [npm-scripts](https://docs.npmjs.com/misc/scripts)
-- [Babel](https://babeljs.io/)
-- [webpack](https://webpack.js.org/)
-
-### Rotas
-
-- [React Router](https://reactrouter.com/web/guides/quick-start)
-
-### PWA
-
-- [Seu primeiro Progressive Web App - Google developers](https://developers.google.com/web/fundamentals/codelabs/your-first-pwapp/?hl=es)
-- [Progressive Web Apps - codigofacilito.com](https://codigofacilito.com/articulos/progressive-apps)
-
-### Deploy
-
-- [Opções de deploy com Create React App](https://create-react-app.dev/docs/deployment/)
-  - [Netlify (vídeo)](https://drive.google.com/file/d/1hzlB8dl4m0OnLLY2-WpjSLcU7eYTURRk/view)
-  - [Heroku (vídeo)](https://drive.google.com/file/d/1eqx6yuwJnAU-R83ta89tgEem7ABZigNG/view)
-  - [Vercel (vídeo)](https://drive.google.com/file/d/1Q9q1iVnRrWeEhGRns0r5OOeiqloQug8y/view)
-
-
-##
-
-# Getting Started with Create React App
-
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
-
-## Available Scripts
-
-In the project directory, you can run:
-
-### `yarn start`
-
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
-
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
-
-### `yarn test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `yarn build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `yarn eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `yarn build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+ <a href="https://www.linkedin.com/in/laura-tn/" target="_blank"><img src="https://img.shields.io/badge/LinkedIn-blue?style=flat&logo=linkedin&labelColor=blue" alt="Linkedin" />

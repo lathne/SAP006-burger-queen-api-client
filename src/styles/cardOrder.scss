@@ -2,6 +2,58 @@
 
 
 .card-order-main{
-    width: 50%;
-    border: 5px solid black;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+
+    width: 100%;
+    min-height: 25em;
+
+    border: 1px solid black;
+    border-radius: 30px;
+
+    .order-info {
+        text-align: justify;
+    }
+
+    .separator {
+        width: 80%;
+        margin-top: 1em;
+        border-top: 1px solid var(--black);
+    }
+
+    .order-products {
+        margin-top: .5em;
+        justify-content: flex-start;
+    }
+
+    .status-btn {
+        width: 11em;
+    }
+
+    .status-btn.pending {
+        background-color: transparent;
+        border: 2px solid var(--green);
+        color: var(--green);
+        transition: .3s;
+    }
+
+    .status-btn.pending:hover {
+        background-color: var(--green);
+        color: white;
+    }
+
+    .status-btn.finished {
+        font-size: 1.3rem;
+
+        background-color: var(--green);
+        color: white;
+        transition: .3s;
+    }
+
+    .status-btn.finished:hover {
+        background-color: rgb(32, 175, 111);
+    }
+
 }

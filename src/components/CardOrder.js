@@ -42,26 +42,30 @@ export function CardOrder ({order, setAllOrders, allOrders}){
     }
     return (        
         <main className="card-order-main">
-            <h2>{order.status}</h2>
-            <p>cliente: {order.client_name}</p>
-            <p>Mesa: {order.table}</p>
-            <p>Atendente: {order.user_id}</p>
-            <p>Entrada: {`${changeTimeDefault.toLocaleDateString()} - ${changeTimeDefault.toLocaleTimeString()}`}</p>
-            <p>Tempo de Preparo: {preparingTime} minutos</p>
+            <div classname="status">
+                <h3>{order.status}</h3>
+            </div>
+            <div className="order-info">
+                <p>cliente: {order.client_name}</p>
+                <p>Mesa: {order.table}</p>
+                <p>Atendente: {order.user_id}</p>
+                <p>Entrada: {`${changeTimeDefault.toLocaleDateString()} - ${changeTimeDefault.toLocaleTimeString()}`}</p>
+                <p>Tempo de Preparo: {preparingTime} minutos</p>
+            </div>
+            <div className="separator"></div>
 
             {order.Products.map(element => {
                 return (
-                <p>
-                    {element.qtd}
-                    {element.name}
-                    {element.flavor}
-                    {element.complement}
-                </p>
+                <div className="order-products">
+                    <p>
+                        {element.qtd} {element.name} {element.flavor} {element.complement}
+                    </p>
+                </div>
                 )
             })}
             {order.status === "pending"?
-                 <Button buttonText="Iniciar Preparo" onClick={changeStatusToPreparing} />
-            : <Button buttonText="Pedido Pronto" onClick={changeStatusToDone} />
+                 <Button className="status-btn pending" buttonText="Iniciar Preparo" onClick={changeStatusToPreparing} />
+            : <Button className="status-btn finished" buttonText="Pedido Pronto" onClick={changeStatusToDone} />
             }
 
             <Modal children={modal.text} hide={modal.show} setHide={setModal} callback={()=>{}}></Modal>
