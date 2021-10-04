@@ -4,40 +4,31 @@ import { NavBar } from '../../components/NavBar'
 import { CardOrder } from "../../components/CardOrder";
 import { listAllOrders } from "../../services/dataService";
 
-
-// pegar todos os pedidos e trazer se o status for pronto para servir ou finalizado
-
 export function OrdersPage () {
     const [allOrders, setAllOrders] = useState([]);
     const [pendentOrders, setPendentOrders] = useState([]);
     const [preparingOrders, setPreparingOrders] = useState([]);
     const [doneOrders, setDoneOrders] = useState([]);
 
-    console.log("carregando pedidos");
+    useEffect(() => {
+        listAllOrders().then((result) => {
+            result.json().then((data) => {
+            setAllOrders(data);
+            });
+        });
+    }, []); // Only once, when pages load
 
-  useEffect(() => {
-    listAllOrders().then((result) => {
-      console.log(result);
-      result.json().then((data) => {
-        console.log(data);
-        setAllOrders(data);
-        
-      });
-    });
-  }, []); // Only once, when pages load
-
-  useEffect(() => {
-    setPendentOrders(allOrders.filter(order => {
-        return order.status === "pending"
-    }))
+    useEffect(() => {
+        setPendentOrders(allOrders.filter(order => {
+            return order.status === "pending"
+        }))
     setPreparingOrders(allOrders.filter(order => {
-        return order.status === "preparing"
-    }))
+            return order.status === "preparing"
+        }))
     setDoneOrders(allOrders.filter(order => {
-        return order.status === "done"
-    }))
-  }, [allOrders])
-
+            return order.status === "done"
+        }))
+    }, [allOrders])
 
     return (
         <>
