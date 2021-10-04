@@ -2,7 +2,7 @@ import { useLocation } from 'react-router-dom';
 
 import { NavBar } from '../../components/NavBar';
 import { Button } from '../../components/Button';
-import {TabItems} from '../../components/TabItems';
+import { TabItems } from '../../components/TabItems';
 import { Modal } from '../../components/Modal';
 
 import { NoteOrder } from './UseFormMenuMain';
@@ -22,13 +22,12 @@ export function MenuMain() {
     const location = useLocation()
     const {handleChange, orders, filterByItemName, sideOrders, cancelOrder, sendToTheKitchen, addBurger, addSideItem, removeBurger, removeSideItem, deleteBurger, deleteSideItem, modal, setModal, history} = NoteOrder()
     
-
     return (
         <>
             <NavBar />
             <main className="menu-main">
                 <h2 className="h2">Almoço/Janta</h2>
-                <div className="columns">
+                <div className="rows">
                     <section className="items-section">
                         <div className="burgers-container">
                             <div className="title">

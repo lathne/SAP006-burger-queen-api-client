@@ -1,4 +1,4 @@
-.kitchen-page-main {
+.orders-page-main {
     width: 100%;
     text-align: center;
     display: flex;
@@ -11,7 +11,8 @@
     }
 
     .pendent-orders,
-    .preparing-orders {
+    .preparing-orders,
+    .done-orders {
         width: 95%;
         margin: 1em 0;
 
@@ -33,5 +34,7 @@
         @media screen and (min-width:#{$large-desktop-width}) {
             grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
         }
+
+
     }
 }
