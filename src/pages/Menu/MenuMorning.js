@@ -6,7 +6,8 @@ import { NavBar } from '../../components/NavBar';
 import { Button } from '../../components/Button';
 import { Label } from '../../components/Label'
 import { Input } from '../../components/Input';
-import {TabItems} from '../../components/TabItems';
+import { TabItems } from '../../components/TabItems';
+import { Modal } from "../../components/Modal";
 
 import { getAllProducts, createOrder } from "../../services/dataService";
 
@@ -18,36 +19,31 @@ import toast from '..//..//images/toast.png';
 import '../../styles/menu-morning.scss';
 
 let allProducts = []
-        getAllProducts().then( (result) => {
-        result.json().then( (data)=> {
+
+getAllProducts().then( (result) => {
+    result.json().then( (data)=> {
             allProducts = data
-            console.log(allProducts)
-        })
     })
+})
 
 export function MenuMorning() {
     const location = useLocation()
-    console.log(location)
+    
     const history = useHistory()
 
     const [breakfastOrders, setBreakfastOrders] = useState([])
-    console.log(breakfastOrders)
 
+    const [modal, setModal] = useState({ text:"", show : false });
     
-    const [isModalVisible, setIsModalVisible] = useState(false);
 
     function filterByItemName(e) {
         let breakfast = allProducts.find(item => {
-          console.log(e.target, item.name)
-          console.log(item.name === e.target.value)
             return item.name === e.target.value
         }) 
 
         e.target.checked=false
 
         let breakfastExist = breakfastOrders.find(item => {
-            console.log(e.target, item.name)
-            console.log(item.name === e.target.value)
               return item.name === e.target.value
           }) 
         if(breakfastExist !== undefined){
@@ -57,34 +53,31 @@ export function MenuMorning() {
         breakfast.qtd = 1
         setBreakfastOrders([...breakfastOrders, breakfast])
         }
-        console.log(breakfast)
+
         return [breakfast]
     }
 
     function sendToTheKitchen () {
-      const orderProducts = breakfastOrders.map((product) => {
+        const orderProducts = breakfastOrders.map((product) => {
             return {id:product.id,
                     qtd: product.qtd}
-      })  
-      const  orderToSendToTheKitchen = {
+        })  
+        const  orderToSendToTheKitchen = {
             "client": location.state.nameClientInput,
             "table": location.state.table,
             "products": orderProducts
         }
         if (orderToSendToTheKitchen.products.length > 0){
-        createOrder(orderToSendToTheKitchen).then((result) => {
-            if (result.ok){
-                //setIsModalVisible(true)
-               
-                alert("pedido criado com sucesso")
-                history.push("/hall")
-            }else {
-                alert("o cozinheiro tá de folga")
-            }
+            createOrder(orderToSendToTheKitchen).then((result) => {
+                if (result.ok){               
+                    setModal({show : true, text:"Pedido enviado com sucesso."})
+                }else {
+                    setModal({show : true, text:"O cozinheiro tá de folga."})
+                }
         }).catch((result) => {
-            alert(result)
+            setModal({result, show : true})
         })}else{
-            alert("estão faltando dados para o pedido")
+            setModal({text:"Estão faltando dados do pedido.", show : true})
         }
     }
 
@@ -107,12 +100,13 @@ export function MenuMorning() {
     function deleteItem(item) {
         breakfastOrders.splice(breakfastOrders.indexOf(item), 1);
         setBreakfastOrders([...breakfastOrders]);
-      }
+    }
 
     return (
         <>
           <NavBar />
           <main className="menu-morning">
+          
             <h2 className="h2">Café da Manhã</h2>
             <div className="columns">
                 <section className="items-section">
@@ -228,7 +222,6 @@ export function MenuMorning() {
                                     removeItem={() => removeItem(item)}
                                     addItem={() => addItem(item)}
                                     deleteItem={() => deleteItem(item)}
-                                // <li><p > {item.qtd} {item.name} {item.price}</p></li>
                                 />
                             </>
                             )
@@ -260,6 +253,8 @@ export function MenuMorning() {
                     </div>
                 </aside>
              </div>
+
+             <Modal children={modal.text} hide={modal.show} setHide={setModal} callback={()=>{history.push("/hall")}}></Modal>
           </main>
         </>
     );

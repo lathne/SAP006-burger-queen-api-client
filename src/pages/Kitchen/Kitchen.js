@@ -7,7 +7,7 @@ import { listAllOrders } from "../../services/dataService";
 import '../../styles/kitchen.scss'
 
 export function Kitchen() {
-  // pegar todos os pedidos e trazer se o status for pendente ou em andamento
+  
   const [allOrders, setAllOrders] = useState([]);
   const [pendentOrders, setPendentOrders] = useState([]);
   const [preparingOrders, setPreparingOrders] = useState([]);

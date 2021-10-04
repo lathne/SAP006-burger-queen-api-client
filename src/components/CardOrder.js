@@ -1,8 +1,8 @@
 import { upDateOrderStatus } from "../services/dataService"
 import { Button } from "./Button"
-import '../styles/cardOrder.scss'
 import { useState } from "react";
 import { Modal } from "./Modal";
+import '../styles/cardOrder.scss'
 
 export function CardOrder ({order, setAllOrders, allOrders}){
     const [modal, setModal] = useState({ text:"", show : false });
@@ -30,8 +30,9 @@ export function CardOrder ({order, setAllOrders, allOrders}){
             }
         })
     }
-    const d = new Date (order.createdAt)
-    //d = changeTimeDEfault
+
+    const changeTimeDefault = new Date (order.createdAt)
+    
     const lastUpDate = new Date(order.updatedAt)
     let preparingTime = 0
     if(order.processedAt !== null){
@@ -45,7 +46,7 @@ export function CardOrder ({order, setAllOrders, allOrders}){
             <p>Cliente: {order.client_name}</p>
             <p>Mesa: {order.table}</p>
             <p>Atendente: {order.user_id}</p>
-            <p>Entrada: {`${d.toLocaleTimeString()} - ${d.toLocaleDateString()}`}</p>
+            <p>Entrada: {`${changeTimeDefault.toLocaleTimeString()} - ${changeTimeDefault.toLocaleDateString()}`}</p>
             <p>Tempo de Preparo: {preparingTime} minutos</p>
 
             {order.Products.map(element => {
