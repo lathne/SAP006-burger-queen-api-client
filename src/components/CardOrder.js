@@ -46,10 +46,10 @@ export function CardOrder ({order, setAllOrders, allOrders}){
                 <h3>{order.status}</h3>
             </div>
             <div className="order-info">
-                <p>Cliente: {order.client_name}</p>
+                <p>cliente: {order.client_name}</p>
                 <p>Mesa: {order.table}</p>
                 <p>Atendente: {order.user_id}</p>
-                <p>Entrada: {`${changeTimeDefault.toLocaleTimeString()} - ${changeTimeDefault.toLocaleDateString()}`}</p>
+                <p>Entrada: {`${changeTimeDefault.toLocaleDateString()} - ${changeTimeDefault.toLocaleTimeString()}`}</p>
                 <p>Tempo de Preparo: {preparingTime} minutos</p>
             </div>
             <div className="separator"></div>
