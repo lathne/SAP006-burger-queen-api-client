@@ -1,17 +1,22 @@
-import { Link } from 'react-router-dom';
-import '../styles/modal.scss';
+import "../styles/modal.scss";
+import { Button } from "./Button";
 
-export function Modal({children}) {
-    return (
-        <div className="modal-overlay">
-            <div className="modal-content">
-                <p class="validation-message">{children}</p>
-                <div class="modal-button">
-                    <Link to="/hall" class="close-modal">
-                        Voltar para o salão
-                    </Link>
-                </div>
-            </div>
+export function Modal({ children, hide, setHide, callback }) {
+  const closeModal = () => {
+    setHide({ show: false });
+    if (callback !== undefined) callback();
+  };
+  if (hide === false) {
+    return <></>;
+  }
+  return (
+    <div className="modal-overlay">
+      <div className="modal-content">
+        <p className="validation-message">{children}</p>
+        <div className="modal-button">
+          <Button buttonText="OK" onClick={closeModal} />
         </div>
-    )
+      </div>
+    </div>
+  );
 }

@@ -1,18 +1,20 @@
 import { upDateOrderStatus } from "../services/dataService"
 import { Button } from "./Button"
 import '../styles/cardOrder.scss'
+import { useState } from "react";
+import { Modal } from "./Modal";
 
 export function CardOrder ({order, setAllOrders, allOrders}){
-    console.log(`A minha ordem é ${order}`)
+    const [modal, setModal] = useState({ text:"", show : false });
 
     const changeStatusToPreparing = () => {
         upDateOrderStatus(order.id, "preparing").then((result) => {
             if (result.ok){
-                alert("pedido atualizado")
+                setModal({text:"Pedido iniciado.", show : true})
                 order.status = "preparing"
                 setAllOrders([...allOrders])
             }else{
-                alert(result)
+                setModal({text:"Pedido não iniciado.", show : true})
             }
         })
     }
@@ -20,13 +22,22 @@ export function CardOrder ({order, setAllOrders, allOrders}){
     const changeStatusToDone = () => {
         upDateOrderStatus(order.id, "done").then((result) => {
             if (result.ok){
-                alert("pedido pronto")
+                setModal({text:"Pedido pronto.", show : true})
                 order.status = "done"
                 setAllOrders([...allOrders])
             }else{
-
+                setModal({text:"Pedido não pronto.", show : true})
             }
         })
+    }
+    const d = new Date (order.createdAt)
+    //d = changeTimeDEfault
+    const lastUpDate = new Date(order.updatedAt)
+    let preparingTime = 0
+    if(order.processedAt !== null){
+        const processedDate = new Date(order.processedAt)
+        preparingTime = (lastUpDate.getTime() - processedDate.getTime())/1000/60
+        preparingTime = Math.round(preparingTime)
     }
     return (        
         <main className="card-order-main">
@@ -34,8 +45,8 @@ export function CardOrder ({order, setAllOrders, allOrders}){
             <p>cliente: {order.client_name}</p>
             <p>Mesa: {order.table}</p>
             <p>Atendente: {order.user_id}</p>
-            <p>Entrada: {order.createdAt}</p>
-            <p>Tempo de Preparo: </p>
+            <p>Entrada: {`${d.toLocaleTimeString()} - ${d.toLocaleDateString()}`}</p>
+            <p>Tempo de Preparo: {preparingTime} minutos</p>
 
             {order.Products.map(element => {
                 return (
@@ -51,6 +62,8 @@ export function CardOrder ({order, setAllOrders, allOrders}){
                  <Button buttonText="Iniciar Preparo" onClick={changeStatusToPreparing} />
             : <Button buttonText="Pedido Pronto" onClick={changeStatusToDone} />
             }
+
+            <Modal children={modal.text} hide={modal.show} setHide={setModal} callback={()=>{}}></Modal>
 
         </main>
     )
