@@ -2,6 +2,12 @@
 
 
 .card-order-main{
-    width: 50%;
-    border: 5px solid black;
+    display: grid;
+    grid-template-columns: 1fr;
+    align-items: center;
+
+    width: 30%;
+
+    border: 1px solid black;
+    border-radius: 30px;
 }

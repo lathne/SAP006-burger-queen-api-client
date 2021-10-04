@@ -42,7 +42,7 @@ export function CardOrder ({order, setAllOrders, allOrders}){
     return (        
         <main className="card-order-main">
             <h2>{order.status}</h2>
-            <p>cliente: {order.client_name}</p>
+            <p>Cliente: {order.client_name}</p>
             <p>Mesa: {order.table}</p>
             <p>Atendente: {order.user_id}</p>
             <p>Entrada: {`${d.toLocaleTimeString()} - ${d.toLocaleDateString()}`}</p>

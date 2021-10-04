@@ -4,6 +4,7 @@ import { NavBar } from "../../components/NavBar";
 import { CardOrder } from "../../components/CardOrder";
 import { listAllOrders } from "../../services/dataService";
 
+import '../../styles/kitchen.scss'
 
 export function Kitchen() {
   // pegar todos os pedidos e trazer se o status for pendente ou em andamento
