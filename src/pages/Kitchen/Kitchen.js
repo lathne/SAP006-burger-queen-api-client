@@ -1,5 +1,4 @@
 import { useState, useEffect } from "react";
-import { useLocation } from "react-router";
 import { NavBar } from "../../components/NavBar";
 import { CardOrder } from "../../components/CardOrder";
 import { listAllOrders } from "../../services/dataService";
@@ -18,7 +17,9 @@ export function Kitchen() {
     listAllOrders().then((result) => {
       console.log(result);
       result.json().then((data) => {
-        console.log(data);
+        data.sort((a,b) => {
+          return new Date(a.createdAt).getTime() - new Date(b.createdAt).getTime();
+        })
         setAllOrders(data);
         
       });
