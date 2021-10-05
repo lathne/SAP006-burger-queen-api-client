@@ -20,10 +20,10 @@ export function CardOrder({ order, setAllOrders, allOrders }) {
   };
 
   const changeStatusToDelivered = () => {
-    upDateOrderStatus(order.id, "delivered").then((result) => {
+    upDateOrderStatus(order.id, "finished").then((result) => {
       if (result.ok) {
-        setModal({ text: "Pedido pronto.", show: true });
-        order.status = "delivered";
+        setModal({ text: "Pedido finalizado.", show: true });
+        order.status = "finished";
         setAllOrders([...allOrders]);
       } else {
         setModal({ text: "Pedido não pronto.", show: true });
@@ -36,11 +36,11 @@ export function CardOrder({ order, setAllOrders, allOrders }) {
     case "pending":
       translatedStatus = "Em preparo";
       break;
-    case "done":
+    case "preparing":
       translatedStatus = "Pedido pronto";
       break;
     default:
-      translatedStatus = "Pedido entregue";
+      translatedStatus = "Pedido finalizado";
   }
   const changeTimeDefault = new Date(order.createdAt);
 
@@ -52,6 +52,24 @@ export function CardOrder({ order, setAllOrders, allOrders }) {
       (lastUpDate.getTime() - processedDate.getTime()) / 1000 / 60;
     preparingTime = Math.round(preparingTime);
   }
+
+  let xuxu = {}
+  if (order.status === "pending"){ (
+    xuxu = <Button
+      className="status-btn pending"
+      buttonText="Pedido Pronto"
+      onClick={changeStatusToDone}
+    />
+  )}else if(order.status === "preparing"){(
+    xuxu = <Button
+      className="status-btn finished"
+      buttonText="Finalizado"
+      onClick={changeStatusToDelivered}
+    />
+  )}else{
+    xuxu = <h3>Finalizado</h3>
+  }
+
   return (
     <main className="card-order-main">
       <div classname="status">
@@ -78,19 +96,7 @@ export function CardOrder({ order, setAllOrders, allOrders }) {
           </div>
         );
       })}
-      {order.status === "pending" ? (
-        <Button
-          className="status-btn pending"
-          buttonText="Pedido Pronto"
-          onClick={changeStatusToDone}
-        />
-      ) : (
-        <Button
-          className="status-btn finished"
-          buttonText="Pedido Entregue"
-          onClick={changeStatusToDelivered}
-        />
-      )}
+      {xuxu}
 
       <Modal
         children={modal.text}

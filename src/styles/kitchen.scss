@@ -10,6 +10,23 @@
         margin: 1em 0;
     }
 
+    .buttons-div {
+        width: 70%;
+        display: flex;
+        align-items: center;
+        justify-content: space-around;
+        margin-bottom: 2em;
+    }
+
+    .status-buttons {
+        background-color: var(--green);
+        color: var(--white);
+    }
+
+    .status-buttons:hover {
+        background-color: rgb(32, 175, 111);
+    }
+
     .pendent-orders,
     .preparing-orders {
         width: 95%;

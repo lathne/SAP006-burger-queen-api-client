@@ -262,7 +262,7 @@ export function MenuMain() {
             <div className="separator"></div>
             <ul className="orders">
               {orders.map((order) => {
-                console.log(order);
+  
                 return (
                   <>
                     <TabItems
@@ -338,4 +338,3 @@ export function MenuMain() {
     </>
   );
 }
-
