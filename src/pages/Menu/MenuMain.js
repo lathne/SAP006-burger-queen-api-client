@@ -38,6 +38,14 @@ export function MenuMain() {
     history,
   } = NoteOrder();
 
+  let allOrders = [];
+createOrder().then((result) => {
+  result.json().then((data) => {
+    allOrders = data;
+    console.log(allOrders);
+  });
+});
+
   return (
     <>
       <NavBar />
@@ -261,7 +269,7 @@ export function MenuMain() {
             <div className="separator"></div>
             <ul className="orders">
               {orders.map((order) => {
-                console.log(order);
+  
                 return (
                   <>
                     <TabItems
@@ -337,11 +345,3 @@ export function MenuMain() {
     </>
   );
 }
-
-let allOrders = [];
-createOrder().then((result) => {
-  result.json().then((data) => {
-    allOrders = data;
-    console.log(allOrders);
-  });
-});

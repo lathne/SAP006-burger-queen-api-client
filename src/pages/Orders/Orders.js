@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { NavBar } from "../../components/NavBar";
 import { CardOrder } from "../../components/CardOrder";
 import { listAllOrders } from "../../services/dataService";
+import { Button } from "../../components/Button";
 
 import "../../styles/orders.scss";
 
@@ -10,6 +11,7 @@ export function OrdersPage() {
   const [pendentOrders, setPendentOrders] = useState([]);
   const [preparingOrders, setPreparingOrders] = useState([]);
   const [doneOrders, setDoneOrders] = useState([]);
+  const [orderStatusFilter, setOrderStatusFilter] = useState("pending");
 
   useEffect(() => {
     listAllOrders().then((result) => {
@@ -22,7 +24,7 @@ export function OrdersPage() {
         setAllOrders(data);
       });
     });
-  }, []); // Only once, when pages load
+  }, []); 
 
   useEffect(() => {
     setPendentOrders(
@@ -42,38 +44,43 @@ export function OrdersPage() {
     );
   }, [allOrders]);
 
+  let selectedFilter = []
+  if (orderStatusFilter === "pending"){
+    selectedFilter = pendentOrders
+  }else if(orderStatusFilter === "preparing"){
+    selectedFilter = preparingOrders
+  }else{
+    selectedFilter = doneOrders
+  }
+
   return (
     <>
       <NavBar />
       <main className="orders-page-main">
         <h2 className="h2">Pedidos</h2>
+        <Button
+        buttonText="Em preparo"
+        onClick={() => {
+          setOrderStatusFilter("pending")
+        }}
+        />
+        <Button
+        buttonText="Pedidos prontos"
+        onClick={() => {
+          setOrderStatusFilter("preparing")
+        }}
+        />
+        <Button
+        buttonText="Finalizados"
+        onClick={() => {
+          setOrderStatusFilter("finished")
+        }}
+        />
         <div className="pendent-orders">
-          {pendentOrders.map((xuxu) => {
+          {selectedFilter.map((order) => {
             return (
               <CardOrder
-                order={xuxu}
-                setAllOrders={setAllOrders}
-                allOrders={allOrders}
-              />
-            );
-          })}
-        </div>
-        <div className="preparing-orders">
-          {preparingOrders.map((xuxu) => {
-            return (
-              <CardOrder
-                order={xuxu}
-                setAllOrders={setAllOrders}
-                allOrders={allOrders}
-              />
-            );
-          })}
-        </div>
-        <div className="done-orders">
-          {doneOrders.map((xuxu) => {
-            return (
-              <CardOrder
-                order={xuxu}
+                order={order}
                 setAllOrders={setAllOrders}
                 allOrders={allOrders}
               />
@@ -83,19 +90,4 @@ export function OrdersPage() {
       </main>
     </>
   );
-
-  // const [isModalVisible, setIsModalVisible] = useState(false);
-  // return (
-  //     <>
-  //         <NavBar />
-
-  //             {/* <div className="modal-test">
-  //                 <button onClick={() => setIsModalVisible(true)}>Open</button>
-  //                 {isModalVisible ?
-  //                     <Modal>
-  //                         <h2>Pedido enviado com sucesso</h2>
-  //                     </Modal> : null}
-  //     //         </div> */}
-  //     //     </>
-  //     // )
 }
