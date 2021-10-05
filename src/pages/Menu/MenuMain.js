@@ -36,6 +36,7 @@ export function MenuMain() {
     modal,
     setModal,
     history,
+    allOrders
   } = NoteOrder();
 
   return (
@@ -338,10 +339,3 @@ export function MenuMain() {
   );
 }
 
-let allOrders = [];
-createOrder().then((result) => {
-  result.json().then((data) => {
-    allOrders = data;
-    console.log(allOrders);
-  });
-});

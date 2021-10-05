@@ -11,11 +11,9 @@ export function Kitchen() {
   const [pendentOrders, setPendentOrders] = useState([]);
   const [preparingOrders, setPreparingOrders] = useState([]);
 
-  console.log("carregando pedidos");
 
   useEffect(() => {
     listAllOrders().then((result) => {
-      console.log(result);
       result.json().then((data) => {
         data.sort((a,b) => {
           return new Date(a.createdAt).getTime() - new Date(b.createdAt).getTime();
@@ -24,7 +22,7 @@ export function Kitchen() {
         
       });
     });
-  }, []); // Only once, when pages load
+  }, []);
 
   useEffect(() => {
     setPendentOrders(allOrders.filter(order => {

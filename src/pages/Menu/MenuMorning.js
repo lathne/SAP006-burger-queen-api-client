@@ -37,7 +37,6 @@ export function MenuMorning() {
 
   function filterByItemName(e) {
     let breakfast = allProducts.find((item) => {
-      console.log(allProducts);
       return item.name === e.target.value;
     });
 

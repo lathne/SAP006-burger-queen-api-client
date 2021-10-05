@@ -14,7 +14,7 @@ export function Modal({ children, hide, setHide, callback }) {
       <div className="modal-content">
         <p className="validation-message">{children}</p>
         <div className="modal-button">
-          <Button buttonText="OK" onClick={closeModal} />
+          <Button className="close-modal" buttonText="OK" onClick={closeModal} />
         </div>
       </div>
     </div>

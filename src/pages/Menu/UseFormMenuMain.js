@@ -145,8 +145,16 @@ export function NoteOrder(){
         setSideOrders([...sideOrders]);
     }
 
+    let allOrders = [];
+    createOrder().then((result) => {
+    result.json().then((data) => {
+        allOrders = data;
+    });
+    });
+
+
   
     return {handleChange, filterBurgerMain, values, orders, filterByItemName, 
-        sideOrders, cancelOrder, sendToTheKitchen, addBurger, addSideItem, removeBurger, removeSideItem, deleteBurger, deleteSideItem, modal, setModal, history}
+        sideOrders, cancelOrder, sendToTheKitchen, addBurger, addSideItem, removeBurger, removeSideItem, deleteBurger, deleteSideItem, modal, setModal, history, allOrders}
 }
         

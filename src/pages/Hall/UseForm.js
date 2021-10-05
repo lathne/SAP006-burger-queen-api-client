@@ -28,7 +28,6 @@ const useForm = () => {
         e.preventDefault();
         const validation = ValidateHall(values);
         if(validation.empty){
-            console.log(e.target.className)
              if(e.target.className === "button-hall morning") {              
             navigateToMenuMorning()
             }
@@ -46,14 +45,8 @@ const useForm = () => {
             ...values,
             [name]: value
         })
-        console.log(name, value)
     }
     
     return {handleChange, values, handleSubmit, errors}
-    // ir para acompanhar pedidos 
-    // não é da historia atual
-
-    // ir para pagina da cozinha
-    // não é da historia atual 
 }
 export default useForm;

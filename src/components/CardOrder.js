@@ -58,7 +58,7 @@ export function CardOrder({ order, setAllOrders, allOrders }) {
         <h3>{translatedStatus}</h3>
       </div>
       <div className="order-info">
-        <p>cliente: {order.client_name}</p>
+        <p>Cliente: {order.client_name}</p>
         <p>Mesa: {order.table}</p>
         <p>Atendente: {order.user_id}</p>
         <p>

@@ -22,7 +22,7 @@ export function OrdersPage() {
         setAllOrders(data);
       });
     });
-  }, []); // Only once, when pages load
+  }, []);
 
   useEffect(() => {
     setPendentOrders(
@@ -83,19 +83,4 @@ export function OrdersPage() {
       </main>
     </>
   );
-
-  // const [isModalVisible, setIsModalVisible] = useState(false);
-  // return (
-  //     <>
-  //         <NavBar />
-
-  //             {/* <div className="modal-test">
-  //                 <button onClick={() => setIsModalVisible(true)}>Open</button>
-  //                 {isModalVisible ?
-  //                     <Modal>
-  //                         <h2>Pedido enviado com sucesso</h2>
-  //                     </Modal> : null}
-  //     //         </div> */}
-  //     //     </>
-  //     // )
 }
