@@ -20,10 +20,10 @@ export function CardOrder({ order, setAllOrders, allOrders }) {
   };
 
   const changeStatusToDelivered = () => {
-    upDateOrderStatus(order.id, "delivered").then((result) => {
+    upDateOrderStatus(order.id, "finished").then((result) => {
       if (result.ok) {
-        setModal({ text: "Pedido pronto.", show: true });
-        order.status = "delivered";
+        setModal({ text: "Pedido finalizado.", show: true });
+        order.status = "finished";
         setAllOrders([...allOrders]);
       } else {
         setModal({ text: "Pedido não pronto.", show: true });
@@ -40,7 +40,7 @@ export function CardOrder({ order, setAllOrders, allOrders }) {
       translatedStatus = "Pedido pronto";
       break;
     default:
-      translatedStatus = "Pedido entregue";
+      translatedStatus = "Pedido finalizado";
   }
   const changeTimeDefault = new Date(order.createdAt);
 
@@ -87,7 +87,7 @@ export function CardOrder({ order, setAllOrders, allOrders }) {
       ) : (
         <Button
           className="status-btn finished"
-          buttonText="Pedido Entregue"
+          buttonText="Finalizado"
           onClick={changeStatusToDelivered}
         />
       )}

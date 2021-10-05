@@ -26,7 +26,7 @@ export function Kitchen() {
         
       });
     });
-  }, []); // Only once, when pages load
+  }, []); 
 
   useEffect(() => {
     setPendentOrders(allOrders.filter(order => {
@@ -67,11 +67,6 @@ export function Kitchen() {
             return <CardOrder order={order} setAllOrders={setAllOrders} allOrders={allOrders}/>;
           })}
         </section>
-        {/* <section className="preparing-orders">
-            {preparingOrders.map((order) => {
-            return <CardOrder order={order} setAllOrders={setAllOrders} allOrders={allOrders}/>;
-          })}
-        </section> */}
       </main>
     </>
   );

@@ -24,7 +24,7 @@ export function OrdersPage() {
         setAllOrders(data);
       });
     });
-  }, []); // Only once, when pages load
+  }, []); 
 
   useEffect(() => {
     setPendentOrders(
@@ -71,9 +71,9 @@ export function OrdersPage() {
         }}
         />
         <Button
-        buttonText="Pedidos entregues"
+        buttonText="Finalizados"
         onClick={() => {
-          setOrderStatusFilter("delivered")
+          setOrderStatusFilter("finished")
         }}
         />
         <div className="pendent-orders">
@@ -87,44 +87,7 @@ export function OrdersPage() {
             );
           })}
         </div>
-        {/* <div className="preparing-orders">
-          {preparingOrders.map((order) => {
-            return (
-              <CardOrder
-                order={order}
-                setAllOrders={setAllOrders}
-                allOrders={allOrders}
-              />
-            );
-          })}
-        </div> */}
-        {/* <div className="done-orders">
-          {doneOrders.map((xuxu) => {
-            return (
-              <CardOrder
-                order={xuxu}
-                setAllOrders={setAllOrders}
-                allOrders={allOrders}
-              />
-            );
-          })}
-        </div> */}
       </main>
     </>
   );
-
-  // const [isModalVisible, setIsModalVisible] = useState(false);
-  // return (
-  //     <>
-  //         <NavBar />
-
-  //             {/* <div className="modal-test">
-  //                 <button onClick={() => setIsModalVisible(true)}>Open</button>
-  //                 {isModalVisible ?
-  //                     <Modal>
-  //                         <h2>Pedido enviado com sucesso</h2>
-  //                     </Modal> : null}
-  //     //         </div> */}
-  //     //     </>
-  //     // )
 }
