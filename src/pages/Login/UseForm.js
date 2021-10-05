@@ -32,14 +32,13 @@ const useForm = validate => {
                 .then((json) => {
                     const token = json.token
                     const id = json.id
-                    // const role = json.role
                     localStorage.setItem("usersToken", token);
                     localStorage.setItem("usersName", json.name);
 
                     if (token !== null && id !== null ) {
                         navigateToHall()
                     } else {
-                        console.log('Não cadastrado!')
+                        alert('Não cadastrado!')
                     }
             })
         }

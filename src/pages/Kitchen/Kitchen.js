@@ -13,11 +13,9 @@ export function Kitchen() {
   const [preparingOrders, setPreparingOrders] = useState([]);
   const [orderStatusFilter, setOrderStatusFilter] = useState("pending");
 
-  console.log("carregando pedidos");
 
   useEffect(() => {
     listAllOrders().then((result) => {
-      console.log(result);
       result.json().then((data) => {
         data.sort((a,b) => {
           return new Date(a.createdAt).getTime() - new Date(b.createdAt).getTime();
@@ -26,7 +24,7 @@ export function Kitchen() {
         
       });
     });
-  }, []); 
+  }, []);
 
   useEffect(() => {
     setPendentOrders(allOrders.filter(order => {
@@ -50,18 +48,22 @@ export function Kitchen() {
       <NavBar />
       <main className="kitchen-page-main">
         <h2 className="h2">Pedidos</h2>
-        <Button
-        buttonText="Em preparo"
-        onClick={() => {
-          setOrderStatusFilter("pending")
-        }}
-        />
-        <Button
-        buttonText="Pedidos prontos"
-        onClick={() => {
-          setOrderStatusFilter("preparing")
-        }}
-        />
+        <div className="buttons-div">
+          <Button
+          className="status-buttons"
+          buttonText="Em preparo"
+          onClick={() => {
+            setOrderStatusFilter("pending")
+          }}
+          />
+          <Button
+          className="status-buttons"
+          buttonText="Pedidos prontos"
+          onClick={() => {
+            setOrderStatusFilter("preparing")
+          }}
+          />
+        </div>
         <section className="pendent-orders">
             {selectedFilter.map((order) => {
             return <CardOrder order={order} setAllOrders={setAllOrders} allOrders={allOrders}/>;

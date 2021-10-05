@@ -52,13 +52,31 @@ export function CardOrder({ order, setAllOrders, allOrders }) {
       (lastUpDate.getTime() - processedDate.getTime()) / 1000 / 60;
     preparingTime = Math.round(preparingTime);
   }
+
+  let xuxu = {}
+  if (order.status === "pending"){ (
+    xuxu = <Button
+      className="status-btn pending"
+      buttonText="Pedido Pronto"
+      onClick={changeStatusToDone}
+    />
+  )}else if(order.status === "preparing"){(
+    xuxu = <Button
+      className="status-btn finished"
+      buttonText="Finalizado"
+      onClick={changeStatusToDelivered}
+    />
+  )}else{
+    xuxu = <h3>Finalizado</h3>
+  }
+
   return (
     <main className="card-order-main">
       <div classname="status">
         <h3>{translatedStatus}</h3>
       </div>
       <div className="order-info">
-        <p>cliente: {order.client_name}</p>
+        <p>Cliente: {order.client_name}</p>
         <p>Mesa: {order.table}</p>
         <p>Atendente: {order.user_id}</p>
         <p>
@@ -78,19 +96,7 @@ export function CardOrder({ order, setAllOrders, allOrders }) {
           </div>
         );
       })}
-      {order.status === "pending" ? (
-        <Button
-          className="status-btn pending"
-          buttonText="Pedido Pronto"
-          onClick={changeStatusToDone}
-        />
-      ) : (
-        <Button
-          className="status-btn finished"
-          buttonText="Finalizado"
-          onClick={changeStatusToDelivered}
-        />
-      )}
+      {xuxu}
 
       <Modal
         children={modal.text}

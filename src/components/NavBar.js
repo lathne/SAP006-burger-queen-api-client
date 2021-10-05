@@ -2,7 +2,6 @@ import reducedLogo from '../images/reducedLogo.svg'
 import logoutIMG from '../images/exit.svg'
 import '../styles/NavBar.scss'
 import { Link } from 'react-router-dom'
-import goBack from '../images//go-back.svg'
 
 
 export function NavBar() { 
@@ -36,9 +35,7 @@ export function NavBar() {
                     alt="Botão para logout"
                   />
             </Link>
-          </div>
-                
-          
+          </div>        
       </nav>
   )
 }

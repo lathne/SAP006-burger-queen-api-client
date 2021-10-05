@@ -58,24 +58,29 @@ export function OrdersPage() {
       <NavBar />
       <main className="orders-page-main">
         <h2 className="h2">Pedidos</h2>
-        <Button
-        buttonText="Em preparo"
-        onClick={() => {
-          setOrderStatusFilter("pending")
-        }}
-        />
-        <Button
-        buttonText="Pedidos prontos"
-        onClick={() => {
-          setOrderStatusFilter("preparing")
-        }}
-        />
-        <Button
-        buttonText="Finalizados"
-        onClick={() => {
-          setOrderStatusFilter("finished")
-        }}
-        />
+        <div className="buttons-div">
+          <Button
+            className="status-buttons"
+            buttonText="Pedidos Prontos"
+            onClick={() => {
+              setOrderStatusFilter("pending")
+            }}
+          />
+          <Button
+          className="status-buttons"
+            buttonText="Entregar pedido"
+            onClick={() => {
+              setOrderStatusFilter("preparing")
+            }}
+          />
+          <Button
+          className="status-buttons"
+          buttonText="Finalizados"
+          onClick={() => {
+            setOrderStatusFilter("finished")
+          }}
+          />
+        </div>
         <div className="pendent-orders">
           {selectedFilter.map((order) => {
             return (

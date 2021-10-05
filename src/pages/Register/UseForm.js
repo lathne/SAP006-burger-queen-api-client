@@ -32,11 +32,8 @@ const useForm = validate => {
         if (errors.empty) {
             registerUser(values)
                 .then(response => response.json(
-                    console.log(response)
                 ))
                 .then((json) => {
-                    console.log(json)
-
                     const token = json.token
                     localStorage.setItem("usersToken", token);
 

@@ -36,15 +36,8 @@ export function MenuMain() {
     modal,
     setModal,
     history,
+    allOrders
   } = NoteOrder();
-
-  let allOrders = [];
-createOrder().then((result) => {
-  result.json().then((data) => {
-    allOrders = data;
-    console.log(allOrders);
-  });
-});
 
   return (
     <>

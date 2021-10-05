@@ -54,15 +54,3 @@ export function Login() {
         </div>
     );
 }
-
-
-
-
-// import { useHistory } from 'react-router-dom'; //faz a navegação com botões
-//função para navegação com botões
-
-//     const history = useHistory();
-
-//     function navigateToNewPage() {
-//         history.push('/register')
-//     }

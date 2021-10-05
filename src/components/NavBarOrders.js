@@ -29,9 +29,7 @@ export function NavBarOrders() {
                     alt="Botão para logout"
                   />
             </Link>
-          </div>
-                
-          
+          </div>     
       </nav>
   )
 }
