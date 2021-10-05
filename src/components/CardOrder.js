@@ -36,7 +36,7 @@ export function CardOrder({ order, setAllOrders, allOrders }) {
     case "pending":
       translatedStatus = "Em preparo";
       break;
-    case "done":
+    case "preparing":
       translatedStatus = "Pedido pronto";
       break;
     default:
