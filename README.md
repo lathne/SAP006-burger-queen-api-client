@@ -14,7 +14,7 @@
 
 ## 1. Resumo do projeto
 
-Esse projeto foi realizado durante o bootcamp da Laboratoria e o objetivo principal é o desenvolvilemto de uma _Single Page Application_ usando o _React_. Além de consumo de API, manipulação dados, utilização de métodos HTTP e promisses.
+Esse projeto foi realizado durante o bootcamp da Laboratoria e o objetivo principal é o desenvolvimento de uma _Single Page Application_ usando o _React_. Além de consumo de API, manipulação dados, utilização de métodos HTTP e promisses.
 
 ---
 
